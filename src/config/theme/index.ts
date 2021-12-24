@@ -11,12 +11,12 @@ const theme = extendTheme({
     bold: 800,
   },
   colors: {
-    primary: 'rgb(0 0 0)',
-    primary2: 'rgb(0 0 0 / 39%)',
+    primary: 'rgb(0 118 255)',
+    primary2: 'rgb(0 118 255 / 39%)',
   },
   shadows: {
-    shadow: '0 4px 14px 0 rgb(0 0 0 / 39%)',
-    shadow2: '0 4px 14px 0 rgb(0 0 0 /5%)',
+    shadow: '0 4px 14px 0 rgb(0 118 255 / 39%)',
+    shadow2: '0 4px 14px 0 rgb(0 118 255 /5%)',
   },
   styles: {
     global: {
