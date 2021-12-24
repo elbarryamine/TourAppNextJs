@@ -12,24 +12,30 @@ export default function AppAdmin() {
         alt="svg"
         objectFit="cover"
         objectPosition="center center"
-        filter="sepia(100%)"
       />
       <Bx d="flex" px="20px" h="max-content" w="max-content" minW="35%">
-        <FormControl borderRadius="2px" borderWidth="1px" py="40px" px="20px" borderColor="gray.100" sx={{}}>
+        <FormControl borderWidth="1px" py="40px" px="20px" borderColor="gray.100" sx={{}}>
           <Image h="80px" src="/assets/adminsvg.svg" alt="svg" mb="40px" mx="auto" />
           <FormLabel fontWeight="bold" color="primary" htmlFor="username">
             User Name
           </FormLabel>
-          <Input boxShadow="0 4px 14px 0 rgb(0 0 0 / 14%)" id="username" type="username" />
+          <Input boxShadow="shadow2" id="username" type="username" />
           <FormLabel fontWeight="bold" color="primary" pt="10px" htmlFor="email">
             Email address
           </FormLabel>
-          <Input boxShadow="0 4px 14px 0 rgb(0 0 0 / 14%)" id="email" type="email" />
+          <Input boxShadow="shadow2" id="email" type="email" />
           <Bx d="flex" mt="20px" flexDir="column" gap="20px">
             <Button
-              boxShadow="0 4px 14px 0 rgb(0 118 255 / 39%)"
+              boxShadow="shadow"
               _hover={{
-                background: 'primary',
+                background: 'primary2',
+              }}
+              _focus={{}}
+              _active={{
+                color: 'primary',
+                bg: 'transparent',
+                border: '1px',
+                borderColor: 'primary',
               }}
               fontWeight="bold"
               bg="primary"
