@@ -29,7 +29,7 @@ const theme = extendTheme({
     none: '0',
     sm: '0.125rem',
     base: '0.25rem',
-    md: '0',
+    md: '0.3rem',
     lg: '0.5rem',
     xl: '0.75rem',
     '2xl': '1rem',
