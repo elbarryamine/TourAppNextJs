@@ -1,6 +1,8 @@
 import { extendTheme } from '@chakra-ui/react'
 
 const theme = extendTheme({
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
   fonts: {
     heading: 'Raleway',
     body: 'Raleway',
@@ -13,6 +15,8 @@ const theme = extendTheme({
   colors: {
     primary: 'rgb(0 118 255)',
     primary2: 'rgb(0 118 255 / 39%)',
+    primaryDark: '#272727',
+    secondaryDark: '#121212',
   },
   shadows: {
     shadow: '0 4px 14px 0 rgb(0 118 255 / 39%)',

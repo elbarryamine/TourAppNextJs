@@ -6,12 +6,13 @@ import Link from 'next/link'
 export function SignUpForm() {
   return (
     <FormControl
+      className="trcontainer"
       as="form"
-      borderWidth="1px"
       py="40px"
       px="20px"
-      borderColor="primary2"
       borderRadius="2xl"
+      boxShadow="sm"
+      bg="white"
       sx={{}}
       onSubmit={() => {}}
     >
@@ -40,7 +41,7 @@ export function SignUpForm() {
         <Input
           boxShadow="shadow"
           type="submit"
-          name="Sign Up"
+          name="Sign up"
           _hover={{
             background: 'primary2',
           }}
@@ -67,11 +68,9 @@ export function SignUpForm() {
             cursor="pointer"
             _hover={{ color: 'rgb(0 118 255 / 39%)' }}
           >
-            <Link href="/app/login">
-              <Text fontWeight="bold" bg="transparent">
-                Log in
-              </Text>
-            </Link>
+            <Text fontWeight="bold" bg="transparent">
+              <Link href="/app/login">Log in</Link>
+            </Text>
             <MdLogin />
           </Bx>
         </Bx>

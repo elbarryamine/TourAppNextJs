@@ -5,16 +5,27 @@ type Props = {
 }
 export function FormContainer({ children }: Props) {
   return (
-    <Bx h="100vh" w="100vw" d="flex" justifyContent="center" alignItems="center">
+    <Bx h="100vh" w="100vw" d="flex" justifyContent="center" alignItems="center" bg="whitesmoke">
       <Image
         h="100vh"
-        flex="1"
         src="https://images.pexels.com/photos/450062/pexels-photo-450062.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
         alt="svg"
         objectFit="cover"
         objectPosition="20% center"
+        overflow="hidden"
+        flex="1.5"
       />
-      <Bx d="flex" px="20px" h="max-content" w="max-content" minW="35%">
+      <Bx
+        d="flex"
+        px="20px"
+        py="30px"
+        flex="1"
+        overflow="hidden"
+        h="100%"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
         {children}
       </Bx>
     </Bx>

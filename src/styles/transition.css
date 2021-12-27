@@ -1,15 +1,18 @@
-.swap-enter {
+.swap-enter .trcontainer {
+  transform: translateX(-100%);
   opacity: 0;
-  transform: translateX('-100%');
 }
-.swap-enter-active {
-  transform: translateX('-100%');
-  transition: all 1s;
+.swap-enter-active .trcontainer {
+  transform: translateX(0%);
+  opacity: 1;
+  transition: all 0.3s;
 }
-.swap-exit {
-  transform: translateX('-100%');
+.swap-exit .trcontainer {
+  transform: translateX(0%);
+  opacity: 1;
 }
-.swap-exit-active {
-  transform: translateX('-100%');
-  transition: all 1s;
+.swap-exit-active .trcontainer {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.3s;
 }
