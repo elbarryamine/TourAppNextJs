@@ -2,6 +2,7 @@ import React from 'react'
 import { Box as Bx, Input, FormControl, FormLabel, Button, Text, Image } from '@chakra-ui/react'
 import { MdLogin } from 'react-icons/md'
 import Link from 'next/link'
+import { FormInput, SubmitInput } from '../input'
 
 export function SignInForm() {
   return (
@@ -16,37 +17,10 @@ export function SignInForm() {
       sx={{}}
       onSubmit={() => {}}
     >
-      <FormLabel fontWeight="bold" htmlFor="email">
-        Email
-      </FormLabel>
-      <Input boxShadow="shadow2" id="email" type="email" />
-
-      <FormLabel fontWeight="bold" pt="10px" htmlFor="password">
-        Password
-      </FormLabel>
-      <Input boxShadow="shadow2" id="password" type="password" />
-
+      <FormInput title="Email" type="email" />
+      <FormInput title="Password" type="password" />
       <Bx d="flex" mt="20px" flexDir="column" gap="20px">
-        <Input
-          boxShadow="shadow"
-          type="submit"
-          name="Sign Up"
-          _hover={{
-            background: 'primary2',
-          }}
-          _focus={{}}
-          _active={{
-            color: 'primary',
-            bg: 'transparent',
-            border: '1px',
-            borderColor: 'primary',
-          }}
-          fontWeight="bold"
-          bg="primary"
-          color="white"
-          value="Log in"
-        />
-
+        <SubmitInput title="SignUp" />
         <Bx d="flex" alignItems="center" justifyContent="space-between">
           <Text fontWeight="bold">Dont have an account yet ?</Text>
           <Bx

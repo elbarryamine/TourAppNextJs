@@ -14,6 +14,7 @@ const theme = extendTheme({
   },
   colors: {
     primary: 'rgb(0 118 255)',
+    primaryShade: 'rgb(153 200 255)',
     primary2: 'rgb(0 118 255 / 39%)',
     primaryDark: '#272727',
     secondaryDark: '#121212',
