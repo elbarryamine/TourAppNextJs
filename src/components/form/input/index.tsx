@@ -40,8 +40,20 @@ export function FormInput(props: PropsFormInput) {
     const [message, setMessage] = React.useState<string>('')
     const [isError, setIsError] = React.useState<boolean>(false)
     const [showPassword, setShowPassword] = React.useState<boolean>(false)
-    const [isPasswordStrong, setIsPasswordStrong] = React.useState<boolean>(false)
-
+    const [passwordStates, setPasswordStates] = React.useState<{
+        symbols: boolean
+        uppercase: boolean
+        number: boolean
+    }>({
+        symbols: false,
+        uppercase: false,
+        number: false,
+    })
+    //
+    const verifyType = type.toLowerCase() === 'password' ? (showPassword ? 'text' : type) : type
+    const labelBgColor = inputVal ? (isError ? 'red.100' : 'gray.100') : ''
+    const labelColor = inputVal ? (isError ? 'red.500' : 'primary') : 'gray.500'
+    //
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const { value }: { value: string } = e.target
         setInputVal(value)
@@ -54,11 +66,13 @@ export function FormInput(props: PropsFormInput) {
                 setMessage('Please enter a valid email')
             }
             if (type.toLowerCase() == 'password') {
-                handleIsPasswordStrong(value)
+                setIsError(handleIsPasswordStrong(value))
             }
         }
     }
-    function handleIsPasswordStrong(value: string) {}
+    function handleIsPasswordStrong(value: string): boolean {
+        return true
+    }
     return (
         <Box mb="15px">
             <Box position="relative" h="50px">
@@ -76,7 +90,7 @@ export function FormInput(props: PropsFormInput) {
                         }}
                         boxShadow="shadow2"
                         id={type}
-                        type={type.toLowerCase() === 'password' ? (showPassword ? 'text' : type) : type}
+                        type={verifyType}
                         onChange={handleChange}
                     />
                     {type.toLowerCase() === 'password' && (
@@ -100,19 +114,19 @@ export function FormInput(props: PropsFormInput) {
                     px="10px"
                     className="label"
                     height="40px"
-                    color={inputVal ? (isError ? 'red.500' : 'primary') : 'gray.500'}
+                    color={labelColor}
                     position="absolute"
                     fontWeight="bold"
                     htmlFor={type}
                     w="max-content"
                 >
-                    <Text bg={inputVal ? (isError ? 'red.100' : 'gray.100') : ''} px="5px" as="p" borderRadius="5px">
+                    <Text bg={labelBgColor} px="5px" as="p" borderRadius="5px">
                         {title}
                     </Text>
                 </FormLabel>
                 {isError ? (
                     <Box position="absolute" bottom="0" h="15px" pl="15px">
-                        <FormHelperText color="red.500">{message}</FormHelperText>
+                        {type === 'password' ? '' : <FormHelperText color="red.500">{message}</FormHelperText>}
                     </Box>
                 ) : (
                     ''
