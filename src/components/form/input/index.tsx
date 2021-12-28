@@ -1,6 +1,7 @@
 import React from 'react'
-import { Input, FormLabel, Box, Text, FormHelperText, FormErrorMessage } from '@chakra-ui/react'
+import { Input, FormLabel, Box, Text, FormHelperText, InputGroup, InputRightElement } from '@chakra-ui/react'
 import validator from 'validator'
+import { FaEye } from 'react-icons/fa'
 
 export function SubmitInput({ title }: { title: string }) {
     return (
@@ -28,46 +29,68 @@ export function SubmitInput({ title }: { title: string }) {
 interface PropsFormInput {
     type: string
     title: string
+    validatePassword?: boolean
+}
+FormInput.defaultProps = {
+    validatePassword: false,
 }
 export function FormInput(props: PropsFormInput) {
     const { title, type } = props
     const [inputVal, setInputVal] = React.useState<string>('')
     const [message, setMessage] = React.useState<string>('')
     const [isError, setIsError] = React.useState<boolean>(false)
+    const [showPassword, setShowPassword] = React.useState<boolean>(false)
+    const [isPasswordStrong, setIsPasswordStrong] = React.useState<boolean>(false)
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        const { value } = e.target
+        const { value }: { value: string } = e.target
         setInputVal(value)
         if (value === '') {
             setIsError(false)
             setMessage('')
         } else {
-            if (type == 'email') {
+            if (type.toLowerCase() == 'email') {
                 setIsError(!validator.isEmail(value))
                 setMessage('Please enter a valid email')
             }
+            if (type.toLowerCase() == 'password') {
+                handleIsPasswordStrong(value)
+            }
         }
     }
+    function handleIsPasswordStrong(value: string) {}
     return (
         <Box mb="15px">
             <Box position="relative" h="50px">
-                <Input
-                    h="40px"
-                    position="absolute"
-                    _focus={{
-                        '& + .label': {
-                            transform: 'translateY(-45%)',
-                            color: 'primary',
-                            '& p': {
-                                bg: 'primaryShade',
+                <InputGroup h="40px" position="absolute">
+                    <Input
+                        h="100%"
+                        _focus={{
+                            '& + .label': {
+                                transform: 'translateY(-45%)',
+                                color: 'primary',
+                                '& p': {
+                                    bg: 'primaryShade',
+                                },
                             },
-                        },
-                    }}
-                    boxShadow="shadow2"
-                    id={type}
-                    type={type}
-                    onChange={handleChange}
-                />
+                        }}
+                        boxShadow="shadow2"
+                        id={type}
+                        type={type.toLowerCase() === 'password' ? (showPassword ? 'text' : type) : type}
+                        onChange={handleChange}
+                    />
+                    {type.toLowerCase() === 'password' && (
+                        <InputRightElement
+                            color="primary"
+                            display="flex"
+                            alignItems="center"
+                            cursor="pointer"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            <FaEye size="40%" />
+                        </InputRightElement>
+                    )}
+                </InputGroup>
                 <FormLabel
                     transition="all 0.4s"
                     transform={inputVal ? 'translateY(-45%)' : ''}
