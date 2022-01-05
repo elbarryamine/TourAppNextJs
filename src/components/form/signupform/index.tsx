@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box as Bx, Input, FormControl, FormLabel, Button, Text, Image } from '@chakra-ui/react'
+import { Box as Bx, FormControl, Text } from '@chakra-ui/react'
 import { MdLogin } from 'react-icons/md'
 import Link from 'next/link'
 import { FormInput, SubmitInput } from '../input'
