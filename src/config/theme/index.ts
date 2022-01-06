@@ -13,11 +13,13 @@ const theme = extendTheme({
     bold: 800,
   },
   colors: {
-    primary: 'rgb(0 118 255)',
-    primaryShade: 'rgb(153 200 255)',
-    primary2: 'rgb(0 118 255 / 39%)',
-    primaryDark: '#272727',
-    secondaryDark: '#121212',
+    primary: 'hsl(207, 95%, 8%)',
+    secondary: 'hsl(207, 95%, 20%)',
+    accent: 'hsl(40, 91%, 91%)',
+    light: 'hsl(0, 0%, 97%)',
+    gray: 'hsl(0, 0%, 85%)',
+    dark: 'hsl(0, 0%, 10%) ',
+    darker: 'hsl(0, 0%, 12%)',
   },
   shadows: {
     shadow: '0 4px 14px 0 rgb(0 118 255 / 39%)',
