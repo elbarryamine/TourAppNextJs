@@ -10,11 +10,11 @@ export function SubmitInput({ title }: { title: string }) {
       borderColor="gray"
       type="submit"
       _hover={{
-        background: 'primary2',
+        background: 'secondary',
       }}
       _focus={{}}
       _active={{
-        color: 'primary',
+        color: 'secondary',
         bg: 'transparent',
         border: '1px',
         borderColor: 'gray',
@@ -52,8 +52,8 @@ export function FormInput(props: PropsFormInput) {
   })
   //
   const verifyType = type.toLowerCase() === 'password' ? (showPassword ? 'text' : type) : type
-  const labelBgColor = inputVal ? (isError ? 'red.100' : 'gray.100') : ''
-  const labelColor = inputVal ? (isError ? 'red.500' : 'primary') : 'gray.500'
+  const labelBgColor = inputVal ? (isError ? 'red.100' : 'light') : ''
+  const labelColor = inputVal ? (isError ? 'red.500' : 'dark') : 'gray.500'
   //
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { value }: { value: string } = e.target
@@ -79,15 +79,17 @@ export function FormInput(props: PropsFormInput) {
       <Box position="relative" h="50px">
         <InputGroup h="40px" position="absolute">
           <Input
+            bg="white"
             h="100%"
             border="1px solid"
             borderColor="gray"
             _focus={{
               '& + .label': {
                 transform: 'translateY(-45%)',
-                color: 'primary',
+                color: 'red',
+                bg: 'secondary',
                 '& p': {
-                  bg: 'primaryShade',
+                  bg: 'secondary',
                 },
               },
             }}

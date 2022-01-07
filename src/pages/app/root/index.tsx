@@ -13,9 +13,9 @@ function App() {
     { path: '/tours-workspace/create', element: <ToursWorkSpaceCreate /> },
   ]
   return (
-    <Box bg="light" h="100vh" w="100vw" pos="relative">
+    <Box bg="light" h="100vh" w="100vw">
       <SideNavigation />
-      <Box pos="absolute" top="0" left="0" h="100%" w="100%" zIndex="1">
+      <Box h="100%" w="100%">
         <Routes>
           {routes.map((route, i) => (
             <Route key={i} path={route.path} element={route.element} />

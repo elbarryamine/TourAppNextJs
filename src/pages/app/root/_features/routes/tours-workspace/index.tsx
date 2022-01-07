@@ -16,23 +16,23 @@ export function ToursWorkSpace() {
         '& button:hover': {
           transform: 'scale(1.1)',
           bg: 'light',
-          color: 'darker',
+          color: 'primary',
           border: '1px solid',
-          borderColor: 'darker',
+          borderColor: 'primary',
         },
       }}>
       <Link to="create">
-        <Button _focus={{}} bg="darker" color="light" shadow="lg">
+        <Button _focus={{}} bg="primary" color="light" shadow="lg">
           Create a new tour
         </Button>
       </Link>
       <Link to="edit">
-        <Button _focus={{}} bg="darker" color="light" shadow="lg">
+        <Button _focus={{}} bg="primary" color="light" shadow="lg">
           Edit your tours
         </Button>
       </Link>
       <Link to="track">
-        <Button _focus={{}} bg="darker" color="light" shadow="lg">
+        <Button _focus={{}} bg="primary" color="light" shadow="lg">
           Track your tour workflow
         </Button>
       </Link>

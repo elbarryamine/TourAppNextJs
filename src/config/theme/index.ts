@@ -13,7 +13,7 @@ const theme = extendTheme({
     bold: 800,
   },
   colors: {
-    primary: 'hsl(207, 95%, 8%)',
+    primary: 'hsl(353, 86%, 54%)',
     secondary: 'hsl(207, 95%, 20%)',
     accent: 'hsl(40, 91%, 91%)',
     light: 'hsl(0, 0%, 97%)',

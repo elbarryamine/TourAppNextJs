@@ -16,11 +16,10 @@ export function SideNavigation() {
   return (
     <Box
       h="100%"
-      p="20px"
+      p="10px"
       w="100%"
-      pos="absolute"
-      sx={{ '.icon': { cursor: 'pointer', transition: 'all 0.2s' }, '.icon:hover': { transform: 'scale(1.5)' } }}
-    >
+      pos="fixed"
+      sx={{ '.icon': { cursor: 'pointer', transition: 'all 0.2s' }, '.icon:hover': { transform: 'scale(1.5)' } }}>
       <Flex h="100%" alignItems="center">
         <Flex
           h="max-content"
@@ -31,14 +30,13 @@ export function SideNavigation() {
           mb="20px"
           flexDir="column"
           border="2px solid"
-          borderColor="gray"
-        >
+          borderColor="gray">
           <Flex alignItems="center" flexDir="column" w="100%" gap="30px" borderBottom="2px dashed" borderBottomColor="gray" py="20px">
             <Box color="dark" borderRadius="50%" d="flex" alignItems="center" className="icon">
               <AiFillHome size="17px" />
             </Box>
             <Link to="/tours-workspace">
-              <Box color="dark" className="icon">
+              <Box color="dark" className="icon" cursor="pointer">
                 <AiTwotoneAppstore size="17px" />
               </Box>
             </Link>
