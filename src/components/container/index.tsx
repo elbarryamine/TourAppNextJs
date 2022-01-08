@@ -15,17 +15,7 @@ export function FormContainer({ children }: Props) {
         overflow="hidden"
         flex="1.5"
       />
-      <Bx
-        d="flex"
-        px="20px"
-        py="30px"
-        flex="1"
-        overflow="hidden"
-        h="100%"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
+      <Bx d="flex" px="20px" py="30px" flex="1" overflow="hidden" h="100%" display="flex" justifyContent="center" alignItems="center">
         {children}
       </Bx>
     </Bx>
