@@ -3,40 +3,17 @@ import { Input, FormLabel, Box, Text, FormHelperText, InputGroup, InputRightElem
 import validator from 'validator'
 import { FaEye } from 'react-icons/fa'
 
-export function SubmitInput({ title }: { title: string }) {
-  return (
-    <Input
-      boxShadow="shadow"
-      borderColor="gray"
-      type="submit"
-      _hover={{
-        background: 'secondary',
-      }}
-      _focus={{}}
-      _active={{
-        color: 'secondary',
-        bg: 'transparent',
-        border: '1px',
-        borderColor: 'gray',
-      }}
-      fontWeight="bold"
-      bg="primary"
-      color="white"
-      value={title}
-    />
-  )
-}
-
 interface PropsFormInput {
   type: string
   title: string
+  id: string
   validatePassword?: boolean
 }
 FormInput.defaultProps = {
   validatePassword: false,
 }
 export function FormInput(props: PropsFormInput) {
-  const { title, type } = props
+  const { title, type, id } = props
   const [inputVal, setInputVal] = React.useState<string>('')
   const [message, setMessage] = React.useState<string>('')
   const [isError, setIsError] = React.useState<boolean>(false)
@@ -53,7 +30,7 @@ export function FormInput(props: PropsFormInput) {
   //
   const verifyType = type.toLowerCase() === 'password' ? (showPassword ? 'text' : type) : type
   const labelBgColor = inputVal ? (isError ? 'red.100' : 'light') : ''
-  const labelColor = inputVal ? (isError ? 'red.500' : 'dark') : 'gray.500'
+  const labelColor = inputVal ? (isError ? 'red.500' : 'dark') : 'gray.900'
   //
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { value }: { value: string } = e.target
@@ -79,7 +56,7 @@ export function FormInput(props: PropsFormInput) {
       <Box position="relative" h="50px">
         <InputGroup h="40px" position="absolute">
           <Input
-            bg="white"
+            bg="whitesmoke"
             h="100%"
             border="1px solid"
             borderColor="gray"
@@ -94,7 +71,7 @@ export function FormInput(props: PropsFormInput) {
               },
             }}
             boxShadow="shadow2"
-            id={type}
+            id={id}
             type={verifyType}
             onChange={handleChange}
           />
@@ -111,7 +88,7 @@ export function FormInput(props: PropsFormInput) {
         </InputGroup>
         <FormLabel
           transition="all 0.4s"
-          transform={inputVal ? 'translateY(-45%)' : ''}
+          transform={inputVal ? 'translateY(-47%)' : ''}
           top="0"
           d="flex"
           alignItems="center"
@@ -120,10 +97,9 @@ export function FormInput(props: PropsFormInput) {
           height="40px"
           color={labelColor}
           position="absolute"
-          fontWeight="bold"
           htmlFor={type}
           w="max-content">
-          <Text bg={labelBgColor} px="5px" as="p" borderRadius="5px">
+          <Text fontSize="md" fontWeight="extrabold" bg={labelBgColor} px="5px" as="p" borderRadius="5px">
             {title}
           </Text>
         </FormLabel>

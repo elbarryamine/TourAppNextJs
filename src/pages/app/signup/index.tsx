@@ -1,7 +1,6 @@
 import { Box as Bx, FormControl, Text } from '@chakra-ui/react'
 import React from 'react'
-import { FormContainer } from '../../../components'
-import { FormInput, SubmitInput } from '../../../components/form/input'
+import { FormContainer, SubmitInput, FormInput } from '../../../components'
 import { MdLogin } from 'react-icons/md'
 import Link from 'next/link'
 
@@ -15,14 +14,16 @@ export default function SignUp() {
         px="20px"
         borderRadius="2xl"
         boxShadow="sm"
-        bg="white"
+        bg="gray.50"
+        border="1px solid"
+        borderColor="subtext"
         sx={{}}
         onSubmit={() => {}}>
-        <FormInput type="firstname" title="First Name" />
-        <FormInput type="lastname" title="Last Name" />
-        <FormInput type="email" title="Email" />
-        <FormInput type="password" title="Password" />
-        <FormInput type="password" title="Password Confirm" />
+        <FormInput id="firstname" type="firstname" title="First Name" />
+        <FormInput id="lastname" type="lastname" title="Last Name" />
+        <FormInput id="email" type="email" title="Email" />
+        <FormInput id="password" type="password" title="Password" />
+        <FormInput id="passwordConfirm" type="password" title="Password Confirm" />
         <Bx d="flex" mt="20px" flexDir="column" gap="20px">
           <SubmitInput title="Sign up" />
           <Bx d="flex" alignItems="center" justifyContent="space-between">

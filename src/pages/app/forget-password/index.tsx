@@ -1,9 +1,14 @@
 import React from 'react'
 import { Box, Button, FormControl, Text } from '@chakra-ui/react'
-import { FormContainer, FormInput, SubmitInput } from '../../../components'
+import { FormContainer, FormInput, LoadingPage, SubmitInput } from '../../../components'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
 export default function ForgetPassword() {
+  // const [loaded, setLoaded] = React.useState<boolean>(false)
+  // React.useEffect(() => {
+  //   setLoaded(true)
+  // }, [])
+  // if (!loaded) return <LoadingPage />
   return (
     <FormContainer>
       <FormControl
@@ -13,7 +18,9 @@ export default function ForgetPassword() {
         px="20px"
         borderRadius="2xl"
         boxShadow="sm"
-        bg="white"
+        bg="gray.50"
+        border="1px solid"
+        borderColor="subtext"
         sx={{}}
         onSubmit={() => {}}>
         <Text as="h4" fontSize="lg" pb="20px" fontWeight="bold" userSelect="none">
@@ -22,7 +29,7 @@ export default function ForgetPassword() {
             {` reset link`}
           </Text>
         </Text>
-        <FormInput title="Email" type="email" />
+        <FormInput id="email" title="Email" type="email" />
         <SubmitInput title="Get reset link" />
         <Button fontWeight="extrabold" color="primary" bg="transparent" pt="20px" d="flex" alignItems="center" gap="5px">
           <FaChevronLeft />

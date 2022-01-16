@@ -1,15 +1,23 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import React from 'react'
+import { Box, ChakraProvider } from '@chakra-ui/react'
 import theme from '../config/theme'
 import '@fontsource/raleway'
 import '../styles/transition.css'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
 
 function MyApp({ Component, pageProps, router }) {
+  const [loaded, setLoaded] = React.useState<boolean>(false)
+  let typeOfWindow = typeof window
+  React.useEffect(() => {
+    if (typeOfWindow === 'undefined') return
+    setLoaded(true)
+  }, [typeOfWindow])
+  if (!loaded) return null
   return (
     <ChakraProvider theme={theme}>
       <SwitchTransition mode="out-in">
         <CSSTransition key={router.pathname} classNames="swap" timeout={300}>
-          <>{typeof window === 'undefined' ? null : <Component {...pageProps} />}</>
+          <Component {...pageProps} />
         </CSSTransition>
       </SwitchTransition>
     </ChakraProvider>

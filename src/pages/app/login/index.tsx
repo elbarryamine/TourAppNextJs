@@ -15,11 +15,13 @@ export default function Login() {
         px="20px"
         borderRadius="2xl"
         boxShadow="sm"
-        bg="white"
+        bg="gray.50"
+        border="1px solid"
+        borderColor="subtext"
         sx={{}}
         onSubmit={() => {}}>
-        <FormInput title="Email" type="email" />
-        <FormInput title="Password" type="password" />
+        <FormInput id="email" title="Email" type="email" />
+        <FormInput id="password" title="Password" type="password" />
         <Bx d="flex" mt="20px" flexDir="column" gap="20px">
           <SubmitInput title="Log in" />
           <Bx d="flex" alignItems="center" justifyContent="space-between">
@@ -39,7 +41,8 @@ export default function Login() {
               _hover={{ border: '2px solid', borderColor: 'primary' }}
               _focus={{}}
               textAlign="center"
-              color="primary">
+              color="primary"
+              bg="transparent">
               Forgot password ?
             </Button>
           </Link>
