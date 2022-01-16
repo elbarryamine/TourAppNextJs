@@ -8,7 +8,7 @@ import { ToursWorkSpaceCreate } from './_features/routes/tours-workspace/create'
 
 function App() {
   const routes = [
-    { path: '/', element: <Home /> },
+    { path: '/home', element: <Home /> },
     { path: '/tours-workspace', element: <ToursWorkSpace /> },
     { path: '/tours-workspace/create', element: <ToursWorkSpaceCreate /> },
   ]

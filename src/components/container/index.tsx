@@ -16,7 +16,7 @@ export function FormContainer({ children }: Props) {
   if (md) containerPaddingX = '10px'
   if (sm) containerPaddingX = '50px'
   if (xs) containerPaddingX = '20px'
-  if (xss) containerPaddingX = '0px'
+  if (xss) containerPaddingX = '5px'
 
   return (
     <Bx

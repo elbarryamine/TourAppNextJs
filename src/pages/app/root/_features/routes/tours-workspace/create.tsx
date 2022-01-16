@@ -1,27 +1,29 @@
 import React from 'react'
-import { Box, FormControl, Text, Input, Textarea } from '@chakra-ui/react'
-import { FormInput } from '../../../../../../components/form/input'
+import { Box, FormControl, Text, Input, Textarea, Flex, Button } from '@chakra-ui/react'
+import { FormInput, SubmitInput } from '../../../../../../components'
 
 export function ToursWorkSpaceCreate() {
   function handleSubmit() {}
   return (
-    <Box d="flex" alignItems="flex-start" ml="200px">
-      <Box w="400px" h="80vh" py="20px">
-        <Text px="10px" textAlign="center" fontWeight="extrabold" color="dark" fontSize="xl">
-          Add Main Details
+    <Flex align="center" justify="center" w="100%" h="100%">
+      <Box p="20px" bg="white" border="1px solid" borderColor="subtext" borderRadius="5px" minW="500px">
+        <Text px="10px" color="primary" textAlign="center" fontWeight="extrabold" fontSize="xl" pb="20px">
+          Create a tour
         </Text>
-        <Box w="100%" h="1px" my="20px" bg="gray.100" />
-        <FormControl w="100%" px="10px" onSubmit={handleSubmit}>
-          <FormInput type="name" title="Title" />
-          <FormInput type="number" title="Categories" />
-          <FormInput type="text" title="locations" />
-          <FormInput type="text" title="features" />
-          <FormInput type="text" title="Category" />
-          <FormInput type="number" title="Price" />
-          <Textarea placeholder="Description" />
-        </FormControl>
+        <FormInput id="name" type="name" title="Name of your tour ?" />
+        <Flex justify="space-between" align="center">
+          <Text color="subtextdarker">This can be changed later</Text>
+          <Button
+            color="primary"
+            _active={{ bg: 'primary', color: 'light', outline: '0' }}
+            _focus={{}}
+            _hover={{ outline: '1px solid', outlineColor: 'primary' }}
+            bg="transparent">
+            Next
+          </Button>
+        </Flex>
       </Box>
-    </Box>
+    </Flex>
   )
 }
 /**
