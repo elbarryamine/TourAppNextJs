@@ -67,7 +67,7 @@ export function FormInput(props: PropsFormInput) {
         setMessage('Please enter a valid email')
       }
       if (type.toLowerCase() == 'password') {
-        setIsError(handleIsPasswordStrong(value))
+        setIsError(!handleIsPasswordStrong(value))
       }
     }
   }

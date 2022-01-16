@@ -1,2 +1,1 @@
-export * from './signinform'
-export * from './signupform'
+export * from './input'
