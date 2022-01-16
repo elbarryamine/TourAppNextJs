@@ -11,12 +11,12 @@ export function FormContainer({ children }: Props) {
     '(max-width: 1024px)',
     '(max-width: 1200px)',
   ])
-  let containerPaddingY = '50px'
-  if (xss) containerPaddingY = '0px'
-  if (xs) containerPaddingY = '20px'
-  if (sm) containerPaddingY = '50px'
-  if (md) containerPaddingY = '10px'
-  if (lg) containerPaddingY = '20px'
+  let containerPaddingX = '50px'
+  if (lg) containerPaddingX = '20px'
+  if (md) containerPaddingX = '10px'
+  if (sm) containerPaddingX = '50px'
+  if (xs) containerPaddingX = '20px'
+  if (xss) containerPaddingX = '0px'
 
   return (
     <Bx
@@ -24,9 +24,9 @@ export function FormContainer({ children }: Props) {
       w="100vw"
       d="flex"
       justifyContent="center"
-      bgImage={sm ? 'https://images.pexels.com/photos/450062/pexels-photo-450062.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' : 'none'}
+      bgImage={sm ? 'https://images.pexels.com/photos/450062/pexels-photo-450062.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' : ''}
       alignItems="center"
-      bg={sm ? 'none' : 'whitesmoke'}
+      bg={sm ? '' : 'whitesmoke'}
       bgPos="center"
       bgSize="cover">
       {!sm ? (
@@ -44,7 +44,7 @@ export function FormContainer({ children }: Props) {
       )}
       <Bx
         d="flex"
-        px={containerPaddingY}
+        px={containerPaddingX}
         py="30px"
         flex="1"
         overflowX="hidden"

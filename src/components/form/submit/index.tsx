@@ -4,8 +4,7 @@ import { Input } from '@chakra-ui/react'
 export function SubmitInput({ title }: { title: string }) {
   return (
     <Input
-      boxShadow="shadow"
-      borderColor="gray"
+      boxShadow="md"
       type="submit"
       _hover={{
         background: 'secondary',

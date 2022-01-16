@@ -31,7 +31,15 @@ export default function ForgetPassword() {
         </Text>
         <FormInput id="email" title="Email" type="email" />
         <SubmitInput title="Get reset link" />
-        <Button fontWeight="extrabold" color="primary" bg="transparent" pt="20px" d="flex" alignItems="center" gap="5px">
+        <Button
+          _focus={{}}
+          _hover={{ opacity: '0.8' }}
+          _active={{}}
+          fontWeight="extrabold"
+          color="primary"
+          bg="transparent"
+          mt="20px"
+          gap="5px">
           <FaChevronLeft />
           <Link href="/app/signup">Go back</Link>
         </Button>
