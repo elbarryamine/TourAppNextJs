@@ -21,7 +21,7 @@ export default function Login() {
         <FormInput title="Email" type="email" />
         <FormInput title="Password" type="password" />
         <Bx d="flex" mt="20px" flexDir="column" gap="20px">
-          <SubmitInput title="SignUp" />
+          <SubmitInput title="Log in" />
           <Bx d="flex" alignItems="center" justifyContent="space-between">
             <Text fontWeight="bold">Dont have an account yet ?</Text>
             <Bx color="primary" d="flex" alignItems="center" gap="5px" cursor="pointer" _hover={{ color: 'rgb(0 118 255 / 39%)' }}>
@@ -31,9 +31,18 @@ export default function Login() {
               <MdLogin />
             </Bx>
           </Bx>
-          <Text fontWeight="bold" textAlign="center" color="primary">
-            Forgot Password ?
-          </Text>
+          <Link href="/app/forget-password">
+            <Button
+              w="max-content"
+              mx="auto"
+              fontWeight="bold"
+              _hover={{ border: '2px solid', borderColor: 'primary' }}
+              _focus={{}}
+              textAlign="center"
+              color="primary">
+              Forgot password ?
+            </Button>
+          </Link>
         </Bx>
       </FormControl>
     </FormContainer>
