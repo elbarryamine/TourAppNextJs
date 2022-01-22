@@ -7,7 +7,7 @@ type Props = {
 export default function Card(props: Props & BoxProps) {
   return (
     <Box
-      minH="100px"
+      minH="150px"
       minW="150px"
       bg="darker"
       shadow="md"
