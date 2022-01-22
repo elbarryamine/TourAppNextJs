@@ -1,9 +1,22 @@
 import React from 'react'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, useMediaQuery } from '@chakra-ui/react'
 import { AiFillHome, AiFillFileText, AiFillLike, AiOutlineDollarCircle, AiOutlineLogout, AiTwotoneAppstore } from 'react-icons/ai'
 import { Link, useLocation } from 'react-router-dom'
 import { LinkTo } from '../../../../utils/linkTo'
 export function SideNavigation() {
+  const [
+    // xss,
+    // xs,
+    // sm,
+    // md,
+    lg,
+  ] = useMediaQuery([
+    // '(max-width: 400px)',
+    // '(max-width: 600px)',
+    // '(max-width: 768px)',
+    // '(max-width: 1024px)',
+    '(max-width: 1200px)',
+  ])
   const { pathname } = useLocation()
   function specialLink(path: string): string {
     if (path === 'home') {
@@ -13,7 +26,16 @@ export function SideNavigation() {
   }
   return (
     <Box h="100%" pr="10px" sx={{ '.icon': { cursor: 'pointer', transition: 'all 0.2s' }, '.icon:hover': { transform: 'scale(1.5)' } }}>
-      <Flex pos="relative" bg="darker" shadow="md" h="100%" borderRadius="15px" w="80px" alignItems="center" mb="20px" flexDir="column">
+      <Flex
+        pos="relative"
+        bg="darker"
+        shadow="md"
+        h="100%"
+        borderRadius="15px"
+        w={lg ? '50px' : '80px'}
+        alignItems="center"
+        mb="20px"
+        flexDir="column">
         <Flex alignItems="center" flexDir="column" w="100%" gap="30px" py="20px">
           <Link to={LinkTo.home}>
             <Box color={specialLink('home')} className="icon" cursor="pointer">
