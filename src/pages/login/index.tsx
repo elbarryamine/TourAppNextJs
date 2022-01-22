@@ -1,9 +1,9 @@
 import React from 'react'
-import { FormContainer } from '../../../components'
-import { Box as Bx, Input, FormControl, FormLabel, Button, Text, Image } from '@chakra-ui/react'
+import { FormContainer } from '../../components'
+import { Box as Bx, FormControl, Button, Text } from '@chakra-ui/react'
 import { MdLogin } from 'react-icons/md'
 import Link from 'next/link'
-import { FormInput, SubmitInput } from '../../../components/form'
+import { FormInput, SubmitInput } from '../../components/form'
 
 export default function Login() {
   return (
@@ -13,7 +13,7 @@ export default function Login() {
         as="form"
         py="40px"
         px="20px"
-        borderRadius="2xl"
+        borderRadius="15px"
         boxShadow="sm"
         bg="gray.50"
         border="1px solid"

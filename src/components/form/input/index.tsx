@@ -99,7 +99,7 @@ export function FormInput(props: PropsFormInput) {
           position="absolute"
           htmlFor={type}
           w="max-content">
-          <Text fontSize="md" fontWeight="extrabold" bg={labelBgColor} px="5px" as="p" borderRadius="5px">
+          <Text fontSize="md" fontWeight="extrabold" bg={labelBgColor} px="5px" as="p" borderRadius="15px">
             {title}
           </Text>
         </FormLabel>

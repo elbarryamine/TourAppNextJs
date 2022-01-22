@@ -1,12 +1,12 @@
 import React from 'react'
-import { Box, FormControl, Text, Input, Textarea, Flex, Button } from '@chakra-ui/react'
-import { FormInput, SubmitInput } from '../../../../../../components'
+import { Box, Text, Flex, Button } from '@chakra-ui/react'
+import { FormInput } from '../../../../../components'
 
 export function ToursWorkSpaceCreate() {
   function handleSubmit() {}
   return (
     <Flex align="center" justify="center" w="100%" h="100%">
-      <Box p="20px" bg="white" border="1px solid" borderColor="subtext" borderRadius="5px" minW="500px">
+      <Box p="20px" bg="white" border="1px solid" borderColor="subtext" borderRadius="15px" minW="500px">
         <Text px="10px" color="primary" textAlign="center" fontWeight="extrabold" fontSize="xl" pb="20px">
           Create a tour
         </Text>

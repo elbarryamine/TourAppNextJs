@@ -1,25 +1,26 @@
 import { extendTheme } from '@chakra-ui/react'
 
 const theme = extendTheme({
-  initialColorMode: 'dark',
+  initialColorMode: 'light',
   useSystemColorMode: false,
   fonts: {
     heading: 'Raleway',
     body: 'Raleway',
   },
   fontWeights: {
-    normal: 200,
+    normal: 300,
     medium: 500,
-    bold: 800,
+    bold: 700,
+    extrabold: 900,
   },
   colors: {
     primary: 'hsl(353, 86%, 54%)',
     secondary: 'hsl(207, 95%, 20%)',
     accent: 'hsl(40, 91%, 91%)',
     light: 'hsl(0, 0%, 97%)',
-    subtext: 'hsl(0, 0%, 85%)',
-    subtextdarker: 'hsl(0, 0%, 55%)',
-    dark: 'hsl(0, 0%, 10%) ',
+    subtext: 'hsl(0, 0%, 65%)',
+    subtextdarker: 'hsl(0, 0%, 35%)',
+    dark: 'hsl(0, 0%, 15%) ',
     darker: 'hsl(0, 0%, 12%)',
   },
   shadows: {

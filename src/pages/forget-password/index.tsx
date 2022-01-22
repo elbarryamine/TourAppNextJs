@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box, Button, FormControl, Text } from '@chakra-ui/react'
-import { FormContainer, FormInput, LoadingPage, SubmitInput } from '../../../components'
+import { Button, FormControl, Text } from '@chakra-ui/react'
+import { FormContainer, FormInput, LoadingPage, SubmitInput } from '../../components'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
 export default function ForgetPassword() {
@@ -16,7 +16,7 @@ export default function ForgetPassword() {
         as="form"
         py="40px"
         px="20px"
-        borderRadius="2xl"
+        borderRadius="15px"
         boxShadow="sm"
         bg="gray.50"
         border="1px solid"

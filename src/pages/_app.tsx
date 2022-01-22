@@ -1,7 +1,8 @@
 import React from 'react'
-import { Box, ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import theme from '../config/theme'
 import '@fontsource/raleway'
+import '../styles/global.css'
 import '../styles/transition.css'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
 
