@@ -1,7 +1,7 @@
 import React from 'react'
 import { Popover as Pop, PopoverContent, PopoverHeader, PopoverBody, Box } from '@chakra-ui/react'
 
-export function Popover(props) {
+export function Popover(props: { state: boolean; children: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal }) {
   return (
     <Box color="black">
       <Pop isOpen={props.state}>
@@ -11,9 +11,9 @@ export function Popover(props) {
   )
 }
 
-Popover.Title = (props) => {
+Popover.Title = (props: { children: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal }) => {
   return <PopoverHeader>{props.children}</PopoverHeader>
 }
-Popover.Body = (props) => {
+Popover.Body = (props: { children: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal }) => {
   return <PopoverBody>{props.children}</PopoverBody>
 }

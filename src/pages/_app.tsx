@@ -5,8 +5,9 @@ import '@fontsource/raleway'
 import '../styles/global.css'
 import '../styles/transition.css'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
+import { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps, router }) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   const [loaded, setLoaded] = React.useState<boolean>(false)
   let typeOfWindow = typeof window
   React.useEffect(() => {

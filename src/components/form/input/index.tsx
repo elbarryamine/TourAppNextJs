@@ -18,20 +18,21 @@ export function FormInput(props: PropsFormInput) {
   const [message, setMessage] = React.useState<string>('')
   const [isError, setIsError] = React.useState<boolean>(false)
   const [showPassword, setShowPassword] = React.useState<boolean>(false)
-  const [passwordStates, setPasswordStates] = React.useState<{
-    symbols: boolean
-    uppercase: boolean
-    number: boolean
-  }>({
-    symbols: false,
-    uppercase: false,
-    number: false,
-  })
+  // const [passwordStates, setPasswordStates] = React.useState<{
+  //   symbols: boolean
+  //   uppercase: boolean
+  //   number: boolean
+  // }>({
+  //   symbols: false,
+  //   uppercase: false,
+  //   number: false,
+  // })
   //
   const verifyType = type.toLowerCase() === 'password' ? (showPassword ? 'text' : type) : type
   const labelBgColor = inputVal ? (isError ? 'red.100' : 'light') : ''
   const labelColor = inputVal ? (isError ? 'red.500' : 'dark') : 'gray.900'
   //
+  // React.useEffect(() => {}, [])
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { value }: { value: string } = e.target
     setInputVal(value)
@@ -48,7 +49,7 @@ export function FormInput(props: PropsFormInput) {
       }
     }
   }
-  function handleIsPasswordStrong(value: string): boolean {
+  function handleIsPasswordStrong(value: any): boolean {
     return true
   }
   return (
