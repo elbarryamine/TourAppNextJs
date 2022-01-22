@@ -26,7 +26,12 @@ export function DashboardProvider({ children }: Props) {
           <Flex h="100%" w="100%" color="black" gap="5px">
             <Flex flexDir="column" flex="3" px="30px" borderRadius="15px" shadow="md" bg="light">
               <MainHeader />
-              <Box flex="1">{children}</Box>
+              <Box
+                flex="1"
+                // overflowY="scroll"
+                maxH="100%">
+                {children}
+              </Box>
             </Flex>
             <SideSettings />
           </Flex>

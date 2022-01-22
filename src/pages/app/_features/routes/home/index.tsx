@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Flex, Grid, Text } from '@chakra-ui/react'
+import { Box, Flex, Grid, Text, useMediaQuery } from '@chakra-ui/react'
 import Card from 'components/card'
 import { XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis, MarkSeries, Highlight } from 'react-vis'
 export function Home() {
@@ -11,6 +11,13 @@ export function Home() {
 }
 
 function FinancialCards() {
+  const [xss, xs, sm, md, lg] = useMediaQuery([
+    '(max-width: 400px)',
+    '(max-width: 600px)',
+    '(max-width: 768px)',
+    '(max-width: 1024px)',
+    '(max-width: 1200px)',
+  ])
   const dataScore = [
     { x: 0, y: 3 },
     { x: 1, y: 4 },
@@ -49,8 +56,8 @@ function FinancialCards() {
   ]
   return (
     <Grid
-      templateColumns="1fr 1fr 1fr"
-      templateRows="200px"
+      templateColumns={md ? (sm ? '1fr' : '1fr 1fr') : '1fr 1fr 1fr'}
+      templateRows={md ? (sm ? 'repeat(3,150px)' : 'repeat(2,150px)') : '200px'}
       gap="10px"
       w="100%"
       color="light"
@@ -60,7 +67,7 @@ function FinancialCards() {
           <Text className="title">score</Text>
           <Box alignSelf="stretch" flex="1" borderRadius="15px">
             <Box w="max-content" mx="auto" pt="20px">
-              <XYPlot margin={0} width={180} height={90}>
+              <XYPlot margin={0} width={180} height={md ? 60 : 90}>
                 <LineSeries className="chart-line" data={dataScore} />
               </XYPlot>
             </Box>
@@ -72,7 +79,7 @@ function FinancialCards() {
           <Text className="title">sales</Text>
           <Box alignSelf="stretch" flex="1" borderRadius="15px">
             <Box w="max-content" mx="auto" pt="0px">
-              <XYPlot width={200} height={150}>
+              <XYPlot width={200} height={md ? 110 : 150}>
                 <VerticalGridLines />
                 <HorizontalGridLines />
                 <XAxis />
@@ -89,7 +96,7 @@ function FinancialCards() {
           <Text className="title">rating</Text>
           <Box alignSelf="stretch" flex="1" borderRadius="15px">
             <Box w="max-content" mx="auto" pt="20px">
-              <XYPlot margin={0} width={180} height={90}>
+              <XYPlot margin={0} width={180} height={md ? 60 : 90}>
                 <LineSeries className="chart-line" data={dataRating} />
               </XYPlot>
             </Box>
