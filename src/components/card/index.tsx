@@ -9,14 +9,14 @@ export default function Card(props: Props & BoxProps) {
     <Box
       minH="100px"
       minW="150px"
-      bg="white"
+      bg="darker"
+      shadow="md"
       p="10px"
       cursor="pointer"
-      _hover={{ boxShadow: 'lg' }}
+      _hover={{ boxShadow: 'dark-lg' }}
       w="max-content"
       transition="all 0.5s"
       borderRadius="15px"
-      boxShadow="sm"
       {...props}>
       {props.children}
     </Box>

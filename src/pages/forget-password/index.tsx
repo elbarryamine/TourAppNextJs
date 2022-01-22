@@ -1,8 +1,9 @@
 import React from 'react'
 import { Button, FormControl, Text } from '@chakra-ui/react'
-import { FormContainer, FormInput, LoadingPage, SubmitInput } from '../../components'
+import { FormContainer, FormInput, SubmitInput } from '../../components'
 import Link from 'next/link'
 import { FaChevronLeft } from 'react-icons/fa'
+import { LinkTo } from 'utils/linkTo'
 export default function ForgetPassword() {
   // const [loaded, setLoaded] = React.useState<boolean>(false)
   // React.useEffect(() => {
@@ -26,7 +27,7 @@ export default function ForgetPassword() {
         <Text as="h4" fontSize="lg" pb="20px" fontWeight="bold" userSelect="none">
           Enter your email to recieve a password
           <Text as="span" fontSize="inherit" fontWeight="bold" color="primary">
-            {` reset link`}
+            reset link
           </Text>
         </Text>
         <FormInput id="email" title="Email" type="email" />
@@ -41,7 +42,7 @@ export default function ForgetPassword() {
           mt="20px"
           gap="5px">
           <FaChevronLeft />
-          <Link href="/app/signup">Go back</Link>
+          <Link href={LinkTo.sigunp}>Go back</Link>
         </Button>
       </FormControl>
     </FormContainer>

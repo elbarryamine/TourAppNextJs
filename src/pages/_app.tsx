@@ -1,11 +1,9 @@
 import React from 'react'
-import { ChakraProvider } from '@chakra-ui/react'
-import theme from '../config/theme'
 import '@fontsource/raleway'
 import '../styles/global.css'
 import '../styles/transition.css'
-import { SwitchTransition, CSSTransition } from 'react-transition-group'
 import { AppProps } from 'next/app'
+import AppProvider from '../provider'
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const [loaded, setLoaded] = React.useState<boolean>(false)
@@ -16,13 +14,9 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   }, [typeOfWindow])
   if (!loaded) return null
   return (
-    <ChakraProvider theme={theme}>
-      <SwitchTransition mode="out-in">
-        <CSSTransition key={router.pathname} classNames="swap" timeout={300}>
-          <Component {...pageProps} />
-        </CSSTransition>
-      </SwitchTransition>
-    </ChakraProvider>
+    <AppProvider router={router}>
+      <Component {...pageProps} />
+    </AppProvider>
   )
 }
 

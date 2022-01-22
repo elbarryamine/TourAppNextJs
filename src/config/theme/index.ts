@@ -18,6 +18,7 @@ const theme = extendTheme({
     secondary: 'hsl(207, 95%, 20%)',
     accent: 'hsl(40, 91%, 91%)',
     light: 'hsl(0, 0%, 97%)',
+    lightshade: 'hsl(0, 0%, 87%)',
     subtext: 'hsl(0, 0%, 65%)',
     subtextdarker: 'hsl(0, 0%, 35%)',
     dark: 'hsl(0, 0%, 15%) ',

@@ -1,9 +1,10 @@
 import React from 'react'
 import { FormContainer } from '../../components'
-import { Box as Bx, FormControl, Button, Text } from '@chakra-ui/react'
+import { Box as Bx, FormControl, Button, Text, Box } from '@chakra-ui/react'
 import { MdLogin } from 'react-icons/md'
 import Link from 'next/link'
 import { FormInput, SubmitInput } from '../../components/form'
+import { LinkTo } from 'utils/linkTo'
 
 export default function Login() {
   return (
@@ -28,23 +29,15 @@ export default function Login() {
             <Text fontWeight="bold">Dont have an account yet ?</Text>
             <Bx color="primary" d="flex" alignItems="center" gap="5px" cursor="pointer" _hover={{ color: 'rgb(0 118 255 / 39%)' }}>
               <Text fontWeight="bold" bg="transparent">
-                <Link href="/app/signup">Sign up</Link>
+                <Link href={LinkTo.sigunp}>Sign up</Link>
               </Text>
               <MdLogin />
             </Bx>
           </Bx>
-          <Link href="/app/forget-password">
-            <Button
-              w="max-content"
-              mx="auto"
-              fontWeight="bold"
-              _hover={{ border: '2px solid', borderColor: 'primary' }}
-              _focus={{}}
-              textAlign="center"
-              color="primary"
-              bg="transparent">
+          <Link href={LinkTo.forgetPassword} passHref={true}>
+            <Box as="a" w="max-content" cursor="pointer" mx="auto" fontWeight="bold" textAlign="center" color="primary" bg="transparent">
               Forgot password ?
-            </Button>
+            </Box>
           </Link>
         </Bx>
       </FormControl>

@@ -4,4 +4,8 @@ export const LinkTo = {
   tours: '/tours',
   toursCreate: '/tours/create',
   toursEdit: '/tours/edit',
+  forgetPassword: '/forget-password',
+  login: '/login',
+  sigunp: '/signup',
+  logout: '/logout',
 }

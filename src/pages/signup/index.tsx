@@ -3,6 +3,7 @@ import React from 'react'
 import { FormContainer, SubmitInput, FormInput } from '../../components'
 import { MdLogin } from 'react-icons/md'
 import Link from 'next/link'
+import { LinkTo } from 'utils/linkTo'
 
 export default function SignUp() {
   return (
@@ -30,7 +31,7 @@ export default function SignUp() {
             <Text fontWeight="bold">Already have an account ?</Text>
             <Bx color="primary" d="flex" alignItems="center" gap="5px" cursor="pointer" _hover={{ color: 'rgb(0 118 255 / 39%)' }}>
               <Text fontWeight="bold" bg="transparent">
-                <Link href="/app/login">Log in</Link>
+                <Link href={LinkTo.login}>Log in</Link>
               </Text>
               <MdLogin />
             </Bx>
