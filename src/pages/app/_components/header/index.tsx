@@ -55,15 +55,15 @@ export function MainHeader() {
         sx={{ '.icon': { transition: 'all 0.5s' } }}>
         <Input
           placeholder="Search dashboard ..."
-          shadow="md"
-          _placeholder={{ '&': { color: 'subtext' } }}
-          _focus={{ '& + div': { color: 'secondary' } }}
+          shadow="sm"
+          _placeholder={{ '&': { color: 'darker', fontSize: 'xs' } }}
+          _focus={{ '& + div': { color: 'darker' }, '&': { border: '1px solid', borderColor: 'secondary' } }}
+          boxShadow="2xl"
           borderRadius="15px"
-          bg="light"
-          border="0"
+          h="40px"
         />
-        <InputRightElement color="subtext">
-          <AiOutlineSearch className="icon" size="25px" />
+        <InputRightElement color="subtext" h="100%">
+          <AiOutlineSearch className="icon" size="20px" />
         </InputRightElement>
       </InputGroup>
     </Flex>
