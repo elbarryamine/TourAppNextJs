@@ -15,12 +15,11 @@ import {
 import { FilledNotification, Search, Sun, HalfMoon } from '../icons'
 import { Link } from 'react-router-dom'
 import { LinkTo } from 'utils/linkTo'
+import { useChakraTheme } from 'config/theme/usetheme'
 export function TopHeader() {
   const { colorMode, toggleColorMode } = useColorMode()
-  const BG = useColorModeValue('light.bg', 'dark.bg')
-  const BG_2 = useColorModeValue('light.bg2', 'dark.bg2')
-  const text = useColorModeValue('light.text1', 'dark.text1')
-  const subtext = useColorModeValue('light.text2', 'dark.text2')
+  const [BG, BG_2, text, subtext] = useChakraTheme()
+
   return (
     <GridItem bg={BG} gridColumn="1/-1" gridRow="1/2">
       <Flex h="100%" w="100%" justify="space-between" align="center" px="30px">
