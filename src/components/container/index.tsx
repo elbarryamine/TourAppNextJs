@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box as Bx, Image, Text, useMediaQuery } from '@chakra-ui/react'
+import { Box, Image, useMediaQuery } from '@chakra-ui/react'
 type Props = {
   children: React.ReactChild
 }
@@ -19,7 +19,7 @@ export function FormContainer({ children }: Props) {
   if (xss) containerPaddingX = '5px'
 
   return (
-    <Bx
+    <Box
       h="100vh"
       w="100vw"
       d="flex"
@@ -42,7 +42,7 @@ export function FormContainer({ children }: Props) {
       ) : (
         ''
       )}
-      <Bx
+      <Box
         d="flex"
         px={containerPaddingX}
         py="30px"
@@ -55,7 +55,7 @@ export function FormContainer({ children }: Props) {
         pos="relative"
         maxW="500px">
         {children}
-      </Bx>
-    </Bx>
+      </Box>
+    </Box>
   )
 }

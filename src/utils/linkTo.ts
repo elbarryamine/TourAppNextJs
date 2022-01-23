@@ -1,5 +1,5 @@
 export const LinkTo = {
-  root: '/app',
+  root: '/',
   home: '/home',
   tours: '/tours',
   toursCreate: '/tours/create',

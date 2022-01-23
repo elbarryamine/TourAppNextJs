@@ -1,30 +1,8 @@
 import React from 'react'
-import { Box, Text, Flex, Button } from '@chakra-ui/react'
-import { FormInput } from '../../../../../components'
+import { Box } from '@chakra-ui/react'
 
 export function ToursWorkSpaceCreate() {
-  function handleSubmit() {}
-  return (
-    <Flex align="center" justify="center" w="100%" h="100%">
-      <Box p="20px" bg="white" border="1px solid" borderColor="subtext" borderRadius="15px" minW="500px">
-        <Text px="10px" color="primary" textAlign="center" fontWeight="extrabold" fontSize="xl" pb="20px">
-          Create a tour
-        </Text>
-        <FormInput id="name" type="name" title="Name of your tour ?" />
-        <Flex justify="space-between" align="center">
-          <Text color="subtextdarker">This can be changed later</Text>
-          <Button
-            color="primary"
-            _active={{ bg: 'primary', color: 'light', outline: '0' }}
-            _focus={{}}
-            _hover={{ outline: '1px solid', outlineColor: 'primary' }}
-            bg="transparent">
-            Next
-          </Button>
-        </Flex>
-      </Box>
-    </Flex>
-  )
+  return <Box></Box>
 }
 /**
  * name: {

@@ -1,71 +1,74 @@
 import React from 'react'
 import {
-  Text,
-  Heading,
   Flex,
-  Input,
+  Text,
   InputGroup,
-  InputRightElement,
-  useMediaQuery,
-  // Drawer,
-  // DrawerBody,
-  // DrawerOverlay,
-  // DrawerContent,
-  // DrawerCloseButton,
-  // Button,
-  // useDisclosure,
+  Input,
+  GridItem,
+  Avatar,
+  InputLeftElement,
+  Box,
+  useColorMode,
+  Button,
+  useColorModeValue,
 } from '@chakra-ui/react'
-import { AiOutlineSearch } from 'react-icons/ai'
-
-export function MainHeader() {
-  const [
-    // xss,
-    xs,
-    sm,
-    md,
-    // lg,
-  ] = useMediaQuery([
-    // '(max-width: 400px)',
-    '(max-width: 600px)',
-    '(max-width: 768px)',
-    '(max-width: 1024px)',
-    // '(max-width: 1200px)',
-  ])
+import { FilledNotification, Search, Bulb } from '../icons'
+import { Link } from 'react-router-dom'
+import { LinkTo } from 'utils/linkTo'
+export function TopHeader() {
+  const { toggleColorMode } = useColorMode()
+  const BG = useColorModeValue('light.bg', 'dark.bg')
+  const BG_2 = useColorModeValue('light.bg2', 'dark.bg2')
+  const text = useColorModeValue('light.text1', 'dark.text1')
+  const subtext = useColorModeValue('light.text2', 'dark.text2')
   return (
-    <Flex
-      name="header"
-      w="100%"
-      mb="30px"
-      py="30px"
-      gap={sm ? '30px' : '0'}
-      align="center"
-      justify="space-between"
-      flexDir={xs ? 'column' : 'row'}>
-      <Flex flexDir="column">
-        <Heading fontWeight="extrabold" fontSize={md ? '4xl' : '5xl'} color="secondary">
-          Dashboard
-        </Heading>
-        <Text fontWeight="extrabold" color="subtext" fontSize="sm">
-          Manage your tours and much more ...
-        </Text>
+    <GridItem bg={BG} gridColumn="1/-1" gridRow="1/2">
+      <Flex h="100%" w="100%" justify="space-between" align="center" px="30px">
+        <Link to={LinkTo.root}>
+          <Text color={text} fontWeight="extrabold" fontSize="xl" textTransform="capitalize">
+            Tour guide dashboard
+          </Text>
+        </Link>
+        <InputGroup maxW="500px">
+          <InputLeftElement h="100%" color="accent">
+            <Search />
+          </InputLeftElement>
+          <Input
+            borderRadius="15px"
+            bg={BG_2}
+            color={text}
+            border="0"
+            _hover={{ '&:hover::placeholder': { color: text } }}
+            _focus={{
+              ouline: '5px solid',
+              oulineColor: 'primary',
+            }}
+            _placeholder={{ '&': { color: subtext, fontSize: 'sm', fontWeight: 'extrabold' } }}
+            placeholder="Search for tools..."
+          />
+        </InputGroup>
+        <Flex h="100%" align="center" gap="27px">
+          <Button d="flex" gap="0px" onClick={toggleColorMode} __css={{}}>
+            <Bulb />
+          </Button>
+          <Box cursor="pointer" pos="relative">
+            <Flex
+              pos="absolute"
+              top="-5px"
+              right="-3px"
+              align="center"
+              justify="center"
+              bg="backgroundPrimary"
+              w="10px"
+              h="10px"
+              borderRadius="50%">
+              <Box bg="red" w="6px" h="6px" borderRadius="50%" />
+            </Flex>
+            <FilledNotification />
+          </Box>
+          <Avatar cursor="pointer" name="Christian Nwamba" size="sm" src="https://bit.ly/code-beast" />
+        </Flex>
       </Flex>
-      <InputGroup
-        maxW={md ? (xs ? '100%' : '250px') : '400px'}
-        mr={md ? (xs ? '0' : '30px') : '0px'}
-        sx={{ '.icon': { transition: 'all 0.5s' } }}>
-        <Input
-          placeholder="Search dashboard ..."
-          shadow="sm"
-          _placeholder={{ '&': { color: 'darker', fontSize: 'xs' } }}
-          _focus={{ '& + div': { color: 'darker' }, '&': { border: '1px solid', borderColor: 'secondary' } }}
-          boxShadow="2xl"
-          borderRadius="15px"
-          h="40px"
-        />
-        <InputRightElement color="subtext" h="100%">
-          <AiOutlineSearch className="icon" size="20px" />
-        </InputRightElement>
-      </InputGroup>
-    </Flex>
+    </GridItem>
   )
 }

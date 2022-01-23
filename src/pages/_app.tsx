@@ -2,7 +2,6 @@ import React from 'react'
 import '@fontsource/raleway'
 import '../styles/global.css'
 import '../styles/transition.css'
-import '../../node_modules/react-vis/dist/style.css'
 import { AppProps } from 'next/app'
 import AppProvider from '../provider'
 

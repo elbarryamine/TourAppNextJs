@@ -1,31 +1,24 @@
 import React from 'react'
-import { Box, Flex } from '@chakra-ui/react'
-import { SideNavigation } from '../_components/navigation'
-import { MainHeader } from '../_components/header'
+import { Grid, GridItem, ColorModeScript, useColorModeValue } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
+import { Navigation, TopHeader } from '../_components'
+import theme from '../../../config/theme'
 
 type Props = {
   children: React.ReactChild | React.ReactChild[]
 }
 export function DashboardProvider({ children }: Props) {
+  const BG = useColorModeValue('light.bg2', 'dark.bg2')
   return (
     <BrowserRouter basename="/app">
-      <Box bg="gray.300" h="100vh" w="100vw" pos="relative">
-        <Flex w="100%" h="100%" maxW="1440px" mx="auto" maxH="1000px" pos="absolute" top="50%" left="50%" transform="translate(-50%,-50%)">
-          <SideNavigation />
-          <Flex h="100%" w="100%" color="black">
-            <Flex flexDir="column" flex="3" px="30px" shadow="md" bg="light">
-              <MainHeader />
-              <Box
-                flex="1"
-                // overflowY="scroll"
-                maxH="100%">
-                {children}
-              </Box>
-            </Flex>
-          </Flex>
-        </Flex>
-      </Box>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <Grid templateColumns="256px repeat(7, 1fr)" templateRows="69px minmax(200px,1fr)" h="100vh" w="100vw" overflow="hidden">
+        <TopHeader />
+        <Navigation />
+        <GridItem bg={BG} gridColumn="2/-1" gridRow="2/-1">
+          {children}
+        </GridItem>
+      </Grid>
     </BrowserRouter>
   )
 }
