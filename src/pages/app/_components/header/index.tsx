@@ -1,27 +1,15 @@
 import React from 'react'
-import {
-  Flex,
-  Text,
-  InputGroup,
-  Input,
-  GridItem,
-  Avatar,
-  InputLeftElement,
-  Box,
-  useColorMode,
-  Button,
-  useColorModeValue,
-} from '@chakra-ui/react'
+import { Flex, Text, InputGroup, Input, GridItem, Avatar, InputLeftElement, Box, useColorMode, Button } from '@chakra-ui/react'
 import { FilledNotification, Search, Sun, HalfMoon } from '../icons'
 import { Link } from 'react-router-dom'
 import { LinkTo } from 'utils/linkTo'
 import { useChakraTheme } from 'config/theme/usetheme'
 export function TopHeader() {
   const { colorMode, toggleColorMode } = useColorMode()
-  const [BG, BG_2, text, subtext] = useChakraTheme()
+  const { background, subBackground, text, subtext } = useChakraTheme()
 
   return (
-    <GridItem bg={BG} gridColumn="1/-1" gridRow="1/2">
+    <GridItem bg={background} gridColumn="1/-1" gridRow="1/2">
       <Flex h="100%" w="100%" justify="space-between" align="center" px="30px">
         <Link to={LinkTo.root}>
           <Text color={text} fontWeight="extrabold" fontSize="xl" textTransform="capitalize">
@@ -34,7 +22,7 @@ export function TopHeader() {
           </InputLeftElement>
           <Input
             borderRadius="15px"
-            bg={BG_2}
+            bg={subBackground}
             color={text}
             border="0"
             _hover={{ '&:hover::placeholder': { color: text } }}

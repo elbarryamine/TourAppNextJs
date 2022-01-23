@@ -16,7 +16,7 @@ const theme = extendTheme({
   colors: {
     dark: {
       primary: '#7e3af2',
-      accent: '#CABFFD',
+      accent: '#000087',
       bg: '#1a1c23',
       bg2: '#121317',
       text1: '#E5E7EB',
@@ -25,7 +25,7 @@ const theme = extendTheme({
     },
     light: {
       primary: '#7e3af2',
-      accent: '#CABFFD',
+      accent: '#000087',
       bg: '#ffffff',
       bg2: '#f9fafb',
       text1: '#1A1C23',
