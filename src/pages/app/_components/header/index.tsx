@@ -12,11 +12,11 @@ import {
   Button,
   useColorModeValue,
 } from '@chakra-ui/react'
-import { FilledNotification, Search, Bulb } from '../icons'
+import { FilledNotification, Search, Sun, HalfMoon } from '../icons'
 import { Link } from 'react-router-dom'
 import { LinkTo } from 'utils/linkTo'
 export function TopHeader() {
-  const { toggleColorMode } = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
   const BG = useColorModeValue('light.bg', 'dark.bg')
   const BG_2 = useColorModeValue('light.bg2', 'dark.bg2')
   const text = useColorModeValue('light.text1', 'dark.text1')
@@ -49,7 +49,7 @@ export function TopHeader() {
         </InputGroup>
         <Flex h="100%" align="center" gap="27px">
           <Button d="flex" gap="0px" onClick={toggleColorMode} __css={{}}>
-            <Bulb />
+            {colorMode === 'dark' ? <Sun /> : <HalfMoon />}
           </Button>
           <Box cursor="pointer" pos="relative">
             <Flex
