@@ -25,17 +25,8 @@ export function SideNavigation() {
     return pathname.startsWith(`/${path}`) ? 'primary' : 'light'
   }
   return (
-    <Box h="100%" pr="10px" sx={{ '.icon': { cursor: 'pointer', transition: 'all 0.2s' }, '.icon:hover': { transform: 'scale(1.5)' } }}>
-      <Flex
-        pos="relative"
-        bg="darker"
-        shadow="md"
-        h="100%"
-        borderRadius="15px"
-        w={lg ? '50px' : '80px'}
-        alignItems="center"
-        mb="20px"
-        flexDir="column">
+    <Box h="100%" sx={{ '.icon': { cursor: 'pointer', transition: 'all 0.2s' }, '.icon:hover': { transform: 'scale(1.5)' } }}>
+      <Flex pos="relative" bg="darker" shadow="md" h="100%" w={lg ? '50px' : '80px'} alignItems="center" mb="20px" flexDir="column">
         <Flex alignItems="center" flexDir="column" w="100%" gap="30px" py="20px">
           <Link to={LinkTo.home}>
             <Box color={specialLink('home')} className="icon" cursor="pointer">

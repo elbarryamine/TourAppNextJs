@@ -7,16 +7,15 @@ type Props = {
 export default function Card(props: Props & BoxProps) {
   return (
     <Box
-      minH="150px"
-      minW="150px"
-      bg="darker"
-      shadow="md"
+      minH="120px"
+      minW="120px"
+      bg="light"
       p="10px"
+      border="1px solid"
+      borderColor="subtext"
       cursor="pointer"
-      _hover={{ boxShadow: 'dark-lg' }}
       w="max-content"
       transition="all 0.5s"
-      borderRadius="15px"
       {...props}>
       {props.children}
     </Box>
