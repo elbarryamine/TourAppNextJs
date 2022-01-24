@@ -13,6 +13,13 @@ const theme = extendTheme({
     bold: 700,
     extrabold: 900,
   },
+  fontSizes: {
+    '1': '10px',
+    '2': '12px',
+    '3': '14px',
+    '4': '16px',
+    '5': '18px',
+  },
   colors: {
     dark: {
       primary: '#7e3af2',
@@ -27,7 +34,7 @@ const theme = extendTheme({
       primary: '#7e3af2',
       accent: '#000087',
       bg: '#ffffff',
-      bg2: '#f9fafb',
+      bg2: '#f0f1f2',
       text1: '#1A1C23',
       text2: '#707257',
       text3: '#24262D',

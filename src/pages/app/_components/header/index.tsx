@@ -4,10 +4,17 @@ import { FilledNotification, Search, Sun, HalfMoon } from '../icons'
 import { Link } from 'react-router-dom'
 import { LinkTo } from 'utils/linkTo'
 import { useChakraTheme } from 'config/theme/usetheme'
+import { NotificationDrawer } from '..'
 export function TopHeader() {
   const { colorMode, toggleColorMode } = useColorMode()
   const { background, subBackground, text, subtext } = useChakraTheme()
-
+  const [isDrawerOpen, setDrawerOpen] = React.useState<boolean>(false)
+  function openDrawer() {
+    setDrawerOpen(true)
+  }
+  function closeDrawer() {
+    setDrawerOpen(false)
+  }
   return (
     <GridItem bg={background} gridColumn="1/-1" gridRow="1/2">
       <Flex h="100%" w="100%" justify="space-between" align="center" px="30px">
@@ -51,7 +58,10 @@ export function TopHeader() {
               borderRadius="50%">
               <Box bg="red" w="6px" h="6px" borderRadius="50%" />
             </Flex>
-            <FilledNotification />
+            <Box cursor="pointer" onClick={openDrawer}>
+              <FilledNotification />
+            </Box>
+            <NotificationDrawer isOpen={isDrawerOpen} closeDrawer={closeDrawer} />
           </Box>
           <Avatar cursor="pointer" name="Christian Nwamba" size="sm" src="https://bit.ly/code-beast" />
         </Flex>
