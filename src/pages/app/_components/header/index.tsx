@@ -25,7 +25,7 @@ export function TopHeader() {
         </Link>
         <InputGroup maxW="500px">
           <InputLeftElement h="100%" color="accent">
-            <Search />
+            <Search size={14} />
           </InputLeftElement>
           <Input
             borderRadius="15px"
@@ -41,28 +41,30 @@ export function TopHeader() {
             placeholder="Search for tools..."
           />
         </InputGroup>
-        <Flex h="100%" align="center" gap="27px">
-          <Button d="flex" gap="0px" onClick={toggleColorMode} __css={{}}>
+        <Flex h="100%" align="center" gap="20px">
+          <Button px="4px" d="flex" onClick={toggleColorMode} __css={{}}>
             {colorMode === 'dark' ? <Sun /> : <HalfMoon />}
           </Button>
-          <Box cursor="pointer" pos="relative">
-            <Flex
-              pos="absolute"
-              top="-5px"
-              right="-3px"
-              align="center"
-              justify="center"
-              bg="backgroundPrimary"
-              w="10px"
-              h="10px"
-              borderRadius="50%">
-              <Box bg="red" w="6px" h="6px" borderRadius="50%" />
-            </Flex>
-            <Box cursor="pointer" onClick={openDrawer}>
-              <FilledNotification />
+          <Button px="4px" d="flex" __css={{}} onClick={openDrawer}>
+            <Box pos="relative">
+              <Flex
+                pos="absolute"
+                top="-5px"
+                right="-3px"
+                align="center"
+                justify="center"
+                bg="backgroundPrimary"
+                w="10px"
+                h="10px"
+                borderRadius="50%">
+                <Box bg="red" w="6px" h="6px" borderRadius="50%" />
+              </Flex>
+              <Box>
+                <FilledNotification />
+              </Box>
             </Box>
             <NotificationDrawer isOpen={isDrawerOpen} closeDrawer={closeDrawer} />
-          </Box>
+          </Button>
           <Avatar cursor="pointer" name="Christian Nwamba" size="sm" src="https://bit.ly/code-beast" />
         </Flex>
       </Flex>

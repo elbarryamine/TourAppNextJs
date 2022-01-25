@@ -27,7 +27,6 @@ type NotificationProps = {
   number: number
 }
 export function NotificationDrawer({ isOpen, closeDrawer }: Props) {
-  const { onClose } = useDisclosure()
   const { subBackground, text } = useChakraTheme()
   const notifications: NotificationProps[] = [
     {
@@ -62,7 +61,7 @@ export function NotificationDrawer({ isOpen, closeDrawer }: Props) {
 
   return (
     <Fragment>
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+      <Drawer isOpen={isOpen} placement="right" onClose={closeDrawer} size="sm">
         <DrawerOverlay />
         <DrawerContent bg={subBackground}>
           <DrawerCloseButton color={text} _focus={{}} _active={{}} _hover={{}} onClick={closeDrawer} />
@@ -109,17 +108,17 @@ function Notification({ avatar, sender, date, content, number }: NotificationPro
                   </Text>
                 </Flex>
               </Flex>
-              <OutlineNotification height={18} width={18} />
+              <OutlineNotification size={18} />
             </Box>
             <Text fontWeight="extrabold" fontSize="2" color={text}>
               {sender}
             </Text>
           </Flex>
         </Flex>
-        <Text fontSize="1" color={subtext} w="30%" textAlign="end">
+        <Box fontSize="1" color={subtext} w="30%" textAlign="end">
           <Box fontWeight="extrabold">{date.split(' ')[0]}</Box>
           <Text fontWeight="extrabold">{date.replace(date.split(' ')[0], '')}</Text>
-        </Text>
+        </Box>
       </Flex>
       <Box>
         <Text color={text} fontWeight="extrabold" fontSize="2">

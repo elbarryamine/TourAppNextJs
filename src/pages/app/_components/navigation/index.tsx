@@ -8,14 +8,14 @@ type SideLink = {
   title: string
 }
 const links: Array<SideLink> = [
-  { icon: <HomeOuline height={14} width={14} />, title: 'Home' },
-  { icon: <MoneyIcon height={14} width={14} />, title: 'Sales' },
-  { icon: <HomeOuline height={14} width={14} />, title: 'Services' },
-  { icon: <HomeOuline height={14} width={14} />, title: 'Clients' },
-  { icon: <HomeOuline height={14} width={14} />, title: 'Contacts' },
+  { icon: <HomeOuline size={14} />, title: 'Home' },
+  { icon: <MoneyIcon size={14} />, title: 'Sales' },
+  { icon: <HomeOuline size={14} />, title: 'Services' },
+  { icon: <HomeOuline size={14} />, title: 'Clients' },
+  { icon: <HomeOuline size={14} />, title: 'Contacts' },
 ]
 export function Navigation() {
-  const { background, subtext, text, primary } = useChakraTheme()
+  const { background, text, primary } = useChakraTheme()
   const [active, setActive] = React.useState<number>(0)
 
   return (
