@@ -21,8 +21,8 @@ export function HomeOuline({ width, height, fill }: Props) {
     </svg>
   )
 }
-Notification.defaultProps = defaultSettings
-export function Notification({ width, height, fill }: Props) {
+OutlineNotification.defaultProps = defaultSettings
+export function OutlineNotification({ width, height, fill }: Props) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width={width} height={height}>
       <path
@@ -73,6 +73,17 @@ export function HalfMoon({ width, height, fill }: Props) {
       <path
         fill={fill}
         d="M15,24a12.021,12.021,0,0,1-8.914-3.966,11.9,11.9,0,0,1-3.02-9.309A12.122,12.122,0,0,1,13.085.152a13.061,13.061,0,0,1,5.031.205,2.5,2.5,0,0,1,1.108,4.226c-4.56,4.166-4.164,10.644.807,14.41a2.5,2.5,0,0,1-.7,4.32A13.894,13.894,0,0,1,15,24Z"
+      />
+    </svg>
+  )
+}
+MoneyIcon.defaultProps = defaultSettings
+export function MoneyIcon({ width, height, fill }: Props) {
+  return (
+    <svg id="Layer_1" height={height} viewBox="0 0 24 24" width={width} xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
+      <path
+        fill={fill}
+        d="m19 20h-14a5.006 5.006 0 0 1 -5-5v-6a5.006 5.006 0 0 1 5-5h14a5.006 5.006 0 0 1 5 5v6a5.006 5.006 0 0 1 -5 5zm-14-14a3 3 0 0 0 -3 3v6a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a3 3 0 0 0 -3-3zm7 10a4 4 0 1 1 4-4 4 4 0 0 1 -4 4zm0-6a2 2 0 1 0 2 2 2 2 0 0 0 -2-2zm-7-2a1 1 0 1 0 1 1 1 1 0 0 0 -1-1zm13 1a1 1 0 1 0 1-1 1 1 0 0 0 -1 1zm-13 5a1 1 0 1 0 1 1 1 1 0 0 0 -1-1zm13 1a1 1 0 1 0 1-1 1 1 0 0 0 -1 1z"
       />
     </svg>
   )

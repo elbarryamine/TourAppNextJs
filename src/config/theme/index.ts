@@ -24,8 +24,8 @@ const theme = extendTheme({
     dark: {
       primary: '#7e3af2',
       accent: '#000087',
-      bg: '#1a1c23',
-      bg2: '#121317',
+      bg: '#121317',
+      bg2: '#1a1c23',
       text1: '#E5E7EB',
       text2: '#9E9E9E',
       text3: '#24262D',

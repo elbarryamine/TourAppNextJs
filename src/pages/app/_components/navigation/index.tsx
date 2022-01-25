@@ -1,9 +1,22 @@
 import React from 'react'
-import { GridItem, Flex, Text, Button } from '@chakra-ui/react'
+import { GridItem, Flex, Box, Text, Button } from '@chakra-ui/react'
 import { useChakraTheme } from 'config/theme/usetheme'
-import { HomeOuline } from '../icons'
+import { HomeOuline, MoneyIcon } from '../icons'
+
+type SideLink = {
+  icon: JSX.Element
+  title: string
+}
+const links: Array<SideLink> = [
+  { icon: <HomeOuline height={14} width={14} />, title: 'Home' },
+  { icon: <MoneyIcon height={14} width={14} />, title: 'Sales' },
+  { icon: <HomeOuline height={14} width={14} />, title: 'Services' },
+  { icon: <HomeOuline height={14} width={14} />, title: 'Clients' },
+  { icon: <HomeOuline height={14} width={14} />, title: 'Contacts' },
+]
 export function Navigation() {
-  const { background, subtext, text, accent } = useChakraTheme()
+  const { background, subtext, text, primary } = useChakraTheme()
+  const [active, setActive] = React.useState<number>(0)
 
   return (
     <GridItem bg={background} gridColumn="1/1" gridRow="2/-1">
@@ -14,7 +27,7 @@ export function Navigation() {
         h="100%"
         sx={{
           '& button': {
-            py: '30px',
+            py: '24px',
             px: '0',
             d: 'flex',
             alignItems: 'center',
@@ -22,9 +35,9 @@ export function Navigation() {
             gap: '10px',
             pl: '30px',
             borderRadius: '0',
-            color: subtext,
+            color: text,
             '& svg path': {
-              fill: subtext,
+              fill: text,
             },
           },
           '& button:hover': {
@@ -34,27 +47,30 @@ export function Navigation() {
               fill: text,
             },
           },
-          '& button p': {
-            fontSize: 'md',
-            fontWeight: '800',
-          },
         }}>
-        <Button bg="transparent" _focus={{}}>
-          <HomeOuline />
-          <Text>Home</Text>
-        </Button>
-        <Button bg="transparent" _focus={{}}>
-          <Text>Sales</Text>
-        </Button>
-        <Button bg="transparent" _focus={{}}>
-          <Text>Services</Text>
-        </Button>
-        <Button bg="transparent" _focus={{}}>
-          <Text>Clients</Text>
-        </Button>
-        <Button bg="transparent" _focus={{}}>
-          <Text>Contacts</Text>
-        </Button>
+        <Box pos="relative">
+          {links.map((link: SideLink, index: number) => {
+            return (
+              <Button key={index} bg="transparent" _focus={{}} onClick={() => setActive(index)}>
+                {link.icon}
+                <Text fontSize="1" fontWeight="extrabold">
+                  {link.title}
+                </Text>
+              </Button>
+            )
+          })}
+          <Box
+            bg={primary}
+            transition={`all 0.5s`}
+            transform={`translateY(${active * 100}%)`}
+            h={`${100 / links.length}%`}
+            w="4px"
+            borderRadius="100px"
+            pos="absolute"
+            top="0"
+            left="0"
+          />
+        </Box>
         <Button bg="transparent" _focus={{}} mt="auto" mb="50px">
           <Text>Logout</Text>
         </Button>
