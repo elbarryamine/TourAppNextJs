@@ -6,7 +6,7 @@ type Props = {
 }
 const defaultSettings = {
   size: 12,
-  fill: '#7E3AF2',
+  fill: '#eec643',
 }
 HomeOuline.defaultProps = defaultSettings
 export function HomeOuline({ size, fill }: Props) {
