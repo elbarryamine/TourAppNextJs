@@ -1,18 +1,20 @@
 import React from 'react'
 import { GridItem, Flex, Box, Text, Button } from '@chakra-ui/react'
 import { useChakraTheme } from 'config/theme/usetheme'
-import { HomeOuline, MoneyIcon } from '../icons'
-
+import { FaClone, FaMoneyBillAlt, FaShuttleVan, FaUsers, FaMailBulk } from 'react-icons/fa'
+import { LinkTo } from 'utils/linkTo'
+import { Link } from 'react-router-dom'
 type SideLink = {
   icon: JSX.Element
   title: string
+  url: string
 }
 const links: Array<SideLink> = [
-  { icon: <HomeOuline size={14} />, title: 'Home' },
-  { icon: <MoneyIcon size={14} />, title: 'Sales' },
-  { icon: <HomeOuline size={14} />, title: 'Services' },
-  { icon: <HomeOuline size={14} />, title: 'Clients' },
-  { icon: <HomeOuline size={14} />, title: 'Contacts' },
+  { icon: <FaClone size="14px" />, title: 'Dashboard', url: LinkTo.home },
+  { icon: <FaMoneyBillAlt size="14px" />, title: 'Sales', url: LinkTo.sales },
+  { icon: <FaShuttleVan size="14px" />, title: 'Tours', url: LinkTo.tours },
+  { icon: <FaUsers size="14px" />, title: 'Clients', url: LinkTo.clients },
+  { icon: <FaMailBulk size="14px" />, title: 'Mail', url: LinkTo.mail },
 ]
 export function Navigation() {
   const { background, text, primary } = useChakraTheme()
@@ -51,12 +53,14 @@ export function Navigation() {
         <Box pos="relative">
           {links.map((link: SideLink, index: number) => {
             return (
-              <Button key={index} bg="transparent" _focus={{}} onClick={() => setActive(index)}>
-                {link.icon}
-                <Text fontSize="1" fontWeight="extrabold">
-                  {link.title}
-                </Text>
-              </Button>
+              <Link to={link.url} key={index}>
+                <Button bg="transparent" _focus={{}} onClick={() => setActive(index)}>
+                  {link.icon}
+                  <Text fontSize="1" fontWeight="extrabold">
+                    {link.title}
+                  </Text>
+                </Button>
+              </Link>
             )
           })}
           <Box

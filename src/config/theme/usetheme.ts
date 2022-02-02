@@ -12,5 +12,6 @@ export function useChakraTheme() {
   const accenttext = useColorModeValue('light.text3', 'dark.text3')
   const primary = useColorModeValue('light.primary', 'dark.primary')
   const accent = useColorModeValue('light.accent', 'dark.accent')
-  return { background, subBackground, text, subtext, primary, accent, accenttext }
+  const overPrimary = useColorModeValue('light.overPrimary', 'dark.overPrimary')
+  return { background, subBackground, text, subtext, primary, accent, accenttext, overPrimary }
 }

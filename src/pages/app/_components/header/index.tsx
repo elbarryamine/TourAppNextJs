@@ -1,10 +1,10 @@
 import React from 'react'
 import { Flex, Text, InputGroup, Input, GridItem, Avatar, InputLeftElement, Box, useColorMode, Button } from '@chakra-ui/react'
-import { FilledNotification, Search, Sun, HalfMoon } from '../icons'
 import { Link } from 'react-router-dom'
 import { LinkTo } from 'utils/linkTo'
 import { useChakraTheme } from 'config/theme/usetheme'
 import { NotificationDrawer } from '..'
+import { FaBell, FaMoon, FaSearch, FaSun } from 'react-icons/fa'
 export function TopHeader() {
   const { colorMode, toggleColorMode } = useColorMode()
   const { background, subBackground, text, subtext } = useChakraTheme()
@@ -25,7 +25,7 @@ export function TopHeader() {
         </Link>
         <InputGroup maxW="500px">
           <InputLeftElement h="100%" color="accent">
-            <Search size={14} />
+            <FaSearch size="14px" />
           </InputLeftElement>
           <Input
             borderRadius="15px"
@@ -43,7 +43,7 @@ export function TopHeader() {
         </InputGroup>
         <Flex h="100%" align="center" gap="20px">
           <Button px="4px" d="flex" onClick={toggleColorMode} __css={{}}>
-            {colorMode === 'dark' ? <Sun /> : <HalfMoon />}
+            {colorMode === 'dark' ? <FaSun size="14px" /> : <FaMoon size="14px" />}
           </Button>
           <Button px="4px" d="flex" __css={{}} onClick={openDrawer}>
             <Box pos="relative">
@@ -60,7 +60,7 @@ export function TopHeader() {
                 <Box bg="red" w="6px" h="6px" borderRadius="50%" />
               </Flex>
               <Box>
-                <FilledNotification />
+                <FaBell size="14px" />
               </Box>
             </Box>
             <NotificationDrawer isOpen={isDrawerOpen} closeDrawer={closeDrawer} />

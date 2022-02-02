@@ -6,14 +6,13 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  useDisclosure,
   Box,
   Text,
   Avatar,
   Flex,
 } from '@chakra-ui/react'
 import { useChakraTheme } from 'config/theme/usetheme'
-import { OutlineNotification } from '../icons'
+import { FaBell } from 'react-icons/fa'
 
 type Props = {
   isOpen: boolean
@@ -108,7 +107,7 @@ function Notification({ avatar, sender, date, content, number }: NotificationPro
                   </Text>
                 </Flex>
               </Flex>
-              <OutlineNotification size={18} />
+              <FaBell size="14px" />
             </Box>
             <Text fontWeight="extrabold" fontSize="2" color={text}>
               {sender}
