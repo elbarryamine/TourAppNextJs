@@ -1,16 +1,11 @@
 import React from 'react'
-import { Box, Image, useMediaQuery } from '@chakra-ui/react'
+import { Box, Image } from '@chakra-ui/react'
+import { useResponsive } from 'config/hooks/useResponsive'
 type Props = {
   children: React.ReactChild
 }
 export function FormContainer({ children }: Props) {
-  const [xss, xs, sm, md, lg] = useMediaQuery([
-    '(max-width: 400px)',
-    '(max-width: 600px)',
-    '(max-width: 768px)',
-    '(max-width: 1024px)',
-    '(max-width: 1200px)',
-  ])
+  const { xss, xs, sm, md, lg } = useResponsive()
   let containerPaddingX = '50px'
   if (lg) containerPaddingX = '20px'
   if (md) containerPaddingX = '10px'

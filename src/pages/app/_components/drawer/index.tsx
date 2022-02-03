@@ -11,7 +11,7 @@ import {
   Avatar,
   Flex,
 } from '@chakra-ui/react'
-import { useChakraTheme } from 'config/theme/usetheme'
+import { useChakraTheme } from 'config/hooks/usetheme'
 import { FaBell } from 'react-icons/fa'
 
 type Props = {

@@ -1,22 +1,25 @@
 import React from 'react'
 import { Box, Button, Flex, Grid, Image, Text } from '@chakra-ui/react'
-import { useChakraTheme } from 'config/theme/usetheme'
+import { useChakraTheme } from 'config/hooks/usetheme'
 import { FaStar, FaStarHalf, FaStarHalfAlt } from 'react-icons/fa'
 
 export function ToursPageTable() {
   const { background, accenttext, text } = useChakraTheme()
 
+  const ui = {
+    tmpColumns: '300px repeat(3, 1fr) 200px',
+  }
   return (
     <Box mt="20px">
       <Box p="20px" borderRadius="10px" bg={background}>
-        <Grid templateColumns="340px repeat(3, 1fr) 200px" placeItems="center">
+        <Grid templateColumns={ui.tmpColumns} placeItems="center">
           <Box>Overview</Box>
           <Box>Trip Length</Box>
           <Box>Host</Box>
           <Box>Price</Box>
           <Box>Actions</Box>
         </Grid>
-        <Grid pt="20px" borderRadius="10px" templateColumns="340px repeat(3, 1fr) 200px" placeItems="center">
+        <Grid pt="20px" borderRadius="10px" templateColumns={ui.tmpColumns} placeItems="center">
           <Flex gap="15px" align="center">
             <Image
               borderRadius="2px"
@@ -47,7 +50,7 @@ export function ToursPageTable() {
             </Button>
           </Flex>
         </Grid>
-        <Grid pt="20px" borderRadius="10px" templateColumns="340px repeat(3, 1fr) 200px" placeItems="center">
+        <Grid pt="20px" borderRadius="10px" templateColumns={ui.tmpColumns} placeItems="center">
           <Flex gap="15px" align="center">
             <Image
               borderRadius="2px"
@@ -78,7 +81,7 @@ export function ToursPageTable() {
             </Button>
           </Flex>
         </Grid>
-        <Grid pt="20px" borderRadius="10px" templateColumns="340px repeat(3, 1fr) 200px" placeItems="center">
+        <Grid pt="20px" borderRadius="10px" templateColumns={ui.tmpColumns} placeItems="center">
           <Flex gap="15px" align="center">
             <Image
               borderRadius="2px"
@@ -109,7 +112,7 @@ export function ToursPageTable() {
             </Button>
           </Flex>
         </Grid>
-        <Grid pt="20px" borderRadius="10px" templateColumns="340px repeat(3, 1fr) 200px" placeItems="center">
+        <Grid pt="20px" borderRadius="10px" templateColumns={ui.tmpColumns} placeItems="center">
           <Flex gap="15px" align="center">
             <Image
               borderRadius="2px"
@@ -140,7 +143,7 @@ export function ToursPageTable() {
             </Button>
           </Flex>
         </Grid>
-        <Grid pt="20px" borderRadius="10px" templateColumns="340px repeat(3, 1fr) 200px" placeItems="center">
+        <Grid pt="20px" borderRadius="10px" templateColumns={ui.tmpColumns} placeItems="center">
           <Flex gap="15px" align="center">
             <Image
               borderRadius="2px"

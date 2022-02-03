@@ -1,24 +1,29 @@
 import React from 'react'
 import { Input } from '@chakra-ui/react'
+import { useChakraTheme } from 'config/hooks/usetheme'
 
 export function SubmitInput({ title }: { title: string }) {
+  const { overPrimary, primary } = useChakraTheme()
   return (
     <Input
       boxShadow="md"
       type="submit"
       _hover={{
-        background: 'secondary',
-      }}
-      _focus={{}}
-      _active={{
-        color: 'secondary',
-        bg: 'transparent',
+        color: primary,
+        bg: overPrimary,
         border: '1px',
-        borderColor: 'gray',
+        borderColor: primary,
       }}
+      _focus={{
+        color: primary,
+        bg: overPrimary,
+        outline: '2px',
+        outlineColor: primary,
+      }}
+      _active={{}}
       fontWeight="bold"
-      bg="primary"
-      color="white"
+      bg={primary}
+      color={overPrimary}
       value={title}
     />
   )

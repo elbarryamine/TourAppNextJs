@@ -2,6 +2,7 @@ import React from 'react'
 import { Input, FormLabel, Box, Text, FormHelperText, InputGroup, InputRightElement } from '@chakra-ui/react'
 import validator from 'validator'
 import { FaEye } from 'react-icons/fa'
+import { useChakraTheme } from 'config/hooks/usetheme'
 
 interface PropsFormInput {
   type: string
@@ -14,6 +15,7 @@ FormInput.defaultProps = {
 }
 export function FormInput(props: PropsFormInput) {
   const { title, type, id } = props
+  const { subBackground, text, subtext, background, primary } = useChakraTheme()
   const [inputVal, setInputVal] = React.useState<string>('')
   const [message, setMessage] = React.useState<string>('')
   const [isError, setIsError] = React.useState<boolean>(false)
@@ -30,7 +32,7 @@ export function FormInput(props: PropsFormInput) {
   //
   const verifyType = type.toLowerCase() === 'password' ? (showPassword ? 'text' : type) : type
   const labelBgColor = inputVal ? (isError ? 'red.100' : 'light') : ''
-  const labelColor = inputVal ? (isError ? 'red.500' : 'dark') : 'gray.900'
+  const labelColor = inputVal ? (isError ? 'red.500' : 'dark') : text
   //
   // React.useEffect(() => {}, [])
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -57,14 +59,14 @@ export function FormInput(props: PropsFormInput) {
       <Box position="relative" h="50px">
         <InputGroup h="40px" position="absolute">
           <Input
-            bg="whitesmoke"
+            bg={subBackground}
             h="100%"
             border="1px solid"
-            borderColor="gray"
+            borderColor={subtext}
             _focus={{
               '& + .label': {
                 transform: 'translateY(-45%)',
-                color: 'red',
+                color: { text },
                 bg: 'secondary',
                 '& p': {
                   bg: 'secondary',
@@ -72,13 +74,15 @@ export function FormInput(props: PropsFormInput) {
               },
             }}
             boxShadow="shadow2"
+            color={text}
+            _placeholder={{ color: text }}
             id={id}
             type={verifyType}
             onChange={handleChange}
           />
           {type.toLowerCase() === 'password' && (
             <InputRightElement
-              color="primary"
+              color={primary}
               display="flex"
               alignItems="center"
               cursor="pointer"

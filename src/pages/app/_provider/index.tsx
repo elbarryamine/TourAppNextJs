@@ -3,7 +3,7 @@ import { Grid, GridItem, ColorModeScript } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
 import { Navigation, TopHeader } from '../_components'
 import theme from '../../../config/theme'
-import { useChakraTheme } from 'config/theme/usetheme'
+import { useChakraTheme } from 'config/hooks/usetheme'
 
 type Props = {
   children: React.ReactChild | React.ReactChild[]

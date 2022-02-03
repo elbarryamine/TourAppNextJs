@@ -1,6 +1,6 @@
 import React from 'react'
 import { GridItem, Flex, Box, Text, Button } from '@chakra-ui/react'
-import { useChakraTheme } from 'config/theme/usetheme'
+import { useChakraTheme } from 'config/hooks/usetheme'
 import { FaClone, FaMoneyBillAlt, FaShuttleVan, FaUsers, FaMailBulk } from 'react-icons/fa'
 import { LinkTo } from 'utils/linkTo'
 import { Link } from 'react-router-dom'
