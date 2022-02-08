@@ -24,13 +24,13 @@ export default function Login() {
         sx={{}}
         onSubmit={() => {}}>
         <FormLabel alignItems="center" color={text} htmlFor="email" w="max-content">
-          <Text fontSize="md" fontWeight="extrabold" as="p" borderRadius="15px">
+          <Text fontSize="body" fontWeight="extrabold" as="p" borderRadius="15px">
             Email
           </Text>
         </FormLabel>
         <Input id="email" type="email" />
         <FormLabel alignItems="center" color={text} htmlFor="password" w="max-content" mt="10px">
-          <Text fontSize="md" fontWeight="extrabold" as="p" borderRadius="15px">
+          <Text fontSize="body" fontWeight="extrabold" as="p" borderRadius="15px">
             Password
           </Text>
         </FormLabel>

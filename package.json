@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next -p 8080",
+    "start": "next -p 8080",
     "build": "next build",
-    "start": "next start",
+    "start:next": "next start",
     "tsc": "tsc -w",
     "lint": "next lint"
   },

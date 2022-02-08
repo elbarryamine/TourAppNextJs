@@ -109,7 +109,7 @@ function Notification({ avatar, sender, date, content, number }: NotificationPro
               </Flex>
               <FaBell size="14px" />
             </Box>
-            <Text fontWeight="extrabold" fontSize="2" color={text}>
+            <Text fontWeight="extrabold" fontSize="body" color={text}>
               {sender}
             </Text>
           </Flex>
@@ -120,7 +120,7 @@ function Notification({ avatar, sender, date, content, number }: NotificationPro
         </Box>
       </Flex>
       <Box>
-        <Text color={text} fontWeight="extrabold" fontSize="2">
+        <Text color={text} fontWeight="extrabold" fontSize="body">
           {content}
         </Text>
       </Box>

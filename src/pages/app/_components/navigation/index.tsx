@@ -56,7 +56,7 @@ export function Navigation() {
               <Link to={link.url} key={index}>
                 <Button bg="transparent" _focus={{}} onClick={() => setActive(index)}>
                   {link.icon}
-                  <Text fontSize="1" fontWeight="extrabold">
+                  <Text fontSize="sub" fontWeight="extrabold">
                     {link.title}
                   </Text>
                 </Button>

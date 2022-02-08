@@ -11,7 +11,7 @@ export function LoadingPage() {
         <Box animation={`${spin} infinite 0.5s linear`}>
           <AiOutlineLoading3Quarters size="20px" />
         </Box>
-        <Text fontWeight="extrabold" fontSize="lg">
+        <Text fontWeight="extrabold" fontSize="body">
           Loading
         </Text>
       </Flex>

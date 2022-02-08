@@ -19,7 +19,7 @@ export function TopHeader() {
     <GridItem bg={background} gridColumn="1/-1" gridRow="1/2">
       <Flex h="100%" w="100%" justify="space-between" align="center" px="30px">
         <Link to={LinkTo.root}>
-          <Text color={text} fontWeight="extrabold" fontSize="xl" textTransform="capitalize">
+          <Text color={text} fontWeight="extrabold" fontSize="display" textTransform="capitalize">
             Tour guide dashboard
           </Text>
         </Link>

@@ -24,9 +24,9 @@ export default function ForgetPassword() {
         borderColor="subtext"
         sx={{}}
         onSubmit={() => {}}>
-        <Text as="h4" fontSize="lg" pb="20px" fontWeight="bold" userSelect="none">
+        <Text as="h4" fontSize="headline" pb="20px" fontWeight="bold" userSelect="none">
           Enter your email to recieve a password
-          <Text as="span" fontSize="inherit" fontWeight="bold" color="primary">
+          <Text as="span" fontSize="headline" fontWeight="bold" color="primary">
             reset link
           </Text>
         </Text>
