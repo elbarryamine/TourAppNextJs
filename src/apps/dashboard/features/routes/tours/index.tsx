@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
-import { ToursPageHeader, ToursPageTable } from './_components'
+import { ToursPageHeader, ToursPageTable } from './components'
 
 export function ToursPage() {
   return (

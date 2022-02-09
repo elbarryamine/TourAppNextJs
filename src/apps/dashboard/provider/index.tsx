@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, GridItem, ColorModeScript } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
-import { Navigation, TopHeader } from '../_components'
+import { Navigation, TopHeader } from '../components'
 import theme from '../../../config/theme'
 import { useChakraTheme } from 'config/hooks/usetheme'
 
