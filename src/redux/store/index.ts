@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
+import tourReducer from 'redux/reducers/tours'
 import settingsReducer from 'redux/reducers/settings'
 
 const store = configureStore({
   reducer: {
     settings: settingsReducer,
+    tours: tourReducer,
   },
 })
 

@@ -14,10 +14,10 @@ export function DashboardProvider({ children }: Props) {
   return (
     <BrowserRouter basename="/app">
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <Grid templateColumns="256px repeat(7, 1fr)" templateRows="69px minmax(200px,1fr)" h="100vh" w="100vw" overflowY="scroll">
+      <Grid templateColumns="256px repeat(7, 1fr)" templateRows="69px minmax(200px,1fr)" h="100vh" w="100vw" overflowY="hidden">
         <TopHeader />
         <Navigation />
-        <GridItem bg={subBackground} gridColumn="2/-1" gridRow="2/-1">
+        <GridItem bg={subBackground} gridColumn="2/-1" gridRow="2/-1" overflowY="scroll">
           {children}
         </GridItem>
       </Grid>

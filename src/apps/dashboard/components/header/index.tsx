@@ -57,7 +57,7 @@ export function TopHeader() {
                 w="10px"
                 h="10px"
                 borderRadius="50%">
-                <Box bg="red" w="6px" h="6px" borderRadius="50%" />
+                <Box w="6px" h="6px" borderRadius="50%" />
               </Flex>
               <Box>
                 <FaBell size="14px" />

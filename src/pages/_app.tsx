@@ -36,7 +36,8 @@ function MyApp({ Component, pageProps, router }: AppProps) {
             bg: primary,
           },
           '*::-webkit-scrollbar-thumb:horizontal': {
-            borderBottom: '8px solid red',
+            border: '5px solid',
+            borderColor: accenttext,
           },
         }}>
         <Component {...pageProps} />
