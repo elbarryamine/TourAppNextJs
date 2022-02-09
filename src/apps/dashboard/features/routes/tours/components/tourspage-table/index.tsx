@@ -1,25 +1,43 @@
 import React, { Fragment } from 'react'
-import { background, Box, Button, Checkbox, Flex, Grid, Image, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, Grid, Image, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
 import { useChakraTheme } from 'config/hooks/usetheme'
 import { FaRegFrown, FaSearch } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 import { RootState } from 'redux/store'
 import { Rating } from 'apps/dashboard/components'
+import { useSearchParams, useLocation } from 'react-router-dom'
+import ReactPaginate from 'react-paginate'
+import qr from 'query-string'
 
 const ui = {
   tmpColumns: '70px 1fr 120px 120px 200px',
 }
+
 export function ToursPageTable() {
-  const { text, accenttext } = useChakraTheme()
+  const setSearchParams = useSearchParams()[1]
+  const { search: searchQueryFromUrl } = useLocation()
+  const { text, accenttext, background, subtext, overPrimary, primary } = useChakraTheme()
   const tours: Tour[] = useSelector((state: RootState) => state.tours.toursOfTable)
-  const [filterdTours, setfilterdTours] = React.useState<Tour[]>(tours)
+  const itemsPerPage = 6
+  const [toursOfThisPage, setToursOfThisPage] = React.useState<Tour[]>(tours.slice(0, 6))
+  const [filterdTours, setfilterdTours] = React.useState<Tour[]>(toursOfThisPage)
   const [search, setSearch] = React.useState<string>('')
+  const pageCount = Math.ceil(tours.length / 6)
   const [category, setCategory] = React.useState<string>('')
+  const { page } = qr.parse(searchQueryFromUrl)
+
+  function handlePageClick(e: { selected: number }) {
+    const startIndex = (e.selected * itemsPerPage) % tours.length
+    const endIndex = startIndex + itemsPerPage
+    setToursOfThisPage(() => tours.slice(startIndex, endIndex))
+    const pageParam = e.selected + 1
+    setSearchParams({ page: pageParam.toString() })
+  }
   function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
     const { value } = e.target
     setSearch(value)
     if (!value) {
-      setfilterdTours(tours)
+      setfilterdTours(toursOfThisPage)
       setCategory('All')
     } else {
       const results: Tour[] = []
@@ -31,12 +49,16 @@ export function ToursPageTable() {
       setfilterdTours(results)
     }
   }
+
+  React.useEffect(() => {
+    setfilterdTours(toursOfThisPage)
+  }, [toursOfThisPage])
   React.useEffect(() => {
     setSearch('')
     if (category !== 'All' && category) {
-      setfilterdTours(tours.filter((tour) => tour.category.includes(category)))
+      setfilterdTours(toursOfThisPage.filter((tour) => tour.category.includes(category)))
     } else {
-      setfilterdTours(tours)
+      setfilterdTours(toursOfThisPage)
     }
   }, [category])
   return (
@@ -46,6 +68,54 @@ export function ToursPageTable() {
         <TableHead />
         <TableContent tours={filterdTours} isSearching={tours.length ? (search ? true : false) : false} />
       </Box>
+      <Flex
+        py="20px"
+        borderRadius="10px"
+        zIndex="5"
+        mt="6px"
+        align="center"
+        justify="flex-end"
+        fontWeight="extrabold"
+        sx={{
+          '.page': {
+            bg: background,
+            color: text,
+            '& a': {
+              fontWeight: 'extrabold',
+              px: '10px',
+              h: '100%',
+              d: 'flex',
+              alignItems: 'center',
+              '&:hover': { bg: subtext, color: background },
+            },
+          },
+          '.page-active': {
+            bg: primary,
+            color: overPrimary,
+          },
+          '.container': { d: 'flex', gap: '10px', listStyle: 'none', fontWeight: 'extrabold' },
+        }}>
+        <ReactPaginate
+          activeClassName="page-active"
+          className="container"
+          pageClassName="page"
+          pageRangeDisplayed={5}
+          previousLabel={
+            <Button _focus={{}} _active={{}} _hover={{ bg: subtext, color: background }} bg={background} color={text} w="5px">
+              {`<`}
+            </Button>
+          }
+          breakLabel="..."
+          initialPage={page ? Number(page) - 1 : 1}
+          nextLabel={
+            <Button _focus={{}} _active={{}} _hover={{ bg: subtext, color: background }} bg={background} color={text} w="5px">
+              {`>`}
+            </Button>
+          }
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+        />
+      </Flex>
     </Flex>
   )
 }
@@ -56,10 +126,10 @@ type PropsTableToursFinder = {
   activeCategory: string
 }
 function TableToursFinder({ onChange, onCategoryChange, value, activeCategory }: PropsTableToursFinder) {
-  const { text, subtext, primary, overPrimary } = useChakraTheme()
+  const { text, primary, background } = useChakraTheme()
   const categories = ['All', 'Quad', 'Beach', 'Hiking']
   return (
-    <Flex borderRadius="10px" my="20px" py="5px" justify="space-between" px="10px">
+    <Flex borderRadius="10px" my="10px" py="5px" justify="space-between" px="10px">
       <Flex
         sx={{
           '& button': { h: 'max-content', fontSize: 'body', bg: 'transparent', fontWeight: 'normal', color: text },
@@ -80,14 +150,14 @@ function TableToursFinder({ onChange, onCategoryChange, value, activeCategory }:
         ))}
       </Flex>
       <InputGroup maxW="500px">
-        <InputLeftElement h="100%" color="black">
+        <InputLeftElement h="100%" color={text}>
           <FaSearch size="14px" />
         </InputLeftElement>
         <Input
           onChange={onChange}
           value={value}
           borderRadius="15px"
-          bg={overPrimary}
+          bg={background}
           color={text}
           border="0"
           fontWeight="extrabold"
@@ -97,7 +167,7 @@ function TableToursFinder({ onChange, onCategoryChange, value, activeCategory }:
             ouline: '5px solid',
             oulineColor: 'primary',
           }}
-          _placeholder={{ '&': { color: subtext, fontSize: 'sm', fontWeight: 'extrabold' } }}
+          _placeholder={{ '&': { color: text, fontSize: 'sm', fontWeight: 'extrabold' } }}
           placeholder="Search for a tour..."
         />
       </InputGroup>
@@ -113,7 +183,7 @@ function TableHead() {
       bg={background}
       templateColumns={ui.tmpColumns}
       placeItems="center"
-      p="20px"
+      p="15px"
       sx={{ '.tableHeader': { fontWeight: 'bold', fontSize: 'headline' } }}>
       <Box />
       <Box className="tableHeader">Overview</Box>
@@ -148,7 +218,7 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
 
   if (tours.length === 0) {
     return (
-      <Flex align="center" justify="center" p="20px" w="100%" gap="20px" color={subtext}>
+      <Flex align="center" justify="center" p="15px" w="100%" gap="20px" color={subtext}>
         <Text fontSize="sub" fontWeight="extrabold">
           {isSearching ? 'Could not find tour you are looking for' : 'Add your first tour to see it'}
         </Text>
@@ -178,7 +248,7 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
           </Button>
         </Flex>
       ) : null}
-      <Box maxH="60vh" overflowY="scroll">
+      <Box maxH="50vh" overflowY="scroll">
         {tours.map((tour) => (
           <Grid key={tour.id} p="20px" templateColumns={ui.tmpColumns} placeItems="center">
             <Box>

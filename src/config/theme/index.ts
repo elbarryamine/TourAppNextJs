@@ -43,7 +43,7 @@ const theme = extendTheme({
       bg: '#ffffff',
       bg2: '#F4F5F6',
       text1: '#1A1C23',
-      text2: '#707257',
+      text2: '#6c757d',
       text3: '#e9ecef',
     },
   },
