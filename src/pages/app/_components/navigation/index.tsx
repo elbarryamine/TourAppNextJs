@@ -3,7 +3,7 @@ import { GridItem, Flex, Box, Text, Button } from '@chakra-ui/react'
 import { useChakraTheme } from 'config/hooks/usetheme'
 import { FaClone, FaMoneyBillAlt, FaShuttleVan, FaUsers, FaMailBulk } from 'react-icons/fa'
 import { LinkTo } from 'utils/linkTo'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 type SideLink = {
   icon: JSX.Element
   title: string
@@ -18,7 +18,9 @@ const links: Array<SideLink> = [
 ]
 export function Navigation() {
   const { background, text, primary } = useChakraTheme()
-  const [active, setActive] = React.useState<number>(0)
+  const { pathname } = useLocation()
+  const startingActiveIndex = links.findIndex((link) => pathname.startsWith(link.url))
+  const [active, setActive] = React.useState<number>(startingActiveIndex)
 
   return (
     <GridItem bg={background} gridColumn="1/1" gridRow="2/-1">
@@ -53,8 +55,8 @@ export function Navigation() {
         <Box pos="relative">
           {links.map((link: SideLink, index: number) => {
             return (
-              <Link to={link.url} key={index}>
-                <Button bg="transparent" _focus={{}} onClick={() => setActive(index)}>
+              <Link to={link.url} key={index} onClick={() => setActive(index)}>
+                <Button bg="transparent" _focus={{}}>
                   {link.icon}
                   <Text fontSize="sub" fontWeight="extrabold">
                     {link.title}
