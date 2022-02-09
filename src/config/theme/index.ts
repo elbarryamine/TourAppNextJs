@@ -30,11 +30,11 @@ const theme = extendTheme({
       primary: '#7e3af2',
       overPrimary: '#ffffff',
       accent: '#eec643',
-      bg: '#2d3748',
-      bg2: '#1a202c',
+      bg: '#1a202c',
+      bg2: '#2d3748',
       text1: '#ffffff',
       text2: '#9E9E9E',
-      text3: '#161032',
+      text3: '#161a1d',
     },
     light: {
       primary: '#7e3af2',
@@ -44,7 +44,7 @@ const theme = extendTheme({
       bg2: '#F4F5F6',
       text1: '#1A1C23',
       text2: '#707257',
-      text3: '#EAEBED',
+      text3: '#e9ecef',
     },
   },
   shadows: {
