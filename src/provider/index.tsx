@@ -21,7 +21,7 @@ export default function AppProvider({ children, router }: Props) {
       <Provider store={store}>
         <ChakraProvider theme={theme}>
           <SwitchTransition mode="out-in">
-            <CSSTransition key={router.pathname} classNames="swap" timeout={300}>
+            <CSSTransition key={router.pathname} classNames="swap" timeout={400}>
               {children}
             </CSSTransition>
           </SwitchTransition>

@@ -26,7 +26,12 @@ export function ToursPage() {
   React.useEffect(() => {
     if (loading) return
     dispatch(initToursTable(data.getTours))
-    setLoaded(true)
+    const delay = setInterval(() => {
+      setLoaded(true)
+    }, 500)
+    return () => {
+      clearInterval(delay)
+    }
   }, [loading])
   if (!loaded) return <LoadingPage />
   return (

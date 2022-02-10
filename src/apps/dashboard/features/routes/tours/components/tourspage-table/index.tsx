@@ -4,9 +4,8 @@ import { useChakraTheme } from 'config/hooks/usetheme'
 import { FaRegFrown, FaSearch } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 import { RootState } from 'redux/store'
-import { Rating } from 'apps/dashboard/components'
+import { Pagination, Rating } from 'apps/dashboard/components'
 import { useSearchParams, useLocation } from 'react-router-dom'
-import ReactPaginate from 'react-paginate'
 import qr from 'query-string'
 
 const ui = {
@@ -16,14 +15,15 @@ const ui = {
 export function ToursPageTable() {
   const setSearchParams = useSearchParams()[1]
   const { search: searchQueryFromUrl } = useLocation()
-  const { text, accenttext, background, subtext, overPrimary, primary } = useChakraTheme()
+  const { text, accenttext } = useChakraTheme()
   const tours: Tour[] = useSelector((state: RootState) => state.tours.toursOfTable)
   const itemsPerPage = 6
   const [toursOfThisPage, setToursOfThisPage] = React.useState<Tour[]>(tours.slice(0, 6))
   const [filterdTours, setfilterdTours] = React.useState<Tour[]>(toursOfThisPage)
   const [search, setSearch] = React.useState<string>('')
   const pageCount = Math.ceil(tours.length / 6)
-  const [category, setCategory] = React.useState<string>('')
+  const [category, setCategory] = React.useState<string>('All')
+  const [categories, setCategories] = React.useState<string[]>([])
   const { page } = qr.parse(searchQueryFromUrl)
 
   function handlePageClick(e: { selected: number }) {
@@ -49,7 +49,11 @@ export function ToursPageTable() {
       setfilterdTours(results)
     }
   }
-
+  React.useEffect(() => {
+    const categoriesSet: Set<string> = new Set()
+    tours.forEach((tour) => tour.category.forEach((cat: string) => categoriesSet.add(cat)))
+    setCategories(Array.from(categoriesSet))
+  }, [tours])
   React.useEffect(() => {
     setfilterdTours(toursOfThisPage)
   }, [toursOfThisPage])
@@ -63,59 +67,18 @@ export function ToursPageTable() {
   }, [category])
   return (
     <Flex flexDir="column">
-      <TableToursFinder onChange={handleSearch} onCategoryChange={setCategory} value={search} activeCategory={category} />
+      <TableToursFinder
+        onChange={handleSearch}
+        onCategoryChange={setCategory}
+        value={search}
+        activeCategory={category}
+        categories={categories}
+      />
       <Box shadow="2xl" color={text} border="1px solid" borderColor={accenttext} borderRadius="10px" overflow="hidden" pos="relative">
         <TableHead />
         <TableContent tours={filterdTours} isSearching={tours.length ? (search ? true : false) : false} />
       </Box>
-      <Flex
-        py="20px"
-        borderRadius="10px"
-        zIndex="5"
-        mt="6px"
-        align="center"
-        justify="flex-end"
-        fontWeight="extrabold"
-        sx={{
-          '.page': {
-            bg: background,
-            color: text,
-            '& a': {
-              fontWeight: 'extrabold',
-              px: '10px',
-              h: '100%',
-              d: 'flex',
-              alignItems: 'center',
-              '&:hover': { bg: subtext, color: background },
-            },
-          },
-          '.page-active': {
-            bg: primary,
-            color: overPrimary,
-          },
-          '.container': { d: 'flex', gap: '10px', listStyle: 'none', fontWeight: 'extrabold' },
-        }}>
-        <ReactPaginate
-          activeClassName="page-active"
-          className="container"
-          pageClassName="page"
-          pageRangeDisplayed={5}
-          previousLabel={
-            <Button _focus={{}} _active={{}} _hover={{ bg: subtext, color: background }} bg={background} color={text} w="5px">
-              {`<`}
-            </Button>
-          }
-          breakLabel="..."
-          initialPage={page ? Number(page) - 1 : 1}
-          nextLabel={
-            <Button _focus={{}} _active={{}} _hover={{ bg: subtext, color: background }} bg={background} color={text} w="5px">
-              {`>`}
-            </Button>
-          }
-          pageCount={pageCount}
-          onPageChange={handlePageClick}
-        />
-      </Flex>
+      <Pagination initialPage={page ? Number(page) - 1 : 1} pageCount={pageCount} handlePageClick={handlePageClick} />
     </Flex>
   )
 }
@@ -124,10 +87,11 @@ type PropsTableToursFinder = {
   onCategoryChange: React.Dispatch<React.SetStateAction<string>>
   value: string
   activeCategory: string
+  categories: string[]
 }
-function TableToursFinder({ onChange, onCategoryChange, value, activeCategory }: PropsTableToursFinder) {
+function TableToursFinder({ onChange, onCategoryChange, value, activeCategory, categories }: PropsTableToursFinder) {
   const { text, primary, background } = useChakraTheme()
-  const categories = ['All', 'Quad', 'Beach', 'Hiking']
+  const categoriesArr = ['All', ...categories]
   return (
     <Flex borderRadius="10px" my="10px" py="5px" justify="space-between" px="10px">
       <Flex
@@ -137,7 +101,7 @@ function TableToursFinder({ onChange, onCategoryChange, value, activeCategory }:
         }}
         w="max-content"
         align="center">
-        {categories.map((categ: string, i: number) => (
+        {categoriesArr.map((categ: string, i: number) => (
           <Button
             key={i}
             onClick={() => onCategoryChange(categ)}
@@ -198,7 +162,7 @@ type PropsTableContent = {
   isSearching: boolean
 }
 function TableContent({ tours, isSearching }: PropsTableContent) {
-  const { subtext, background, primary } = useChakraTheme()
+  const { text, background, primary } = useChakraTheme()
   const [selectedIdsOfTours, setSelectedIdsOfTours] = React.useState<string[]>([])
   function handleChecked(e: React.ChangeEvent<HTMLInputElement>, id: string) {
     if (selectedIdsOfTours.includes(id)) {
@@ -218,9 +182,11 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
 
   if (tours.length === 0) {
     return (
-      <Flex align="center" justify="center" p="15px" w="100%" gap="20px" color={subtext}>
-        <Text fontSize="sub" fontWeight="extrabold">
-          {isSearching ? 'Could not find tour you are looking for' : 'Add your first tour to see it'}
+      <Flex align="center" justify="center" p="15px" w="100%" gap="20px" color={text}>
+        <Text fontSize="body" fontWeight="extrabold">
+          {isSearching
+            ? 'Could not find tour you are looking for'
+            : 'Add your tour and we will review it as soon as possible for your to see it here !'}
         </Text>
         {isSearching && <FaRegFrown size="14px" />}
       </Flex>

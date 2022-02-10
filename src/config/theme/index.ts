@@ -3,6 +3,10 @@ import { extendTheme } from '@chakra-ui/react'
 const theme = extendTheme({
   initialColorMode: 'light',
   useSystemColorMode: false,
+  zIndices: {
+    portal: 9999,
+    sortByDropDown: 2,
+  },
   fonts: {
     heading: 'Raleway',
     body: 'Raleway',
@@ -30,7 +34,7 @@ const theme = extendTheme({
       primary: '#7e3af2',
       overPrimary: '#ffffff',
       accent: '#eec643',
-      bg: '#1a202c',
+      bg: '#272f3f',
       bg2: '#2d3748',
       text1: '#ffffff',
       text2: '#9E9E9E',
@@ -41,7 +45,7 @@ const theme = extendTheme({
       overPrimary: '#ffffff',
       accent: '#eec643',
       bg: '#ffffff',
-      bg2: '#F4F5F6',
+      bg2: '#fafafa',
       text1: '#1A1C23',
       text2: '#6c757d',
       text3: '#e9ecef',

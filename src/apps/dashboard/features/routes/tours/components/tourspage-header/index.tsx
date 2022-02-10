@@ -23,7 +23,7 @@ export function ToursPageHeader() {
             Sort By :
           </Text>
           <Accordion allowToggle>
-            <AccordionItem pos="relative" border="0">
+            <AccordionItem pos="relative" border="0" zIndex="sortByDropDown">
               <AccordionButton
                 h="max-content"
                 _focus={{ bg: background, color: text }}

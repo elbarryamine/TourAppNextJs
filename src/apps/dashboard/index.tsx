@@ -5,7 +5,15 @@ import { ToursPage } from './features/routes/tours'
 import { ToursWorkSpaceCreate } from './features/routes/tours/create'
 import { LinkTo } from '../../utils/linkTo'
 import { DashboardProvider } from './provider'
+import { LoadingPage } from 'components/loading'
+import { gql, useLazyQuery } from '@apollo/client'
+import Router from 'next/router'
 
+const QUERY = gql`
+  query ($token: String!) {
+    verifyUser(token: $token)
+  }
+`
 export default function App() {
   const routes = [
     { path: '/', element: <Home /> },
@@ -13,6 +21,20 @@ export default function App() {
     { path: LinkTo.tours, element: <ToursPage /> },
     { path: LinkTo.toursCreate, element: <ToursWorkSpaceCreate /> },
   ]
+  const [runVerifyQuery, { loading }] = useLazyQuery(QUERY)
+  const [loaded, setLoaded] = React.useState<boolean>(false)
+  React.useEffect(() => {
+    if (loading) return
+    const token = localStorage.getItem('token')
+    runVerifyQuery({ variables: { token } })
+      .then(() => {
+        setLoaded(true)
+      })
+      .catch(() => {
+        Router.push(LinkTo.login)
+      })
+  }, [loading])
+  if (!loaded) return <LoadingPage />
   return (
     <DashboardProvider>
       <Routes>

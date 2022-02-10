@@ -1,18 +1,14 @@
-.swap-enter .trcontainer {
-  transform: translateX(-100%);
+.swap-enter {
   opacity: 0;
 }
-.swap-enter-active .trcontainer {
-  transform: translateX(0%);
+.swap-enter-active {
   opacity: 1;
-  transition: all 0.3s;
+  transition: all 0.4s;
 }
-.swap-exit .trcontainer {
-  transform: translateX(0%);
+.swap-exit {
   opacity: 1;
 }
-.swap-exit-active .trcontainer {
-  transform: translateX(100%);
+.swap-exit-active {
   opacity: 0;
-  transition: all 0.3s;
+  transition: all 0.4s;
 }

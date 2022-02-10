@@ -1,10 +1,12 @@
 import React from 'react'
 import { Box, Image } from '@chakra-ui/react'
 import { useResponsive } from 'config/hooks/useResponsive'
+import { useChakraTheme } from 'config/hooks/usetheme'
 type Props = {
   children: React.ReactChild
 }
 export function FormContainer({ children }: Props) {
+  const { subBackground } = useChakraTheme()
   const { xss, xs, sm, md, lg } = useResponsive()
   let containerPaddingX = '50px'
   if (lg) containerPaddingX = '20px'
@@ -21,7 +23,7 @@ export function FormContainer({ children }: Props) {
       justifyContent="center"
       bgImage={sm ? 'https://images.pexels.com/photos/450062/pexels-photo-450062.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' : ''}
       alignItems="center"
-      bg={sm ? '' : 'whitesmoke'}
+      bg={sm ? '' : subBackground}
       bgPos="center"
       bgSize="cover">
       {!sm ? (

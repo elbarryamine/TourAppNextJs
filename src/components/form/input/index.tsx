@@ -15,7 +15,7 @@ FormInput.defaultProps = {
 }
 export function FormInput(props: PropsFormInput) {
   const { title, type, id } = props
-  const { subBackground, text, subtext, background, primary } = useChakraTheme()
+  const { subBackground, text, subtext, primary } = useChakraTheme()
   const [inputVal, setInputVal] = React.useState<string>('')
   const [message, setMessage] = React.useState<string>('')
   const [isError, setIsError] = React.useState<boolean>(false)
@@ -51,8 +51,9 @@ export function FormInput(props: PropsFormInput) {
       }
     }
   }
-  function handleIsPasswordStrong(value: any): boolean {
-    return true
+  function handleIsPasswordStrong(value: string): boolean {
+    if (value) return true
+    return false
   }
   return (
     <Box mb="15px">

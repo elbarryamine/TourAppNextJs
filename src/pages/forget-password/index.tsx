@@ -1,50 +1,41 @@
 import React from 'react'
-import { Button, FormControl, Text } from '@chakra-ui/react'
-import { FormContainer, FormInput, SubmitInput } from '../../components'
+import { FormContainer } from '../../components'
+import { FormControl, Text, Input, FormLabel, Box, Stack, Heading } from '@chakra-ui/react'
 import Link from 'next/link'
-import { FaChevronLeft } from 'react-icons/fa'
+import { SubmitInput } from '../../components/form'
 import { LinkTo } from 'utils/linkTo'
-export default function ForgetPassword() {
-  // const [loaded, setLoaded] = React.useState<boolean>(false)
-  // React.useEffect(() => {
-  //   setLoaded(true)
-  // }, [])
-  // if (!loaded) return <LoadingPage />
+import { useChakraTheme } from 'config/hooks/usetheme'
+
+export default function ForgotPassword() {
+  const { background, subBackground, subtext, text } = useChakraTheme()
   return (
     <FormContainer>
-      <FormControl
-        className="trcontainer"
-        as="form"
-        py="40px"
-        px="20px"
-        borderRadius="15px"
-        boxShadow="sm"
-        bg="gray.50"
-        border="1px solid"
-        borderColor="subtext"
-        sx={{}}
-        onSubmit={() => {}}>
-        <Text as="h4" fontSize="headline" pb="20px" fontWeight="bold" userSelect="none">
-          Enter your email to recieve a password
-          <Text as="span" fontSize="headline" fontWeight="bold" color="primary">
-            reset link
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} bg={subBackground} borderRadius="10px" color={text} w="100%">
+        <Stack align={'center'}>
+          <Heading fontSize={'4xl'} textAlign="center">
+            Tell us your email
+          </Heading>
+          <Text fontSize={'lg'} color={subtext}>
+            and we will send you a reset password link
           </Text>
-        </Text>
-        <FormInput id="email" title="Email" type="email" />
-        <SubmitInput title="Get reset link" />
-        <Button
-          _focus={{}}
-          _hover={{ opacity: '0.8' }}
-          _active={{}}
-          fontWeight="extrabold"
-          color="primary"
-          bg="transparent"
-          mt="20px"
-          gap="5px">
-          <FaChevronLeft />
-          <Link href={LinkTo.sigunp}>Go back</Link>
-        </Button>
-      </FormControl>
+        </Stack>
+        <Box rounded={'lg'} bg={background} boxShadow={'base'} p={8}>
+          <Stack spacing={4}>
+            <FormControl id="email">
+              <FormLabel fontWeight="extrabold">Email address</FormLabel>
+              <Input type="email" />
+            </FormControl>
+            <SubmitInput title="Reset" />
+            <Box color={text} textAlign="center">
+              <Link passHref={true} href={LinkTo.login}>
+                <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
+                  Go Back
+                </Text>
+              </Link>
+            </Box>
+          </Stack>
+        </Box>
+      </Stack>
     </FormContainer>
   )
 }

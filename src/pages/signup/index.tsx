@@ -1,43 +1,169 @@
-import { Box as Bx, FormControl, Text } from '@chakra-ui/react'
-import React from 'react'
-import { FormContainer, SubmitInput, FormInput } from '../../components'
-import { MdLogin } from 'react-icons/md'
+import React, { Fragment } from 'react'
+import { FormContainer } from '../../components'
+import {
+  FormControl,
+  Text,
+  Input,
+  FormLabel,
+  Box,
+  Stack,
+  Heading,
+  Button,
+  chakra,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react'
 import Link from 'next/link'
+import { SubmitInput } from '../../components/form'
 import { LinkTo } from 'utils/linkTo'
+import { useChakraTheme } from 'config/hooks/usetheme'
+import { gql, useMutation } from '@apollo/client'
+import _ from 'lodash'
+import { FaTimes } from 'react-icons/fa'
+import SuccessModalMessage from 'components/success-modal'
+import router from 'next/router'
 
+const QUERY = gql`
+  mutation (
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $phone: String
+    $password: String!
+    $passwordConfirm: String!
+    $birthDate: String!
+  ) {
+    signUp(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      phone: $phone
+      password: $password
+      passwordConfirm: $passwordConfirm
+      birthDate: $birthDate
+    )
+  }
+`
 export default function SignUp() {
+  const { background, subBackground, text, primary, overPrimary } = useChakraTheme()
+  const [isError, setIsError] = React.useState<string>('')
+  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
+  const [runMutation, { data, loading, error }] = useMutation(QUERY)
+  async function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
+    e.preventDefault()
+    try {
+      const {
+        first_name: { value: firstName },
+        last_name: { value: lastName },
+        birth_date: { value: birthDate },
+        phone: { value: phone },
+        email: { value: email },
+        password: { value: password },
+        password_confirm: { value: passwordConfirm },
+      } = e.target
+      await runMutation({
+        variables: { firstName, lastName, email, phone, password, passwordConfirm, birthDate },
+      })
+      e.target.reset()
+    } catch {}
+  }
+  React.useEffect(() => {
+    if (error) setIsError(error.message)
+    if (!error) setIsError('')
+    const errorInterval = setInterval(() => {
+      if (error) {
+        setIsError('')
+      }
+    }, 5000)
+    return () => {
+      clearInterval(errorInterval)
+    }
+  }, [error])
+  React.useEffect(() => {
+    if (loading || _.isEmpty(data)) return
+    if (data.signUp) {
+      setIsModalOpen(true)
+    }
+  }, [loading, data])
+  React.useEffect(() => {
+    if (!_.isEmpty(data) && !isModalOpen) {
+      router.push(LinkTo.login)
+    }
+    if (isModalOpen) {
+      const modalTimeOut = setInterval(() => {
+        setIsModalOpen(false)
+      }, 5000)
+      return () => {
+        clearInterval(modalTimeOut)
+      }
+    }
+  }, [isModalOpen])
+
   return (
-    <FormContainer>
-      <FormControl
-        className="trcontainer"
-        as="form"
-        py="40px"
-        px="20px"
-        borderRadius="15px"
-        boxShadow="sm"
-        bg="gray.50"
-        border="1px solid"
-        borderColor="subtext"
-        sx={{}}
-        onSubmit={() => {}}>
-        <FormInput id="firstname" type="firstname" title="First Name" />
-        <FormInput id="lastname" type="lastname" title="Last Name" />
-        <FormInput id="email" type="email" title="Email" />
-        <FormInput id="password" type="password" title="Password" />
-        <FormInput id="passwordConfirm" type="password" title="Password Confirm" />
-        <Bx d="flex" mt="20px" flexDir="column" gap="20px">
-          <SubmitInput title="Sign up" />
-          <Bx d="flex" alignItems="center" justifyContent="space-between">
-            <Text fontWeight="bold">Already have an account ?</Text>
-            <Bx color="primary" d="flex" alignItems="center" gap="5px" cursor="pointer" _hover={{ color: 'rgb(0 118 255 / 39%)' }}>
-              <Text fontWeight="bold" bg="transparent">
-                <Link href={LinkTo.login}>Log in</Link>
-              </Text>
-              <MdLogin />
-            </Bx>
-          </Bx>
-        </Bx>
-      </FormControl>
-    </FormContainer>
+    <Fragment>
+      <SuccessModalMessage isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+      <FormContainer>
+        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} bg={subBackground} borderRadius="10px" color={text} w="100%" pos="relative">
+          <Heading fontSize={'4xl'} textAlign="center">
+            {isError && (
+              <Alert status="error" pos="absolute" top="0px" right="0px">
+                <AlertIcon />
+                <AlertTitle mr={2}>Error</AlertTitle>
+                <AlertDescription>{isError}</AlertDescription>
+                <Box onClick={() => setIsError('')} cursor="pointer" pos="absolute" right="20px" color="red">
+                  <FaTimes size="20px" />
+                </Box>
+              </Alert>
+            )}
+            Sign up to join us
+          </Heading>
+
+          <chakra.form rounded={'lg'} bg={background} boxShadow={'base'} p={8} onSubmit={handleSubmit}>
+            <Stack spacing={4}>
+              <FormControl id="first_name">
+                <FormLabel fontWeight="extrabold">First Name</FormLabel>
+                <Input required type="first_name" />
+              </FormControl>
+              <FormControl id="last_name">
+                <FormLabel fontWeight="extrabold">Last Name</FormLabel>
+                <Input required type="last_name" />
+              </FormControl>
+              <FormControl id="birth_date">
+                <FormLabel fontWeight="extrabold">Birth Date</FormLabel>
+                <Input required type="date" />
+              </FormControl>
+              <FormControl id="phone">
+                <FormLabel fontWeight="extrabold">Phone</FormLabel>
+                <Input required type="tel" />
+              </FormControl>
+              <FormControl id="email">
+                <FormLabel fontWeight="extrabold">Email address</FormLabel>
+                <Input required type="email" />
+              </FormControl>
+              <FormControl id="password">
+                <FormLabel fontWeight="extrabold">Password</FormLabel>
+                <Input required type="password" />
+              </FormControl>
+              <FormControl id="password_confirm">
+                <FormLabel fontWeight="extrabold">Confirm Password</FormLabel>
+                <Input required type="password" />
+              </FormControl>
+              <Stack spacing={10}>
+                {loading ? <Button isLoading bg={primary} color={overPrimary} variant="solid" /> : <SubmitInput title="Sign Up" />}
+                <Box color={text} textAlign="center">
+                  <Link passHref={true} href={LinkTo.login}>
+                    <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
+                      I already have an account
+                    </Text>
+                  </Link>
+                </Box>
+              </Stack>
+            </Stack>
+          </chakra.form>
+        </Stack>
+      </FormContainer>
+    </Fragment>
   )
 }
