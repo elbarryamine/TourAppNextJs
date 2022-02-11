@@ -4,7 +4,6 @@ export function useChakraTheme() {
   /**
    * @returns Array<string> ==>  [background,background2,textColor1,textColor2]
    */
-
   const background = useColorModeValue('light.bg', 'dark.bg')
   const subBackground = useColorModeValue('light.bg2', 'dark.bg2')
   const text = useColorModeValue('light.text1', 'dark.text1')

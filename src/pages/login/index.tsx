@@ -25,7 +25,17 @@ import { FaTimes } from 'react-icons/fa'
 import Router from 'next/router'
 const QUERY = gql`
   query sign($email: String!, $password: String!) {
-    signIn(email: $email, password: $password)
+    signIn(email: $email, password: $password) {
+      id
+      firstName
+      lastName
+      email
+      phone
+      role
+      birthDate
+      createdAt
+      avatar
+    }
   }
 `
 export default function Login() {
@@ -41,14 +51,15 @@ export default function Login() {
       } = e.target
       await runLoginQuery({ variables: { email, password } })
       e.target.reset()
-    } catch (e) {
-      setIsError('Wrong email or password')
+    } catch (e: any) {
+      setIsError(e.message)
     }
   }
   React.useEffect(() => {
     if (loading || _.isEmpty(data)) return
-    localStorage.setItem('token', data.signIn)
-    Router.push(LinkTo.dashboard)
+    if (data.signIn) {
+      Router.push(LinkTo.dashboard)
+    }
   }, [loading, data])
   return (
     <FormContainer>

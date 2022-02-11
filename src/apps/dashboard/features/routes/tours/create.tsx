@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
 
-export function ToursWorkSpaceCreate() {
+export function ToursCreate() {
   return <Box></Box>
 }
 /**

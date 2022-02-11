@@ -11,7 +11,6 @@ import qr from 'query-string'
 const ui = {
   tmpColumns: '70px 1fr 120px 120px 200px',
 }
-
 export function ToursPageTable() {
   const setSearchParams = useSearchParams()[1]
   const { search: searchQueryFromUrl } = useLocation()
@@ -68,32 +67,34 @@ export function ToursPageTable() {
   return (
     <Flex flexDir="column">
       <TableToursFinder
+        hide={tours.length === 0}
         onChange={handleSearch}
         onCategoryChange={setCategory}
         value={search}
         activeCategory={category}
         categories={categories}
       />
-      <Box shadow="2xl" color={text} border="1px solid" borderColor={accenttext} borderRadius="10px" overflow="hidden" pos="relative">
+      <Box shadow="md" color={text} border="1px solid" borderColor={accenttext} borderRadius="10px" overflow="hidden" pos="relative">
         <TableHead />
         <TableContent tours={filterdTours} isSearching={tours.length ? (search ? true : false) : false} />
       </Box>
-      <Pagination initialPage={page ? Number(page) - 1 : 1} pageCount={pageCount} handlePageClick={handlePageClick} />
+      <Pagination initialPage={page ? Number(page) - 1 : 0} pageCount={pageCount} handlePageClick={handlePageClick} />
     </Flex>
   )
 }
 type PropsTableToursFinder = {
+  hide?: boolean
   onChange: React.ChangeEventHandler<HTMLInputElement>
   onCategoryChange: React.Dispatch<React.SetStateAction<string>>
   value: string
   activeCategory: string
   categories: string[]
 }
-function TableToursFinder({ onChange, onCategoryChange, value, activeCategory, categories }: PropsTableToursFinder) {
+function TableToursFinder({ hide, onChange, onCategoryChange, value, activeCategory, categories }: PropsTableToursFinder) {
   const { text, primary, background } = useChakraTheme()
-  const categoriesArr = ['All', ...categories]
+  const categoriesArr = categories.length ? ['All', ...categories] : []
   return (
-    <Flex borderRadius="10px" my="10px" py="5px" justify="space-between" px="10px">
+    <Flex visibility={hide ? 'hidden' : 'visible'} borderRadius="10px" my="10px" py="5px" justify="space-between" px="10px">
       <Flex
         sx={{
           '& button': { h: 'max-content', fontSize: 'body', bg: 'transparent', fontWeight: 'normal', color: text },
@@ -174,25 +175,24 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
   function handleClear() {
     setSelectedIdsOfTours([])
   }
+  function handleDelete() {}
+
   React.useEffect(() => {
     if (isSearching) {
       handleClear()
     }
   }, [isSearching, tours])
 
-  if (tours.length === 0) {
-    return (
-      <Flex align="center" justify="center" p="15px" w="100%" gap="20px" color={text}>
-        <Text fontSize="body" fontWeight="extrabold">
-          {isSearching
-            ? 'Could not find tour you are looking for'
-            : 'Add your tour and we will review it as soon as possible for your to see it here !'}
-        </Text>
-        {isSearching && <FaRegFrown size="14px" />}
-      </Flex>
-    )
-  }
-  return (
+  return tours.length === 0 ? (
+    <Flex align="center" justify="center" p="15px" w="100%" gap="20px" color={text}>
+      <Text fontSize="body" fontWeight="extrabold">
+        {isSearching
+          ? 'Could not find tour you are looking for'
+          : 'Add your tour and we will review it as soon as possible for your to see it here !'}
+      </Text>
+      {isSearching && <FaRegFrown size="14px" />}
+    </Flex>
+  ) : (
     <Fragment>
       {selectedIdsOfTours.length ? (
         <Flex
@@ -247,13 +247,13 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
               ) : null
             ) : (
               <Flex gap="10px" sx={{ '& button': { w: 'calc(190px / 3)', py: '10px', fontSize: 'sub' } }}>
-                <Button _focus={{}} _hover={{ bg: 'blue.200' }} bg="blue.100" color="blue.500">
+                <Button _focus={{}} _hover={{ bg: 'blue.400' }} bg="blue.200" color="blue.900">
                   View
                 </Button>
-                <Button _focus={{}} _hover={{ bg: 'green.200' }} bg="green.100" color="green.500">
+                <Button _focus={{}} _hover={{ bg: 'green.400' }} bg="green.200" color="green.900">
                   Edit
                 </Button>
-                <Button _focus={{}} _hover={{ bg: 'red.200' }} bg="red.100" color="red.500">
+                <Button _focus={{}} _hover={{ bg: 'red.400' }} bg="red.200" color="red.900" onClick={handleDelete}>
                   Delete
                 </Button>
               </Flex>

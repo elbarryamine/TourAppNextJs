@@ -4,6 +4,7 @@ import { useChakraTheme } from 'config/hooks/usetheme'
 import { FaClone, FaMoneyBillAlt, FaShuttleVan, FaUsers, FaMailBulk } from 'react-icons/fa'
 import { LinkTo } from 'utils/linkTo'
 import { Link, useLocation } from 'react-router-dom'
+import Router from 'next/router'
 type SideLink = {
   icon: JSX.Element
   title: string
@@ -20,8 +21,11 @@ export function Navigation() {
   const { background, text, primary } = useChakraTheme()
   const { pathname } = useLocation()
   const startingActiveIndex = links.findIndex((link) => pathname.startsWith(link.url))
-  const [active, setActive] = React.useState<number>(startingActiveIndex)
-
+  const [active, setActive] = React.useState<number>(startingActiveIndex !== -1 ? startingActiveIndex : 0)
+  function handleLogout() {
+    localStorage.removeItem('token')
+    Router.push(LinkTo.login)
+  }
   return (
     <GridItem bg={background} gridColumn="1/1" gridRow="2/-1">
       <Flex
@@ -77,7 +81,7 @@ export function Navigation() {
             left="0"
           />
         </Box>
-        <Button bg="transparent" _focus={{}} mt="auto" mb="50px">
+        <Button bg="transparent" _focus={{}} mt="auto" mb="50px" onClick={handleLogout}>
           <Text>Logout</Text>
         </Button>
       </Flex>

@@ -1,10 +1,18 @@
+/* eslint-disable no-unused-vars */
 type Tour = {
   id: string
   name: string
-  mainImage: string
-  category: string[]
   rating: number
-  createdBy: string
-  duration: string
+  duration: number
+  description: string
   price: number
+  discount: number
+  mainImage: string
+  numberOfbooked: number
+  features: string[]
+  images: string[]
+  location: string[]
+  category: string[]
+  createdBy: string
+  createdAt: string
 }

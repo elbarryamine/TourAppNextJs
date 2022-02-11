@@ -3,7 +3,7 @@ module.exports = {
     return [
       {
         source: '/app/:any*',
-        destination: '/app/',
+        destination: '/app',
       },
     ]
   },

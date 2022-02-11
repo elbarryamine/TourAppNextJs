@@ -5,15 +5,19 @@ import { AppProps } from 'next/app'
 import theme from '../config/theme'
 import { Provider } from 'react-redux'
 import store from 'redux/store'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
 
 type Props = {
   children: React.ReactChild | React.ReactChild[]
   router: AppProps['router']
 }
+const link = createHttpLink({
+  uri: 'http://localhost:4000/graphql',
+  credentials: 'include',
+})
 const client = new ApolloClient({
-  uri: 'http://127.0.0.1:4000/graphql',
   cache: new InMemoryCache(),
+  link,
 })
 export default function AppProvider({ children, router }: Props) {
   return (
