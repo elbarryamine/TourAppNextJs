@@ -50,6 +50,14 @@ const theme = extendTheme({
       text2: '#6c757d',
       text3: '#e9ecef',
     },
+    misc: {
+      green: '#146356',
+      greenBg: '#95E1D3',
+      red: '#FF2E63',
+      redBg: '#FFC7C7',
+      blue: '#3F72AF',
+      blueBg: '#DBE2EF',
+    },
   },
   shadows: {
     shadow: '0 4px 14px 0 rgb(0 118 255 / 39%)',

@@ -14,8 +14,11 @@ export const toursSlice = createSlice({
     initToursTable(state: State, action: PayloadAction<State['toursOfTable']>) {
       state.toursOfTable = action.payload
     },
+    deleteTour(state: State, action: PayloadAction<{ id: string }>) {
+      state.toursOfTable = state.toursOfTable.filter((tour: Tour) => tour.id !== action.payload.id)
+    },
   },
 })
 
-export const { initToursTable } = toursSlice.actions
+export const { initToursTable, deleteTour } = toursSlice.actions
 export default toursSlice.reducer

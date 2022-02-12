@@ -11,7 +11,6 @@ type Props = {
 }
 export function Pagination({ handlePageClick, initialPage, pageCount }: Props) {
   const { text, background, subtext, overPrimary, primary } = useChakraTheme()
-
   return (
     <Flex
       py="20px"
@@ -51,7 +50,7 @@ export function Pagination({ handlePageClick, initialPage, pageCount }: Props) {
           </Button>
         }
         breakLabel="..."
-        initialPage={initialPage}
+        forcePage={initialPage}
         nextLabel={
           <Button _focus={{}} _active={{}} _hover={{ bg: subtext, color: background }} bg={background} color={text} w="5px">
             {`>`}

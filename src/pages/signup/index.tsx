@@ -14,6 +14,7 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  Flex,
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { SubmitInput } from '../../components/form'
@@ -22,7 +23,7 @@ import { useChakraTheme } from 'config/hooks/usetheme'
 import { gql, useMutation } from '@apollo/client'
 import _ from 'lodash'
 import { FaTimes } from 'react-icons/fa'
-import SuccessModalMessage from 'components/success-modal'
+import { ModalMessage } from 'components'
 import router from 'next/router'
 
 const QUERY = gql`
@@ -103,7 +104,13 @@ export default function SignUp() {
 
   return (
     <Fragment>
-      <SuccessModalMessage isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+      <ModalMessage
+        bodyContent="Signup is successfull"
+        headerContent="Yey !"
+        variant="success"
+        isOpen={isModalOpen}
+        setIsOpen={setIsModalOpen}
+      />
       <FormContainer>
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} bg={subBackground} borderRadius="10px" color={text} w="100%" pos="relative">
           <Heading fontSize={'4xl'} textAlign="center">

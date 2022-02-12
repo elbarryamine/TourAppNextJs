@@ -2,11 +2,14 @@ import React, { Fragment } from 'react'
 import { Box, Button, Checkbox, Flex, Grid, Image, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
 import { useChakraTheme } from 'config/hooks/usetheme'
 import { FaRegFrown, FaSearch } from 'react-icons/fa'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'redux/store'
 import { Pagination, Rating } from 'apps/dashboard/components'
 import { useSearchParams, useLocation } from 'react-router-dom'
 import qr from 'query-string'
+import { ModalMessage } from 'components/modal'
+import { gql, useMutation } from '@apollo/client'
+import { deleteTour } from 'redux/reducers/tours'
 
 const ui = {
   tmpColumns: '70px 1fr 120px 120px 200px',
@@ -14,56 +17,55 @@ const ui = {
 export function ToursPageTable() {
   const setSearchParams = useSearchParams()[1]
   const { search: searchQueryFromUrl } = useLocation()
-  const { text, accenttext } = useChakraTheme()
-  const tours: Tour[] = useSelector((state: RootState) => state.tours.toursOfTable)
-  const itemsPerPage = 6
-  const [toursOfThisPage, setToursOfThisPage] = React.useState<Tour[]>(tours.slice(0, 6))
-  const [filterdTours, setfilterdTours] = React.useState<Tour[]>(toursOfThisPage)
-  const [search, setSearch] = React.useState<string>('')
-  const pageCount = Math.ceil(tours.length / 6)
+  const { accenttext, text } = useChakraTheme()
+  const tours = useSelector((state: RootState) => state.tours.toursOfTable)
+  const [displayedTours, setDisplayedTours] = React.useState<Tour[]>([])
+  const [filterdToursByCategory, setFilterdToursByCategory] = React.useState<Tour[]>([])
   const [category, setCategory] = React.useState<string>('All')
-  const [categories, setCategories] = React.useState<string[]>([])
-  const { page } = qr.parse(searchQueryFromUrl)
-
-  function handlePageClick(e: { selected: number }) {
-    const startIndex = (e.selected * itemsPerPage) % tours.length
-    const endIndex = startIndex + itemsPerPage
-    setToursOfThisPage(() => tours.slice(startIndex, endIndex))
-    const pageParam = e.selected + 1
-    setSearchParams({ page: pageParam.toString() })
-  }
+  const [search, setSearch] = React.useState<string>('')
+  const itemsPerPage = 3
+  const [pageCount, setPageCount] = React.useState<number>(Math.ceil(tours.length / itemsPerPage))
   function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
     const { value } = e.target
     setSearch(value)
     if (!value) {
-      setfilterdTours(toursOfThisPage)
-      setCategory('All')
+      setDisplayedTours(filterdToursByCategory)
     } else {
       const results: Tour[] = []
-      tours.forEach((tour) => {
+      filterdToursByCategory.forEach((tour) => {
         if (tour.name.toLowerCase().includes(value.toLowerCase())) {
           results.push(tour)
         }
       })
-      setfilterdTours(results)
+      setDisplayedTours(results)
     }
   }
-  React.useEffect(() => {
-    const categoriesSet: Set<string> = new Set()
-    tours.forEach((tour) => tour.category.forEach((cat: string) => categoriesSet.add(cat)))
-    setCategories(Array.from(categoriesSet))
-  }, [tours])
-  React.useEffect(() => {
-    setfilterdTours(toursOfThisPage)
-  }, [toursOfThisPage])
-  React.useEffect(() => {
+  function handlePageClick(e: { selected: number }) {
     setSearch('')
-    if (category !== 'All' && category) {
-      setfilterdTours(toursOfThisPage.filter((tour) => tour.category.includes(category)))
+    const startIndex = (e.selected * itemsPerPage) % tours.length
+    const endIndex = startIndex + itemsPerPage
+    setDisplayedTours(() => filterdToursByCategory.slice(startIndex, endIndex))
+    const pageParam = e.selected + 1
+    setSearchParams({ page: pageParam.toString() })
+  }
+
+  React.useEffect(() => {
+    const currentPage = qr.parse(searchQueryFromUrl).page ? Number(qr.parse(searchQueryFromUrl).page) - 1 : 0
+    const startIndex = (currentPage * itemsPerPage) % tours.length
+    const endIndex = startIndex + itemsPerPage
+    if (category !== 'All') {
+      const _tours = tours.filter((tour) => tour.category.includes(category))
+      setDisplayedTours(() => _tours.slice(startIndex, endIndex))
+      setFilterdToursByCategory(_tours)
     } else {
-      setfilterdTours(toursOfThisPage)
+      setDisplayedTours(() => tours.slice(startIndex, endIndex))
+      setFilterdToursByCategory(tours)
     }
-  }, [category])
+    setSearch('')
+  }, [category, tours, searchQueryFromUrl])
+  React.useEffect(() => setSearchParams({ page: '1' }), [category])
+  React.useEffect(() => setPageCount(Math.ceil(filterdToursByCategory.length / itemsPerPage)), [filterdToursByCategory])
+
   return (
     <Flex flexDir="column">
       <TableToursFinder
@@ -72,13 +74,17 @@ export function ToursPageTable() {
         onCategoryChange={setCategory}
         value={search}
         activeCategory={category}
-        categories={categories}
+        categories={Array.from(new Set(tours.flatMap((tour) => tour.category)))}
       />
       <Box shadow="md" color={text} border="1px solid" borderColor={accenttext} borderRadius="10px" overflow="hidden" pos="relative">
         <TableHead />
-        <TableContent tours={filterdTours} isSearching={tours.length ? (search ? true : false) : false} />
+        <TableContent tours={displayedTours} isSearching={tours.length ? (search ? true : false) : false} />
       </Box>
-      <Pagination initialPage={page ? Number(page) - 1 : 0} pageCount={pageCount} handlePageClick={handlePageClick} />
+      <Pagination
+        initialPage={qr.parse(searchQueryFromUrl).page ? Number(qr.parse(searchQueryFromUrl).page) - 1 : 0}
+        pageCount={pageCount}
+        handlePageClick={handlePageClick}
+      />
     </Flex>
   )
 }
@@ -162,9 +168,18 @@ type PropsTableContent = {
   tours: Tour[]
   isSearching: boolean
 }
+const QUERYDELETESINGLE = gql`
+  mutation m2($id: String!) {
+    deleteTour(id: $id)
+  }
+`
 function TableContent({ tours, isSearching }: PropsTableContent) {
-  const { text, background, primary } = useChakraTheme()
+  const dispatch = useDispatch()
+  const { text, background } = useChakraTheme()
+  const [isModalOpen, setOpenModal] = React.useState<boolean>(false)
   const [selectedIdsOfTours, setSelectedIdsOfTours] = React.useState<string[]>([])
+  const [selectedId, setSelectedId] = React.useState<string>('')
+  const [runDeleteSingleTour, { loading, data }] = useMutation(QUERYDELETESINGLE)
   function handleChecked(e: React.ChangeEvent<HTMLInputElement>, id: string) {
     if (selectedIdsOfTours.includes(id)) {
       setSelectedIdsOfTours([...selectedIdsOfTours].filter((tourId) => tourId !== id))
@@ -175,14 +190,29 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
   function handleClear() {
     setSelectedIdsOfTours([])
   }
-  function handleDelete() {}
+  async function handleConfirmDelete() {
+    dispatch(deleteTour({ id: selectedId }))
+    try {
+      if (selectedIdsOfTours.length) {
+      } else {
+        await runDeleteSingleTour({ variables: { id: selectedId } })
+      }
+      setOpenModal(false)
+    } catch {}
+  }
 
+  React.useEffect(() => {
+    if (loading || !data) return
+    if (data) {
+      dispatch(deleteTour({ id: selectedId }))
+      setSelectedId('')
+    }
+  }, [loading, data])
   React.useEffect(() => {
     if (isSearching) {
       handleClear()
     }
   }, [isSearching, tours])
-
   return tours.length === 0 ? (
     <Flex align="center" justify="center" p="15px" w="100%" gap="20px" color={text}>
       <Text fontSize="body" fontWeight="extrabold">
@@ -194,6 +224,26 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
     </Flex>
   ) : (
     <Fragment>
+      <ModalMessage
+        headerContent="Are you sure you want to delete?"
+        bodyContent="This operation is not reversable"
+        variant="primary"
+        footerContent={
+          <Button
+            _foucs={{}}
+            _active={{}}
+            _hover={{ opacity: 0.5 }}
+            bg="transparent"
+            border="1px solid"
+            borderColor="misc.red"
+            color="misc.red"
+            onClick={handleConfirmDelete}>
+            Delete
+          </Button>
+        }
+        isOpen={isModalOpen}
+        setIsOpen={setOpenModal}
+      />
       {selectedIdsOfTours.length ? (
         <Flex
           pos="absolute"
@@ -206,10 +256,25 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
           bg={background}
           overflow="hidden"
           gap="10px">
-          <Button _focus={{}} _hover={{ bg: 'green.200' }} bg="green.100" color="green.500" onClick={handleClear}>
+          <Button
+            _focus={{}}
+            _hover={{ opacity: 0.5 }}
+            border="1px solid"
+            bg=""
+            borderColor="misc.green"
+            color="misc.green"
+            onClick={handleClear}>
             Clear {selectedIdsOfTours.length >= 2 ? 'All' : ''}
           </Button>
-          <Button justifySelf="flex-end" _focus={{}} _hover={{ bg: 'red.200' }} bg="red.100" color="red.500">
+          <Button
+            justifySelf="flex-end"
+            _focus={{}}
+            _hover={{ opacity: 0.5 }}
+            border="1px solid"
+            bg=""
+            borderColor="misc.red"
+            color="misc.red"
+            onClick={() => setOpenModal(true)}>
             Delete {selectedIdsOfTours.length >= 2 ? 'All' : ''}
           </Button>
         </Flex>
@@ -220,9 +285,7 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
             <Box>
               <Checkbox
                 onChange={(value: React.ChangeEvent<HTMLInputElement>) => handleChecked(value, tour.id)}
-                colorScheme="purple"
-                color={primary}
-                borderColor={primary}
+                borderColor={text}
                 isChecked={selectedIdsOfTours.includes(tour.id) ? true : false}
               />
             </Box>
@@ -239,21 +302,37 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
             <Text fontWeight="extrabold">{tour.price} Dh</Text>
             {selectedIdsOfTours.length ? (
               selectedIdsOfTours.includes(tour.id) ? (
-                <Box userSelect="none" bg="red.100" p="5px" borderRadius="20px" px="10px">
-                  <Text color="red.500" fontWeight="extrabold">
+                <Box userSelect="none" p="5px" borderRadius="20px" px="10px">
+                  <Text color="misc.red" fontWeight="extrabold">
                     Will be removed
                   </Text>
                 </Box>
               ) : null
             ) : (
               <Flex gap="10px" sx={{ '& button': { w: 'calc(190px / 3)', py: '10px', fontSize: 'sub' } }}>
-                <Button _focus={{}} _hover={{ bg: 'blue.400' }} bg="blue.200" color="blue.900">
+                <Button _focus={{}} _hover={{ opacity: 0.5 }} bg="transparent" border="1px solid" borderColor="misc.blue" color="misc.blue">
                   View
                 </Button>
-                <Button _focus={{}} _hover={{ bg: 'green.400' }} bg="green.200" color="green.900">
+                <Button
+                  _focus={{}}
+                  _hover={{ opacity: 0.5 }}
+                  bg="transparent"
+                  border="1px solid"
+                  borderColor="misc.green"
+                  color="misc.green">
                   Edit
                 </Button>
-                <Button _focus={{}} _hover={{ bg: 'red.400' }} bg="red.200" color="red.900" onClick={handleDelete}>
+                <Button
+                  _focus={{}}
+                  _hover={{ opacity: 0.5 }}
+                  bg="transparent"
+                  border="1px solid"
+                  borderColor="misc.red"
+                  color="misc.red"
+                  onClick={() => {
+                    setSelectedId(tour.id)
+                    setOpenModal(true)
+                  }}>
                   Delete
                 </Button>
               </Flex>
