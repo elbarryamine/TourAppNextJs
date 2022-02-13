@@ -14,63 +14,28 @@ import { deleteTour } from 'redux/reducers/tours'
 const ui = {
   tmpColumns: '70px 1fr 120px 120px 200px',
 }
+
 export function ToursPageTable() {
-  const setSearchParams = useSearchParams()[1]
-  const { search: searchQueryFromUrl } = useLocation()
   const { accenttext, text } = useChakraTheme()
   const tours = useSelector((state: RootState) => state.tours.toursOfTable)
-  const [displayedTours, setDisplayedTours] = React.useState<Tour[]>([])
-  const [filterdToursByCategory, setFilterdToursByCategory] = React.useState<Tour[]>([])
-  const [category, setCategory] = React.useState<string>('All')
   const [search, setSearch] = React.useState<string>('')
-  const itemsPerPage = 3
-  const [pageCount, setPageCount] = React.useState<number>(Math.ceil(tours.length / itemsPerPage))
-  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = e.target
-    setSearch(value)
-    if (!value) {
-      setDisplayedTours(filterdToursByCategory)
-    } else {
-      const results: Tour[] = []
-      filterdToursByCategory.forEach((tour) => {
-        if (tour.name.toLowerCase().includes(value.toLowerCase())) {
-          results.push(tour)
-        }
-      })
-      setDisplayedTours(results)
-    }
-  }
-  function handlePageClick(e: { selected: number }) {
-    setSearch('')
-    const startIndex = (e.selected * itemsPerPage) % tours.length
-    const endIndex = startIndex + itemsPerPage
-    setDisplayedTours(() => filterdToursByCategory.slice(startIndex, endIndex))
-    const pageParam = e.selected + 1
-    setSearchParams({ page: pageParam.toString() })
-  }
-
+  const [category, setCategory] = React.useState<string>('All')
+  const [content, setContent] = React.useState<Tour[]>(tours)
   React.useEffect(() => {
-    const currentPage = qr.parse(searchQueryFromUrl).page ? Number(qr.parse(searchQueryFromUrl).page) - 1 : 0
-    const startIndex = (currentPage * itemsPerPage) % tours.length
-    const endIndex = startIndex + itemsPerPage
+    let filtered = tours
     if (category !== 'All') {
-      const _tours = tours.filter((tour) => tour.category.includes(category))
-      setDisplayedTours(() => _tours.slice(startIndex, endIndex))
-      setFilterdToursByCategory(_tours)
-    } else {
-      setDisplayedTours(() => tours.slice(startIndex, endIndex))
-      setFilterdToursByCategory(tours)
+      filtered = filtered.filter((tour) => tour.category.includes(category))
     }
-    setSearch('')
-  }, [category, tours, searchQueryFromUrl])
-  React.useEffect(() => setSearchParams({ page: '1' }), [category])
-  React.useEffect(() => setPageCount(Math.ceil(filterdToursByCategory.length / itemsPerPage)), [filterdToursByCategory])
-
+    if (search) {
+      filtered = filtered.filter((tour) => tour.name.includes(search))
+    }
+    setContent(filtered)
+  }, [category, search, tours])
   return (
     <Flex flexDir="column">
       <TableToursFinder
         hide={tours.length === 0}
-        onChange={handleSearch}
+        onChange={(e) => setSearch(e.target.value)}
         onCategoryChange={setCategory}
         value={search}
         activeCategory={category}
@@ -78,13 +43,8 @@ export function ToursPageTable() {
       />
       <Box shadow="md" color={text} border="1px solid" borderColor={accenttext} borderRadius="10px" overflow="hidden" pos="relative">
         <TableHead />
-        <TableContent tours={displayedTours} isSearching={tours.length ? (search ? true : false) : false} />
+        <TableContent tours={content} isSearching={tours.length ? (search ? true : false) : false} />
       </Box>
-      <Pagination
-        initialPage={qr.parse(searchQueryFromUrl).page ? Number(qr.parse(searchQueryFromUrl).page) - 1 : 0}
-        pageCount={pageCount}
-        handlePageClick={handlePageClick}
-      />
     </Flex>
   )
 }
@@ -173,13 +133,20 @@ const QUERYDELETESINGLE = gql`
     deleteTour(id: $id)
   }
 `
+const itemsPerPage = 6
 function TableContent({ tours, isSearching }: PropsTableContent) {
+  const setSearchParams = useSearchParams()[1]
+  const { search } = useLocation()
   const dispatch = useDispatch()
   const { text, background } = useChakraTheme()
   const [isModalOpen, setOpenModal] = React.useState<boolean>(false)
   const [selectedIdsOfTours, setSelectedIdsOfTours] = React.useState<string[]>([])
   const [selectedId, setSelectedId] = React.useState<string>('')
   const [runDeleteSingleTour, { loading, data }] = useMutation(QUERYDELETESINGLE)
+  const [pageCount, setPageCount] = React.useState<number>(0)
+  const [itemOffset, setItemOffset] = React.useState<number>(0)
+  const [displayedTours, setDisplayedTours] = React.useState<Tour[]>(tours.slice())
+
   function handleChecked(e: React.ChangeEvent<HTMLInputElement>, id: string) {
     if (selectedIdsOfTours.includes(id)) {
       setSelectedIdsOfTours([...selectedIdsOfTours].filter((tourId) => tourId !== id))
@@ -189,6 +156,11 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
   }
   function handleClear() {
     setSelectedIdsOfTours([])
+  }
+  function handlePageClick(e: { selected: number }) {
+    const newOffset = (e.selected * itemsPerPage) % tours.length
+    setItemOffset(newOffset)
+    setSearchParams({ page: Number(e.selected + 1).toString() })
   }
   async function handleConfirmDelete() {
     dispatch(deleteTour({ id: selectedId }))
@@ -200,6 +172,11 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
       setOpenModal(false)
     } catch {}
   }
+  React.useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage
+    setDisplayedTours(tours.slice(itemOffset, endOffset))
+    setPageCount(Math.ceil(tours.length / itemsPerPage))
+  }, [itemOffset, itemsPerPage, tours])
 
   React.useEffect(() => {
     if (loading || !data) return
@@ -213,7 +190,12 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
       handleClear()
     }
   }, [isSearching, tours])
-  return tours.length === 0 ? (
+  React.useEffect(() => {
+    const newOffset = (0 * itemsPerPage) % tours.length
+    setItemOffset(newOffset)
+    setSearchParams({ page: '1' })
+  }, [tours])
+  return displayedTours.length === 0 ? (
     <Flex align="center" justify="center" p="15px" w="100%" gap="20px" color={text}>
       <Text fontSize="body" fontWeight="extrabold">
         {isSearching
@@ -280,7 +262,7 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
         </Flex>
       ) : null}
       <Box maxH="50vh" overflowY="scroll">
-        {tours.map((tour) => (
+        {displayedTours.map((tour) => (
           <Grid key={tour.id} p="20px" templateColumns={ui.tmpColumns} placeItems="center">
             <Box>
               <Checkbox
@@ -340,6 +322,7 @@ function TableContent({ tours, isSearching }: PropsTableContent) {
           </Grid>
         ))}
       </Box>
+      <Pagination initialPage={Number(qr.parse(search).page) - 1 || 0} pageCount={pageCount} handlePageClick={handlePageClick} />
     </Fragment>
   )
 }
