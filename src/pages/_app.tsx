@@ -5,7 +5,7 @@ import '../styles/transition.css'
 import { AppProps } from 'next/app'
 import AppProvider from '../provider'
 import { Box } from '@chakra-ui/react'
-import { useChakraTheme } from 'config/hooks/usetheme'
+import { useChakraTheme } from 'hooks/usetheme'
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const [loaded, setLoaded] = React.useState<boolean>(false)

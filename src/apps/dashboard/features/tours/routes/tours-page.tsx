@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
-import { ToursPageHeader, ToursPageTable } from './components'
+import { ToursPageHeader, ToursPageTable } from '../components'
 import { useQuery, gql } from '@apollo/client'
 import { useDispatch } from 'react-redux'
 import { initToursTable } from 'redux/reducers/tours'

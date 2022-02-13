@@ -1,129 +1,16 @@
 import React, { Fragment } from 'react'
-import { Box, Button, Checkbox, Flex, Grid, Image, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
-import { useChakraTheme } from 'config/hooks/usetheme'
-import { FaRegFrown, FaSearch } from 'react-icons/fa'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'redux/store'
+import { Box, Button, Checkbox, Flex, Grid, Image, Text } from '@chakra-ui/react'
+import { useChakraTheme } from 'hooks/usetheme'
+import { FaRegFrown } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
 import { Pagination, Rating } from 'apps/dashboard/components'
 import { useSearchParams, useLocation } from 'react-router-dom'
 import qr from 'query-string'
 import { ModalMessage } from 'components/modal'
 import { gql, useMutation } from '@apollo/client'
 import { deleteTour } from 'redux/reducers/tours'
+import { ui } from '../../'
 
-const ui = {
-  tmpColumns: '70px 1fr 120px 120px 200px',
-}
-
-export function ToursPageTable() {
-  const { accenttext, text } = useChakraTheme()
-  const tours = useSelector((state: RootState) => state.tours.toursOfTable)
-  const [search, setSearch] = React.useState<string>('')
-  const [category, setCategory] = React.useState<string>('All')
-  const [content, setContent] = React.useState<Tour[]>(tours)
-  React.useEffect(() => {
-    let filtered = tours
-    if (category !== 'All') {
-      filtered = filtered.filter((tour) => tour.category.includes(category))
-    }
-    if (search) {
-      filtered = filtered.filter((tour) => tour.name.includes(search))
-    }
-    setContent(filtered)
-  }, [category, search, tours])
-  return (
-    <Flex flexDir="column">
-      <TableToursFinder
-        hide={tours.length === 0}
-        onChange={(e) => setSearch(e.target.value)}
-        onCategoryChange={setCategory}
-        value={search}
-        activeCategory={category}
-        categories={Array.from(new Set(tours.flatMap((tour) => tour.category)))}
-      />
-      <Box shadow="md" color={text} border="1px solid" borderColor={accenttext} borderRadius="10px" overflow="hidden" pos="relative">
-        <TableHead />
-        <TableContent tours={content} isSearching={tours.length ? (search ? true : false) : false} />
-      </Box>
-    </Flex>
-  )
-}
-type PropsTableToursFinder = {
-  hide?: boolean
-  onChange: React.ChangeEventHandler<HTMLInputElement>
-  onCategoryChange: React.Dispatch<React.SetStateAction<string>>
-  value: string
-  activeCategory: string
-  categories: string[]
-}
-function TableToursFinder({ hide, onChange, onCategoryChange, value, activeCategory, categories }: PropsTableToursFinder) {
-  const { text, primary, background } = useChakraTheme()
-  const categoriesArr = categories.length ? ['All', ...categories] : []
-  return (
-    <Flex visibility={hide ? 'hidden' : 'visible'} borderRadius="10px" my="10px" py="5px" justify="space-between" px="10px">
-      <Flex
-        sx={{
-          '& button': { h: 'max-content', fontSize: 'body', bg: 'transparent', fontWeight: 'normal', color: text },
-          '.active': { color: primary, fontWeight: 'extrabold' },
-        }}
-        w="max-content"
-        align="center">
-        {categoriesArr.map((categ: string, i: number) => (
-          <Button
-            key={i}
-            onClick={() => onCategoryChange(categ)}
-            className={categ === activeCategory ? 'active' : ''}
-            _hover={{ textDecoration: 'underline' }}
-            _focus={{}}
-            _active={{}}>
-            {categ}
-          </Button>
-        ))}
-      </Flex>
-      <InputGroup maxW="500px">
-        <InputLeftElement h="100%" color={text}>
-          <FaSearch size="14px" />
-        </InputLeftElement>
-        <Input
-          onChange={onChange}
-          value={value}
-          borderRadius="15px"
-          bg={background}
-          color={text}
-          border="0"
-          fontWeight="extrabold"
-          fontSize="body"
-          _hover={{ '&:hover::placeholder': { color: text } }}
-          _focus={{
-            ouline: '5px solid',
-            oulineColor: 'primary',
-          }}
-          _placeholder={{ '&': { color: text, fontSize: 'sm', fontWeight: 'extrabold' } }}
-          placeholder="Search for a tour..."
-        />
-      </InputGroup>
-    </Flex>
-  )
-}
-
-function TableHead() {
-  const { background } = useChakraTheme()
-
-  return (
-    <Grid
-      bg={background}
-      templateColumns={ui.tmpColumns}
-      placeItems="center"
-      p="15px"
-      sx={{ '.tableHeader': { fontWeight: 'bold', fontSize: 'headline' } }}>
-      <Box />
-      <Box className="tableHeader">Overview</Box>
-      <Box className="tableHeader">Trip Length</Box>
-      <Box className="tableHeader">Price</Box>
-      <Box className="tableHeader">Actions</Box>
-    </Grid>
-  )
-}
 type PropsTableContent = {
   tours: Tour[]
   isSearching: boolean
@@ -134,7 +21,7 @@ const QUERYDELETESINGLE = gql`
   }
 `
 const itemsPerPage = 6
-function TableContent({ tours, isSearching }: PropsTableContent) {
+export function TableContent({ tours, isSearching }: PropsTableContent) {
   const setSearchParams = useSearchParams()[1]
   const { search } = useLocation()
   const dispatch = useDispatch()

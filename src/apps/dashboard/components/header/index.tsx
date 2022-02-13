@@ -2,7 +2,7 @@ import React from 'react'
 import { Flex, Text, InputGroup, Input, GridItem, Avatar, InputLeftElement, Box, useColorMode, Button } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { LinkTo } from 'utils/linkTo'
-import { useChakraTheme } from 'config/hooks/usetheme'
+import { useChakraTheme } from 'hooks/usetheme'
 import { NotificationDrawer } from '..'
 import { FaBell, FaMoon, FaSearch, FaSun } from 'react-icons/fa'
 export function TopHeader() {

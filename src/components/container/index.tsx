@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Image } from '@chakra-ui/react'
-import { useResponsive } from 'config/hooks/useResponsive'
-import { useChakraTheme } from 'config/hooks/usetheme'
+import { useResponsive } from 'hooks/useResponsive'
+import { useChakraTheme } from 'hooks/usetheme'
 type Props = {
   children: React.ReactChild
 }

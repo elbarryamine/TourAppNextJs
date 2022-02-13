@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Flex, Text, keyframes } from '@chakra-ui/react'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { createPortal } from 'react-dom'
-import { useChakraTheme } from 'config/hooks/usetheme'
+import { useChakraTheme } from 'hooks/usetheme'
 const spin = keyframes`
 to { transform: rotate(360deg); }
 `

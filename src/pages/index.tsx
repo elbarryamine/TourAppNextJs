@@ -15,7 +15,7 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useChakraTheme } from 'config/hooks/usetheme'
+import { useChakraTheme } from 'hooks/usetheme'
 import { FaHamburger, FaChevronDown, FaTimes, FaChevronRight } from 'react-icons/fa'
 
 interface NavItem {

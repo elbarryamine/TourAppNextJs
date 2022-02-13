@@ -2,7 +2,7 @@ import React from 'react'
 import { Input, FormLabel, Box, Text, FormHelperText, InputGroup, InputRightElement } from '@chakra-ui/react'
 import validator from 'validator'
 import { FaEye } from 'react-icons/fa'
-import { useChakraTheme } from 'config/hooks/usetheme'
+import { useChakraTheme } from 'hooks/usetheme'
 
 interface PropsFormInput {
   type: string

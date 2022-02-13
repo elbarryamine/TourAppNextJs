@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react'
-import { useChakraTheme } from 'config/hooks/usetheme'
+import { useChakraTheme } from 'hooks/usetheme'
 
 // eslint-disable-next-line no-unused-vars
 type AllOrNone<T> = T | { [K in keyof T]?: never }

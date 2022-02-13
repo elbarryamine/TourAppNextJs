@@ -4,7 +4,7 @@ import { FormControl, Text, Input, FormLabel, Box, Stack, Heading } from '@chakr
 import Link from 'next/link'
 import { SubmitInput } from '../../components/form'
 import { LinkTo } from 'utils/linkTo'
-import { useChakraTheme } from 'config/hooks/usetheme'
+import { useChakraTheme } from 'hooks/usetheme'
 
 export default function ForgotPassword() {
   const { background, subBackground, subtext, text } = useChakraTheme()

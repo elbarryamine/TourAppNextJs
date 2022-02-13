@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, Flex, Button, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react'
-import { useChakraTheme } from 'config/hooks/usetheme'
+import { useChakraTheme } from 'hooks/usetheme'
 
 export function ToursPageHeader() {
   const numberOfTours = 10

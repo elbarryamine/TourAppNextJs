@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input } from '@chakra-ui/react'
-import { useChakraTheme } from 'config/hooks/usetheme'
+import { useChakraTheme } from 'hooks/usetheme'
 
 export function SubmitInput({ title }: { title: string }) {
   const { overPrimary, primary } = useChakraTheme()

@@ -18,7 +18,7 @@ import {
 import Link from 'next/link'
 import { SubmitInput } from '../../components/form'
 import { LinkTo } from 'utils/linkTo'
-import { useChakraTheme } from 'config/hooks/usetheme'
+import { useChakraTheme } from 'hooks/usetheme'
 import { gql, useLazyQuery } from '@apollo/client'
 import _ from 'lodash'
 import { FaTimes } from 'react-icons/fa'
