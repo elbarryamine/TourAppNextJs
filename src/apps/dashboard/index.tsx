@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import { Home } from './features/home'
-import { ToursPage } from './features/tours'
-import { LinkTo } from '../../utils/linkTo'
+import { ToursPage } from './features/tours/routes'
+import { LinkTo } from '../../utils/link'
 import { DashboardProvider } from './provider'
 
 export default function App() {

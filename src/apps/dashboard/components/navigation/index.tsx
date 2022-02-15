@@ -2,7 +2,7 @@ import React from 'react'
 import { GridItem, Flex, Box, Text, Button } from '@chakra-ui/react'
 import { useChakraTheme } from 'hooks/usetheme'
 import { FaClone, FaMoneyBillAlt, FaShuttleVan, FaUsers, FaMailBulk } from 'react-icons/fa'
-import { LinkTo } from 'utils/linkTo'
+import { LinkTo } from 'utils/link'
 import { Link, useLocation } from 'react-router-dom'
 import Router from 'next/router'
 type SideLink = {

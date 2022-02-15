@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { SubmitInput } from '../../components/form'
-import { LinkTo } from 'utils/linkTo'
+import { LinkTo } from 'utils/link'
 import { useChakraTheme } from 'hooks/usetheme'
 import { gql, useLazyQuery } from '@apollo/client'
 import _ from 'lodash'

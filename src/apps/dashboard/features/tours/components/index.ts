@@ -1,2 +1,4 @@
-export * from './tourspage-header'
-export * from './tourspage-table'
+// export * from './table-head'
+export * from './table-search'
+export * from './table-content'
+export * from './header'

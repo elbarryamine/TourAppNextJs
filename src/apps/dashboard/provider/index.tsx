@@ -7,7 +7,7 @@ import { useChakraTheme } from 'hooks/usetheme'
 import { LoadingPage } from 'components/loading'
 import { gql, useQuery } from '@apollo/client'
 import Router from 'next/router'
-import { LinkTo } from 'utils/linkTo'
+import { LinkTo } from 'utils/link'
 
 type Props = {
   children: React.ReactChild | React.ReactChild[]
@@ -19,7 +19,7 @@ export function DashboardProvider({ children }: Props) {
     <BrowserRouter basename="/app">
       <ProtectRoutes>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <Grid templateColumns="256px repeat(7, 1fr)" templateRows="69px minmax(200px,1fr)" h="100vh" w="100vw" overflowY="hidden">
+        <Grid templateColumns="180px repeat(7, 1fr)" templateRows="50px minmax(200px,1fr)" h="100vh" w="100vw" overflowY="hidden">
           <TopHeader />
           <Navigation />
           <GridItem bg={subBackground} gridColumn="2/-1" gridRow="2/-1" overflowY="scroll">

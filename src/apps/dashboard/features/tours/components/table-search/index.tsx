@@ -16,7 +16,7 @@ export function TableToursFinder({ hide, onChange, onCategoryChange, value, acti
   const { text, primary, background } = useChakraTheme()
   const categoriesArr = categories.length ? ['All', ...categories] : []
   return (
-    <Flex visibility={hide ? 'hidden' : 'visible'} borderRadius="10px" my="10px" py="5px" justify="space-between" px="10px">
+    <Flex visibility={hide ? 'hidden' : 'visible'} borderRadius="10px" my="10px" justify="space-between">
       <Flex
         sx={{
           '& button': { h: 'max-content', fontSize: 'body', bg: 'transparent', fontWeight: 'normal', color: text },
@@ -55,7 +55,7 @@ export function TableToursFinder({ hide, onChange, onCategoryChange, value, acti
             oulineColor: 'primary',
           }}
           _placeholder={{ '&': { color: text, fontSize: 'sm', fontWeight: 'extrabold' } }}
-          placeholder="Search for a tour..."
+          placeholder={activeCategory === 'All' ? 'Search for a tour' : `Search for a ${activeCategory.toLowerCase()} tour...`}
         />
       </InputGroup>
     </Flex>

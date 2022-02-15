@@ -13,9 +13,10 @@ export function Pagination({ handlePageClick, initialPage, pageCount }: Props) {
   const { text, background, subtext, overPrimary, primary } = useChakraTheme()
   return (
     <Flex
+      visibility={pageCount > 1 ? 'visible' : 'hidden'}
       py="20px"
       borderRadius="10px"
-      zIndex="1"
+      zIndex="10"
       mt="6px"
       align="center"
       justify="flex-end"

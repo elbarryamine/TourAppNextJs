@@ -6,9 +6,9 @@ export function ToursPageHeader() {
   const numberOfTours = 10
   const { primary, subtext, text, overPrimary, background } = useChakraTheme()
   const [selected, setSelected] = React.useState<string>('Newest')
-  const sortBy = ['Newest', 'Rating', 'Popular', 'Price', 'Length']
+  const sortBy = ['Length', 'Price', 'Popular', 'Latest']
   return (
-    <Flex align="center" justify="space-between" px="20px">
+    <Flex align="center" justify="space-between">
       <Flex align="center" gap="10px">
         <Text fontSize="display" fontWeight="extrabold" color={text}>
           Manage your tours

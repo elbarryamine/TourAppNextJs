@@ -3,7 +3,7 @@ import { FormContainer } from '../../components'
 import { FormControl, Text, Input, FormLabel, Box, Stack, Heading } from '@chakra-ui/react'
 import Link from 'next/link'
 import { SubmitInput } from '../../components/form'
-import { LinkTo } from 'utils/linkTo'
+import { LinkTo } from 'utils/link'
 import { useChakraTheme } from 'hooks/usetheme'
 
 export default function ForgotPassword() {
