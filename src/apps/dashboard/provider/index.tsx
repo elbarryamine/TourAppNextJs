@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { Grid, GridItem, ColorModeScript } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
 import { Navigation, TopHeader } from '../components'
-import theme from '../../../config/theme'
+import { dashboardTheme } from '../../../config/theme'
 import { useChakraTheme } from 'hooks/usetheme'
 import { LoadingPage } from 'components/loading'
 import { gql, useQuery } from '@apollo/client'
@@ -18,7 +18,7 @@ export function DashboardProvider({ children }: Props) {
   return (
     <BrowserRouter basename="/app">
       <ProtectRoutes>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        <ColorModeScript initialColorMode={dashboardTheme.config.initialColorMode} />
         <Grid templateColumns="80px repeat(7, 1fr)" templateRows="max-content minmax(200px,1fr)" h="100vh" w="100vw" overflowY="hidden">
           <TopHeader />
           <Navigation />

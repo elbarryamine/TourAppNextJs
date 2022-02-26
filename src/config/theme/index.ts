@@ -1,6 +1,7 @@
 import { extendTheme } from '@chakra-ui/react'
+import _ from 'lodash'
 
-export const theme = extendTheme({
+const globalOptions = {
   initialColorMode: 'light',
   useSystemColorMode: false,
   zIndices: {
@@ -81,6 +82,9 @@ export const theme = extendTheme({
     '3xl': '1.5rem',
     full: '9999px',
   },
+}
+export const dashboardTheme = extendTheme({
+  ..._.cloneDeep(globalOptions),
+  key: 'dashboard',
 })
-
-export default theme
+export const appTheme = extendTheme(_.cloneDeep(globalOptions))

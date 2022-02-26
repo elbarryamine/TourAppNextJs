@@ -30,7 +30,7 @@ export function TableContent({ tours, isSearching }: PropsTableContent) {
   const [isModalOpen, setOpenModal] = React.useState<boolean>(false)
   const [selectedIdsOfTours, setSelectedIdsOfTours] = React.useState<string[]>([])
   const [selectedId, setSelectedId] = React.useState<string>('')
-  const [runDeleteSingleTour, { loading, data }] = useMutation(QUERYDELETESINGLE)
+  const [runDeleteTours, { loading, data }] = useMutation(QUERYDELETESINGLE)
   const [pageCount, setPageCount] = React.useState<number>(0)
   const [itemOffset, setItemOffset] = React.useState<number>(0)
   const [displayedTours, setDisplayedTours] = React.useState<Tour[]>(tours.slice())
@@ -56,10 +56,12 @@ export function TableContent({ tours, isSearching }: PropsTableContent) {
         selectedIdsOfTours.forEach((id: string) => {
           dispatch(deleteTour({ id }))
         })
-        await runDeleteSingleTour({ variables: { ids: selectedIdsOfTours } })
+        await runDeleteTours({ variables: { ids: selectedIdsOfTours } })
+        setSelectedIdsOfTours([])
       } else {
         dispatch(deleteTour({ id: selectedId }))
-        await runDeleteSingleTour({ variables: { ids: [selectedId] } })
+        await runDeleteTours({ variables: { ids: [selectedId] } })
+        setSelectedIdsOfTours([])
       }
       setOpenModal(false)
     } catch {}
