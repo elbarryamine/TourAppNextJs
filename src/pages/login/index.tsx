@@ -32,7 +32,6 @@ const QUERY = gql`
       email
       phone
       role
-      birthDate
       createdAt
       avatar
     }

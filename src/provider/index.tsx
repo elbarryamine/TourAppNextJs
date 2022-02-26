@@ -13,7 +13,7 @@ type Props = {
   router: AppProps['router']
 }
 const link = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: `${process.env.NEXT_PUBLIC_API_END_POINT}/graphql`,
   credentials: 'include',
 })
 const client = new ApolloClient({
@@ -21,7 +21,7 @@ const client = new ApolloClient({
   link,
 })
 export default function AppProvider({ children, router }: Props) {
-  const shouldHide = ['/app'].some((link: string) => router.asPath.startsWith(link))
+  const shouldHide = ['/app', '/login', '/signup', '/forget-password'].some((link: string) => router.asPath.startsWith(link))
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>

@@ -7,7 +7,7 @@ import { NotificationDrawer } from '..'
 import { FaBell, FaMoon, FaSearch, FaSun } from 'react-icons/fa'
 export function TopHeader() {
   const { colorMode, toggleColorMode } = useColorMode()
-  const { background, subBackground, text, subtext } = useChakraTheme()
+  const { background, subBackground, text, accenttext } = useChakraTheme()
   const [isDrawerOpen, setDrawerOpen] = React.useState<boolean>(false)
   function openDrawer() {
     setDrawerOpen(true)
@@ -16,30 +16,18 @@ export function TopHeader() {
     setDrawerOpen(false)
   }
   return (
-    <GridItem bg={background} gridColumn="1/-1" gridRow="1/2">
-      <Flex h="100%" w="100%" justify="space-between" align="center" px="30px">
+    <GridItem bg={background} gridColumn="1/-1" gridRow="1/2" py="20px" borderBottom="1px solid" borderColor={accenttext}>
+      <Flex h="100%" w="100%" justify="space-between" align="center" px="50px">
         <Link to={LinkTo.root}>
           <Text color={text} fontWeight="extrabold" fontSize="display" textTransform="capitalize">
             Tour guide dashboard
           </Text>
         </Link>
-        <InputGroup maxW="500px">
-          <InputLeftElement h="100%" color="accent">
+        <InputGroup maxW="500px" color={text}>
+          <InputLeftElement>
             <FaSearch size="14px" />
           </InputLeftElement>
-          <Input
-            borderRadius="15px"
-            bg={subBackground}
-            color={text}
-            border="0"
-            _hover={{ '&:hover::placeholder': { color: text } }}
-            _focus={{
-              ouline: '5px solid',
-              oulineColor: 'primary',
-            }}
-            _placeholder={{ '&': { color: subtext, fontSize: 'sm', fontWeight: 'extrabold' } }}
-            placeholder="Search for tools..."
-          />
+          <Input bg={subBackground} placeholder="Search for tools..." />
         </InputGroup>
         <Flex h="100%" align="center" gap="20px">
           <Button px="4px" d="flex" onClick={toggleColorMode} __css={{}}>

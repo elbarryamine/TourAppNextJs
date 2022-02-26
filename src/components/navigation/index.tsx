@@ -71,7 +71,7 @@ export function Navigation() {
           mx="auto"
           textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
           fontFamily={'heading'}
-          color="white"
+          color={text}
           fontWeight="extrabold">
           TourLex
         </Text>

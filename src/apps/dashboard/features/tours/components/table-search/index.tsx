@@ -3,7 +3,7 @@ import { Button, Flex, Input, InputGroup, InputLeftElement } from '@chakra-ui/re
 import { useChakraTheme } from 'hooks/usetheme'
 import { FaSearch } from 'react-icons/fa'
 
-type PropsTableToursFinder = {
+type PropsTourSearch = {
   hide?: boolean
   onChange: React.ChangeEventHandler<HTMLInputElement>
   onCategoryChange: React.Dispatch<React.SetStateAction<string>>
@@ -12,7 +12,7 @@ type PropsTableToursFinder = {
   categories: string[]
 }
 
-export function TableToursFinder({ hide, onChange, onCategoryChange, value, activeCategory, categories }: PropsTableToursFinder) {
+export function TourSearch({ hide, onChange, onCategoryChange, value, activeCategory, categories }: PropsTourSearch) {
   const { text, primary, background } = useChakraTheme()
   const categoriesArr = categories.length ? ['All', ...categories] : []
   return (
@@ -43,7 +43,6 @@ export function TableToursFinder({ hide, onChange, onCategoryChange, value, acti
         <Input
           onChange={onChange}
           value={value}
-          borderRadius="15px"
           bg={background}
           color={text}
           border="0"

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Grid, GridItem, ColorModeScript } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
 import { Navigation, TopHeader } from '../components'
@@ -19,7 +19,7 @@ export function DashboardProvider({ children }: Props) {
     <BrowserRouter basename="/app">
       <ProtectRoutes>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <Grid templateColumns="180px repeat(7, 1fr)" templateRows="50px minmax(200px,1fr)" h="100vh" w="100vw" overflowY="hidden">
+        <Grid templateColumns="80px repeat(7, 1fr)" templateRows="max-content minmax(200px,1fr)" h="100vh" w="100vw" overflowY="hidden">
           <TopHeader />
           <Navigation />
           <GridItem bg={subBackground} gridColumn="2/-1" gridRow="2/-1" overflowY="scroll">
@@ -49,5 +49,5 @@ export function ProtectRoutes({ children }: Props) {
     }
   }, [loading, data, error])
   if (!loaded) return <LoadingPage />
-  return <>{children}</>
+  return <Fragment>{children}</Fragment>
 }

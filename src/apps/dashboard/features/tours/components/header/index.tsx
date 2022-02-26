@@ -8,8 +8,8 @@ export function ToursPageHeader() {
   const [selected, setSelected] = React.useState<string>('Newest')
   const sortBy = ['Length', 'Price', 'Popular', 'Latest']
   return (
-    <Flex align="center" justify="space-between">
-      <Flex align="center" gap="10px">
+    <Flex justify="space-between">
+      <Flex align="center" gap="10px" h="50px">
         <Text fontSize="display" fontWeight="extrabold" color={text}>
           Manage your tours
         </Text>
@@ -60,7 +60,7 @@ export function ToursPageHeader() {
           </Accordion>
         </Flex>
 
-        <Button bg={primary} fontSize="headline" textTransform="uppercase" fontWeight="bold" py="20px" color={overPrimary}>
+        <Button bg={primary} fontSize="headline" textTransform="uppercase" fontWeight="bold" color={overPrimary}>
           Create new tour
         </Button>
       </Flex>

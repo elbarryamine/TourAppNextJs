@@ -26,24 +26,8 @@ import { ModalMessage } from 'components'
 import router from 'next/router'
 
 const QUERY = gql`
-  mutation (
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-    $phone: String
-    $password: String!
-    $passwordConfirm: String!
-    $birthDate: String!
-  ) {
-    signUp(
-      firstName: $firstName
-      lastName: $lastName
-      email: $email
-      phone: $phone
-      password: $password
-      passwordConfirm: $passwordConfirm
-      birthDate: $birthDate
-    )
+  mutation ($firstName: String!, $lastName: String!, $email: String!, $phone: String, $password: String!, $passwordConfirm: String!) {
+    signUp(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, password: $password, passwordConfirm: $passwordConfirm)
   }
 `
 export default function SignUp() {
@@ -57,14 +41,13 @@ export default function SignUp() {
       const {
         first_name: { value: firstName },
         last_name: { value: lastName },
-        birth_date: { value: birthDate },
         phone: { value: phone },
         email: { value: email },
         password: { value: password },
         password_confirm: { value: passwordConfirm },
       } = e.target
       await runMutation({
-        variables: { firstName, lastName, email, phone, password, passwordConfirm, birthDate },
+        variables: { firstName, lastName, email, phone, password, passwordConfirm },
       })
       e.target.reset()
     } catch {}
@@ -135,10 +118,6 @@ export default function SignUp() {
               <FormControl id="last_name">
                 <FormLabel fontWeight="extrabold">Last Name</FormLabel>
                 <Input required type="last_name" />
-              </FormControl>
-              <FormControl id="birth_date">
-                <FormLabel fontWeight="extrabold">Birth Date</FormLabel>
-                <Input required type="date" />
               </FormControl>
               <FormControl id="phone">
                 <FormLabel fontWeight="extrabold">Phone</FormLabel>

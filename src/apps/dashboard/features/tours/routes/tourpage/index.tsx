@@ -2,11 +2,11 @@ import React from 'react'
 import { useQuery, gql } from '@apollo/client'
 import { useDispatch } from 'react-redux'
 import { initToursTable } from 'redux/reducers/tours'
-import { LoadingPage } from 'components/loading'
+import { SimpleLoading } from 'components/loading'
 import { Box, Flex } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { RootState } from 'redux/store'
-import { TableContent, TableToursFinder, ToursPageHeader } from '../../components'
+import { TableContent, TourSearch, ToursPageHeader } from '../../components'
 
 const QUERY = gql`
   query {
@@ -18,6 +18,9 @@ const QUERY = gql`
       category
       duration
       price
+      location
+      createdAt
+      createdBy
     }
   }
 `
@@ -35,7 +38,7 @@ export function ToursPage() {
       clearInterval(delay)
     }
   }, [loading])
-  if (!loaded) return <LoadingPage />
+  if (!loaded) return <SimpleLoading />
   return (
     <Box h="100%" w="100%" p="20px">
       <ToursPageHeader />
@@ -61,7 +64,7 @@ function ToursTable() {
   }, [category, search, tours])
   return (
     <Flex flexDir="column">
-      <TableToursFinder
+      <TourSearch
         hide={tours.length === 0}
         onChange={(e) => setSearch(e.target.value)}
         onCategoryChange={setCategory}

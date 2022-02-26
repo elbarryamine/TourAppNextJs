@@ -1,6 +1,6 @@
 import { extendTheme } from '@chakra-ui/react'
 
-const theme = extendTheme({
+export const theme = extendTheme({
   initialColorMode: 'light',
   useSystemColorMode: false,
   zIndices: {
@@ -31,32 +31,32 @@ const theme = extendTheme({
   },
   colors: {
     dark: {
-      primary: '#7e3af2',
+      primary: '#2A4365',
       overPrimary: '#ffffff',
       accent: '#eec643',
-      bg: '#07070d',
-      bg2: '#0f0f1a',
+      bg: '#000',
+      bg2: '#111',
       text1: '#ffffff',
       text2: '#9E9E9E',
       text3: '#161a1d',
     },
     light: {
-      primary: '#7e3af2',
+      primary: '#2A4365',
       overPrimary: '#ffffff',
       accent: '#eec643',
       bg: '#ffffff',
-      bg2: '#F3F1F5',
+      bg2: '#fafafa',
       text1: '#1A1C23',
       text2: '#6c757d',
       text3: '#e9ecef',
     },
     misc: {
-      green: '#228B22',
-      greenBg: '#95E1D3',
-      red: '#FF2E63',
-      redBg: '#FFC7C7',
-      blue: '#3F72AF',
-      blueBg: '#DBE2EF',
+      green: '#48BB78',
+      greenBg: '#C6F6D5',
+      red: '#E53E3E',
+      redBg: '#FED7D7',
+      blue: '#3182CE',
+      blueBg: '#BEE3F8',
     },
   },
   shadows: {

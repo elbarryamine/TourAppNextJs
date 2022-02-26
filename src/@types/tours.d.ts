@@ -14,5 +14,5 @@ type Tour = {
   location: string[]
   category: string[]
   createdBy: string
-  createdAt: string
+  createdAt: number
 }

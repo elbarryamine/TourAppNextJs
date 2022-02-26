@@ -15,7 +15,6 @@ export function Pagination({ handlePageClick, initialPage, pageCount }: Props) {
     <Flex
       visibility={pageCount > 1 ? 'visible' : 'hidden'}
       py="20px"
-      borderRadius="10px"
       zIndex="10"
       mt="6px"
       align="center"

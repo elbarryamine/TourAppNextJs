@@ -1,6 +1,6 @@
 import { useColorModeValue } from '@chakra-ui/react'
 
-export function useChakraTheme() {
+export function useChakraTheme(mode?: string) {
   /**
    * @returns Array<string> ==>  [background,background2,textColor1,textColor2]
    */

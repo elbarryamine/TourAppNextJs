@@ -1,3 +1,3 @@
 export const ui = {
-  tmpColumns: '70px 1fr 120px 120px 200px',
+  tmpColumns: '0.5fr 4fr 2fr 2fr 0.5fr',
 }

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
-import { Box, Button, Checkbox, Flex, Grid, Image, Text } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, Grid, Image, Menu, MenuButton, MenuItem, MenuList, MenuOptionGroup, Text } from '@chakra-ui/react'
 import { useChakraTheme } from 'hooks/usetheme'
-import { FaRegFrown } from 'react-icons/fa'
+import { FaEllipsisV, FaRegFrown, FaRegTrashAlt, FaTimes } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { Pagination, Rating } from 'apps/dashboard/components'
 import { useSearchParams, useLocation } from 'react-router-dom'
@@ -10,18 +10,20 @@ import { ModalMessage } from 'components/modal'
 import { gql, useMutation } from '@apollo/client'
 import { deleteTour } from 'redux/reducers/tours'
 import { ui } from 'utils/ui'
+import daysjs from 'dayjs'
 
 type PropsTableContent = {
   tours: Tour[]
   isSearching: boolean
 }
 const QUERYDELETESINGLE = gql`
-  mutation m2($id: String!) {
-    deleteTour(id: $id)
+  mutation m2($ids: [String]!) {
+    deleteTour(ids: $ids)
   }
 `
 const itemsPerPage = 6
 export function TableContent({ tours, isSearching }: PropsTableContent) {
+  const { text, background, accenttext, subtext } = useChakraTheme()
   const setSearchParams = useSearchParams()[1]
   const { search } = useLocation()
   const dispatch = useDispatch()
@@ -32,7 +34,6 @@ export function TableContent({ tours, isSearching }: PropsTableContent) {
   const [pageCount, setPageCount] = React.useState<number>(0)
   const [itemOffset, setItemOffset] = React.useState<number>(0)
   const [displayedTours, setDisplayedTours] = React.useState<Tour[]>(tours.slice())
-  const { text, background, accenttext } = useChakraTheme()
 
   function handleChecked(e: React.ChangeEvent<HTMLInputElement>, id: string) {
     if (selectedIdsOfTours.includes(id)) {
@@ -50,11 +51,15 @@ export function TableContent({ tours, isSearching }: PropsTableContent) {
     setSearchParams({ page: Number(e.selected + 1).toString() })
   }
   async function handleConfirmDelete() {
-    dispatch(deleteTour({ id: selectedId }))
     try {
       if (selectedIdsOfTours.length) {
+        selectedIdsOfTours.forEach((id: string) => {
+          dispatch(deleteTour({ id }))
+        })
+        await runDeleteSingleTour({ variables: { ids: selectedIdsOfTours } })
       } else {
-        await runDeleteSingleTour({ variables: { id: selectedId } })
+        dispatch(deleteTour({ id: selectedId }))
+        await runDeleteSingleTour({ variables: { ids: [selectedId] } })
       }
       setOpenModal(false)
     } catch {}
@@ -88,8 +93,8 @@ export function TableContent({ tours, isSearching }: PropsTableContent) {
         bg={background}
         templateColumns={ui.tmpColumns}
         placeItems="center"
-        p="15px"
-        sx={{ '.tableHeader': { fontWeight: 'semibold', fontSize: 'body' } }}
+        p="20px"
+        sx={{ '.tableHeader': { fontWeight: 'bold', fontSize: 'body', textTransform: 'uppercase' } }}
         color={text}
         border="1px solid"
         borderBottom="0"
@@ -97,24 +102,17 @@ export function TableContent({ tours, isSearching }: PropsTableContent) {
         overflow="hidden"
         pos="relative">
         {selectedIdsOfTours.length ? (
-          <Flex pos="absolute" top="0" right="20px" w="100%" h="100%" align="center" justify="flex-end" bg={background} gap="10px">
-            <Button
-              _focus={{}}
-              _hover={{ opacity: 0.5 }}
-              border="1px solid"
-              bg=""
-              borderColor="misc.green"
-              color="misc.green"
-              onClick={handleClear}>
+          <Flex pos="absolute" top="0" right="20px" w="100%" h="100%" align="center" justify="flex-end" bg={background} gap="5px">
+            <Button rightIcon={<FaTimes />} fontSize="body" _focus={{}} _hover={{ opacity: 0.5 }} bg="" onClick={handleClear}>
               Clear {selectedIdsOfTours.length >= 2 ? 'All' : ''}
             </Button>
             <Button
+              fontSize="body"
+              rightIcon={<FaRegTrashAlt />}
               justifySelf="flex-end"
               _focus={{}}
               _hover={{ opacity: 0.5 }}
-              border="1px solid"
               bg=""
-              borderColor="misc.red"
               color="misc.red"
               onClick={() => setOpenModal(true)}>
               Delete {selectedIdsOfTours.length >= 2 ? 'All' : ''}
@@ -161,59 +159,70 @@ export function TableContent({ tours, isSearching }: PropsTableContent) {
             />
             <Box maxH="50vh" overflowY="auto">
               {displayedTours.map((tour) => (
-                <Grid key={tour.id} p="10px" templateColumns={ui.tmpColumns} placeItems="center">
-                  <Box w="max-content" mx="auto">
+                <Grid
+                  pos="relative"
+                  _hover={{ bg: accenttext }}
+                  key={tour.id}
+                  py="10px"
+                  templateColumns={ui.tmpColumns}
+                  placeItems="center">
+                  <Flex align="center" w="max-content" justify="flex-end">
                     <Checkbox
                       onChange={(value: React.ChangeEvent<HTMLInputElement>) => handleChecked(value, tour.id)}
                       borderColor={text}
                       isChecked={selectedIdsOfTours.includes(tour.id) ? true : false}
                     />
-                  </Box>
-                  <Flex cursor="pointer" onClick={() => {}} gap="15px" align="center">
-                    <Image borderRadius="0px" w="15%" src={tour.mainImage} alt="Tour" />
-                    <Box>
-                      <Text fontSize="headline" fontWeight="bold">
+                  </Flex>
+                  <Flex gap="20px" justify="flex-start" w="100%" align="center">
+                    <Image w="50px" h="50px" borderRadius="50%" src={tour.mainImage} alt="Tour" />
+                    <Flex flexDir="column" justify="center">
+                      <Text textAlign="left" fontSize="headline" fontWeight="extrabold">
                         {tour.name}
                       </Text>
+                      <Text textAlign="left" fontSize="sub" fontWeight="semibold" color={subtext}>
+                        {`${daysjs(tour.createdAt).format('DD MMM YYYY hh:mm a')}`}
+                      </Text>
                       <Rating rating={tour.rating} />
-                    </Box>
+                    </Flex>
                   </Flex>
+
                   <Text fontWeight="extrabold">{tour.duration}</Text>
                   <Text fontWeight="extrabold">{tour.price} Dh</Text>
-                  {selectedIdsOfTours.length ? (
-                    selectedIdsOfTours.includes(tour.id) ? (
-                      <Box userSelect="none" p="5px" borderRadius="20px" px="10px">
-                        <Text color="misc.red" fontWeight="extrabold">
-                          This tour will be removed
-                        </Text>
-                      </Box>
-                    ) : null
-                  ) : (
-                    <Flex gap="10px" sx={{ '& button': { w: 'calc(190px / 3)', py: '10px', fontSize: 'sub' } }}>
-                      <Button
-                        _focus={{}}
-                        _hover={{ opacity: 0.5 }}
-                        bg="transparent"
-                        border="1px solid"
-                        borderColor="misc.green"
-                        color="misc.green">
-                        Edit
-                      </Button>
-                      <Button
-                        _focus={{}}
-                        _hover={{ opacity: 0.5 }}
-                        bg="transparent"
-                        border="1px solid"
-                        borderColor="misc.red"
-                        color="misc.red"
-                        onClick={() => {
-                          setSelectedId(tour.id)
-                          setOpenModal(true)
-                        }}>
-                        Delete
-                      </Button>
-                    </Flex>
-                  )}
+                  <Menu>
+                    <MenuButton as={Button} borderRadius="50%" _focus={{}} bg="" color={text}>
+                      <FaEllipsisV />
+                    </MenuButton>
+                    <MenuList
+                      sx={{
+                        '& p': { textAlign: 'center', color: 'GrayText', pb: '10px', borderBottom: '1px solid', borderColor: accenttext },
+                      }}
+                      bg={background}>
+                      <MenuOptionGroup mx="0" title={`Actions`}>
+                        <MenuItem>
+                          <Text as="span" fontWeight="extrabold" _hover={{ opacity: 0.5 }}>
+                            View
+                          </Text>
+                        </MenuItem>
+                        <MenuItem>
+                          <Text as="span" fontWeight="extrabold" _hover={{ opacity: 0.5 }} bg="transparent">
+                            Edit
+                          </Text>
+                        </MenuItem>
+                        <MenuItem>
+                          <Text
+                            as="span"
+                            fontWeight="extrabold"
+                            _hover={{ opacity: 0.5 }}
+                            onClick={() => {
+                              setSelectedId(tour.id)
+                              setOpenModal(true)
+                            }}>
+                            Delete
+                          </Text>
+                        </MenuItem>
+                      </MenuOptionGroup>
+                    </MenuList>
+                  </Menu>
                 </Grid>
               ))}
             </Box>
