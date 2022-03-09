@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery, gql } from '@apollo/client'
 import { useDispatch } from 'react-redux'
 import { initToursTable } from 'redux/reducers/tours'
-import { SimpleLoading } from 'components/loading'
+import { LoadingPage } from 'components/loading'
 import { Box, Flex } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { RootState } from 'redux/store'
@@ -38,7 +38,7 @@ export function ToursPage() {
       clearInterval(delay)
     }
   }, [loading])
-  if (!loaded) return <SimpleLoading />
+  if (!loaded) return <LoadingPage />
   return (
     <Box h="100%" w="100%" p="20px">
       <ToursPageHeader />

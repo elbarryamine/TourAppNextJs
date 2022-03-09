@@ -32,17 +32,17 @@ const globalOptions = {
   },
   colors: {
     dark: {
-      primary: '#2A4365',
+      primary: '#4fd1c5',
       overPrimary: '#ffffff',
       accent: '#eec643',
-      bg: '#000',
-      bg2: '#111',
+      bg: '#1a202c',
+      bg2: '#1f2733',
       text1: '#ffffff',
       text2: '#9E9E9E',
       text3: '#161a1d',
     },
     light: {
-      primary: '#2A4365',
+      primary: '#4fd1c5',
       overPrimary: '#ffffff',
       accent: '#eec643',
       bg: '#ffffff',

@@ -10,14 +10,7 @@ export function Stat(props: Props) {
   const { background, text, subtext } = useChakraTheme()
   const { label, value, ...boxProps } = props
   return (
-    <Box
-      px={{ base: '4', md: '6' }}
-      py={{ base: '5', md: '6' }}
-      bg={background}
-      color={text}
-      borderRadius="lg"
-      boxShadow={useColorModeValue('sm', 'sm-dark')}
-      {...boxProps}>
+    <Box px={{ base: '4', md: '6' }} py={{ base: '5', md: '6' }} bg={background} color={text} borderRadius="lg" shadow="lg" {...boxProps}>
       <Stack>
         <Text fontSize="body" fontWeight="extrabold" color={subtext}>
           {label}

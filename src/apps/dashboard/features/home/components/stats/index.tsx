@@ -18,7 +18,7 @@ export function Stats() {
             Status
           </Text>
         </Flex>
-        <Box py="20px">
+        <Box pt="20px">
           <SimpleGrid columns={{ base: 1, md: 3 }} gap={{ base: '5', md: '6' }}>
             {stats.map(({ label, value }) => (
               <Stat key={label} label={label} value={value} />

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Grid, GridItem, ColorModeScript } from '@chakra-ui/react'
+import { Grid, GridItem, ColorModeScript, Container } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
 import { Navigation, TopHeader } from '../components'
 import { dashboardTheme } from '../../../config/theme'
@@ -19,11 +19,17 @@ export function DashboardProvider({ children }: Props) {
     <BrowserRouter basename="/app">
       <ProtectRoutes>
         <ColorModeScript initialColorMode={dashboardTheme.config.initialColorMode} />
-        <Grid templateColumns="80px repeat(7, 1fr)" templateRows="max-content minmax(200px,1fr)" h="100vh" w="100vw" overflowY="hidden">
+        <Grid
+          bg={subBackground}
+          templateColumns="80px repeat(7, 1fr)"
+          templateRows="max-content minmax(200px,1fr)"
+          h="100vh"
+          w="100vw"
+          overflowY="hidden">
           <TopHeader />
           <Navigation />
-          <GridItem bg={subBackground} gridColumn="2/-1" gridRow="2/-1" overflowY="scroll">
-            {children}
+          <GridItem gridColumn="2/-1" gridRow="2/-1" overflowY="scroll">
+            <Container maxW="1440px">{children}</Container>
           </GridItem>
         </Grid>
       </ProtectRoutes>

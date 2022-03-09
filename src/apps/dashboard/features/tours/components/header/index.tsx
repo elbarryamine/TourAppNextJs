@@ -1,6 +1,9 @@
 import React from 'react'
-import { Text, Flex, Button, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react'
+import { Text, Flex, Button, MenuList, MenuItem, MenuButton, Menu } from '@chakra-ui/react'
 import { useChakraTheme } from 'hooks/usetheme'
+import { FaChevronDown } from 'react-icons/fa'
+import { LinkTo } from 'utils/link'
+import { Link } from 'react-router-dom'
 
 export function ToursPageHeader() {
   const numberOfTours = 10
@@ -19,50 +22,45 @@ export function ToursPageHeader() {
       </Flex>
       <Flex align="center" gap="10px">
         <Flex align="center" gap="5px">
-          <Text fontSize="body" color={subtext} fontWeight="bold" w="100%">
-            Sort By :
+          <Text fontSize="body" color={text} fontWeight="bold" w="100%">
+            Sort By &nbsp;&nbsp;:
           </Text>
-          <Accordion allowToggle>
-            <AccordionItem pos="relative" border="0" zIndex="sortByDropDown">
-              <AccordionButton
+          <Menu>
+            <MenuButton as={'a'}>
+              <Button
+                justifyContent="space-between"
+                bg=""
+                gap="10px"
+                w="100px"
                 h="max-content"
+                px="5px"
+                py="7px"
                 _focus={{ bg: background, color: text }}
                 _hover={{ bg: primary, color: overPrimary }}
                 fontSize="body"
                 fontWeight="bold">
                 {selected}
-                <AccordionIcon />
-              </AccordionButton>
-              <AccordionPanel pos="absolute" p="0" bg={background}>
-                {sortBy.map((type: string, i: number) => {
-                  if (type === selected) return
-                  return (
-                    <Button
-                      key={i}
-                      onClick={() => setSelected(type)}
-                      _focus={{}}
-                      _active={{}}
-                      py="10px"
-                      h="max-content"
-                      fontSize="body"
-                      fontWeight="bold"
-                      w="100%"
-                      bg="transparent"
-                      borderRadius="0"
-                      textTransform="capitalize"
-                      _hover={{ bg: primary, color: overPrimary }}>
-                      {type}
-                    </Button>
-                  )
-                })}
-              </AccordionPanel>
-            </AccordionItem>
-          </Accordion>
+                <FaChevronDown />
+              </Button>
+            </MenuButton>
+            <MenuList bg={background}>
+              {sortBy.map((type: string, i: number) => {
+                if (type === selected) return
+                return (
+                  <MenuItem key={i} onClick={() => setSelected(type)} fontSize="body" fontWeight="bold">
+                    {type}
+                  </MenuItem>
+                )
+              })}
+            </MenuList>
+          </Menu>
         </Flex>
 
-        <Button bg={primary} fontSize="headline" textTransform="uppercase" fontWeight="bold" color={overPrimary}>
-          Create new tour
-        </Button>
+        <Link to={LinkTo.toursCreate}>
+          <Button bg={primary} fontSize="headline" textTransform="uppercase" fontWeight="bold" color={overPrimary}>
+            Create new tour
+          </Button>
+        </Link>
       </Flex>
     </Flex>
   )

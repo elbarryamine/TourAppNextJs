@@ -23,7 +23,7 @@ const QUERYDELETESINGLE = gql`
 `
 const itemsPerPage = 6
 export function TableContent({ tours, isSearching }: PropsTableContent) {
-  const { text, background, accenttext, subtext } = useChakraTheme()
+  const { text, background, accenttext } = useChakraTheme()
   const setSearchParams = useSearchParams()[1]
   const { search } = useLocation()
   const dispatch = useDispatch()
@@ -67,6 +67,9 @@ export function TableContent({ tours, isSearching }: PropsTableContent) {
     } catch {}
   }
   React.useEffect(() => {
+    handleClear()
+  }, [displayedTours])
+  React.useEffect(() => {
     const endOffset = itemOffset + itemsPerPage
     setDisplayedTours(tours.slice(itemOffset, endOffset))
     setPageCount(Math.ceil(tours.length / itemsPerPage))
@@ -91,43 +94,41 @@ export function TableContent({ tours, isSearching }: PropsTableContent) {
   }, [tours])
   return (
     <Box pos="relative">
-      <Grid
-        bg={background}
-        templateColumns={ui.tmpColumns}
-        placeItems="center"
-        p="20px"
-        sx={{ '.tableHeader': { fontWeight: 'bold', fontSize: 'body', textTransform: 'uppercase' } }}
-        color={text}
-        border="1px solid"
-        borderBottom="0"
-        borderColor={accenttext}
-        overflow="hidden"
-        pos="relative">
-        {selectedIdsOfTours.length ? (
-          <Flex pos="absolute" top="0" right="20px" w="100%" h="100%" align="center" justify="flex-end" bg={background} gap="5px">
-            <Button rightIcon={<FaTimes />} fontSize="body" _focus={{}} _hover={{ opacity: 0.5 }} bg="" onClick={handleClear}>
-              Clear {selectedIdsOfTours.length >= 2 ? 'All' : ''}
-            </Button>
-            <Button
-              fontSize="body"
-              rightIcon={<FaRegTrashAlt />}
-              justifySelf="flex-end"
-              _focus={{}}
-              _hover={{ opacity: 0.5 }}
-              bg=""
-              color="misc.red"
-              onClick={() => setOpenModal(true)}>
-              Delete {selectedIdsOfTours.length >= 2 ? 'All' : ''}
-            </Button>
-          </Flex>
-        ) : null}
-        <Box />
-        <Box className="tableHeader">Overview</Box>
-        <Box className="tableHeader">Trip Length</Box>
-        <Box className="tableHeader">Price</Box>
-        <Box className="tableHeader">Actions</Box>
-      </Grid>
-      <Box overflow="hidden" border="1px solid" borderBottom="0" borderColor={accenttext} bg={background}>
+      <Box borderRadius="5px" border="1px solid" borderColor={accenttext} bg={background} shadow="base">
+        <Grid
+          borderBottom="1px solid"
+          borderColor={accenttext}
+          templateColumns={ui.tmpColumns}
+          placeItems="center"
+          p="20px"
+          sx={{ '.tableHeader': { fontWeight: 'bold', fontSize: 'body', textTransform: 'uppercase' } }}
+          color={text}
+          pos="relative"
+          overflow="hidden">
+          {selectedIdsOfTours.length ? (
+            <Flex bg={background} pos="absolute" top="0" right="20px" w="100%" h="100%" align="center" justify="flex-end" gap="5px">
+              <Button rightIcon={<FaTimes />} fontSize="body" _focus={{}} _hover={{ opacity: 0.5 }} bg="" onClick={handleClear}>
+                Clear {selectedIdsOfTours.length >= 2 ? 'All' : ''}
+              </Button>
+              <Button
+                fontSize="body"
+                rightIcon={<FaRegTrashAlt />}
+                justifySelf="flex-end"
+                _focus={{}}
+                _hover={{ opacity: 0.5 }}
+                bg=""
+                color="misc.red"
+                onClick={() => setOpenModal(true)}>
+                Delete {selectedIdsOfTours.length >= 2 ? 'All' : ''}
+              </Button>
+            </Flex>
+          ) : null}
+          <Box />
+          <Box className="tableHeader">Overview</Box>
+          <Box className="tableHeader">Trip Length</Box>
+          <Box className="tableHeader">Price</Box>
+          <Box className="tableHeader">Actions</Box>
+        </Grid>
         {displayedTours.length === 0 ? (
           <Flex align="center" justify="center" p="15px" w="100%" gap="20px" color={text}>
             <Text fontSize="body" fontWeight="extrabold">
@@ -159,79 +160,96 @@ export function TableContent({ tours, isSearching }: PropsTableContent) {
               isOpen={isModalOpen}
               setIsOpen={setOpenModal}
             />
-            <Box maxH="50vh" overflowY="auto">
-              {displayedTours.map((tour) => (
-                <Grid
-                  pos="relative"
-                  _hover={{ bg: accenttext }}
-                  key={tour.id}
-                  py="10px"
-                  templateColumns={ui.tmpColumns}
-                  placeItems="center">
-                  <Flex align="center" w="max-content" justify="flex-end">
-                    <Checkbox
-                      onChange={(value: React.ChangeEvent<HTMLInputElement>) => handleChecked(value, tour.id)}
-                      borderColor={text}
-                      isChecked={selectedIdsOfTours.includes(tour.id) ? true : false}
-                    />
-                  </Flex>
-                  <Flex gap="20px" justify="flex-start" w="100%" align="center">
-                    <Image w="50px" h="50px" borderRadius="50%" src={tour.mainImage} alt="Tour" />
-                    <Flex flexDir="column" justify="center">
-                      <Text textAlign="left" fontSize="headline" fontWeight="extrabold">
-                        {tour.name}
-                      </Text>
-                      <Text textAlign="left" fontSize="sub" fontWeight="semibold" color={subtext}>
-                        {`${daysjs(tour.createdAt).format('DD MMM YYYY hh:mm a')}`}
-                      </Text>
-                      <Rating rating={tour.rating} />
-                    </Flex>
-                  </Flex>
-
-                  <Text fontWeight="extrabold">{tour.duration}</Text>
-                  <Text fontWeight="extrabold">{tour.price} Dh</Text>
-                  <Menu>
-                    <MenuButton as={Button} borderRadius="50%" _focus={{}} bg="" color={text}>
-                      <FaEllipsisV />
-                    </MenuButton>
-                    <MenuList
-                      sx={{
-                        '& p': { textAlign: 'center', color: 'GrayText', pb: '10px', borderBottom: '1px solid', borderColor: accenttext },
-                      }}
-                      bg={background}>
-                      <MenuOptionGroup mx="0" title={`Actions`}>
-                        <MenuItem>
-                          <Text as="span" fontWeight="extrabold" _hover={{ opacity: 0.5 }}>
-                            View
-                          </Text>
-                        </MenuItem>
-                        <MenuItem>
-                          <Text as="span" fontWeight="extrabold" _hover={{ opacity: 0.5 }} bg="transparent">
-                            Edit
-                          </Text>
-                        </MenuItem>
-                        <MenuItem>
-                          <Text
-                            as="span"
-                            fontWeight="extrabold"
-                            _hover={{ opacity: 0.5 }}
-                            onClick={() => {
-                              setSelectedId(tour.id)
-                              setOpenModal(true)
-                            }}>
-                            Delete
-                          </Text>
-                        </MenuItem>
-                      </MenuOptionGroup>
-                    </MenuList>
-                  </Menu>
-                </Grid>
-              ))}
-            </Box>
+            {displayedTours.map((tour) => (
+              <TourRow
+                key={tour.id}
+                tour={tour}
+                handleChecked={handleChecked}
+                selectedIdsOfTours={selectedIdsOfTours}
+                setOpenModal={setOpenModal}
+                setSelectedId={setSelectedId}
+              />
+            ))}
+            {/* <Box overflowY="auto">
+            </Box> */}
           </Fragment>
         )}
       </Box>
       <Pagination initialPage={Number(qr.parse(search).page) - 1 || 0} pageCount={pageCount} handlePageClick={handlePageClick} />
     </Box>
+  )
+}
+
+type TourRowProps = {
+  tour: Tour
+  handleChecked: Function
+  selectedIdsOfTours: string[]
+  setSelectedId: Function
+  setOpenModal: Function
+}
+function TourRow({ tour, handleChecked, selectedIdsOfTours, setSelectedId, setOpenModal }: TourRowProps) {
+  const { text, background, accenttext, subtext } = useChakraTheme()
+
+  return (
+    <Grid pos="relative" _hover={{ bg: accenttext }} key={tour.id} py="10px" templateColumns={ui.tmpColumns} placeItems="center">
+      <Flex align="center" w="max-content" justify="flex-end">
+        <Checkbox
+          onChange={(value: React.ChangeEvent<HTMLInputElement>) => handleChecked(value, tour.id)}
+          borderColor={text}
+          isChecked={selectedIdsOfTours.includes(tour.id) ? true : false}
+        />
+      </Flex>
+      <Flex gap="20px" justify="flex-start" w="100%" align="center">
+        <Image w="50px" h="50px" borderRadius="50%" src={tour.mainImage} alt="Tour" />
+        <Flex flexDir="column" justify="center">
+          <Text textAlign="left" fontSize="headline" fontWeight="extrabold">
+            {tour.name}
+          </Text>
+          <Text textAlign="left" fontSize="sub" fontWeight="semibold" color={subtext}>
+            {`${daysjs(tour.createdAt).format('DD MMM YYYY hh:mm a')}`}
+          </Text>
+          <Rating rating={tour.rating} />
+        </Flex>
+      </Flex>
+
+      <Text fontWeight="extrabold">{tour.duration}</Text>
+      <Text fontWeight="extrabold">{tour.price} Dh</Text>
+      <Menu>
+        <MenuButton as={Button} borderRadius="50%" _focus={{}} bg="" color={text}>
+          <FaEllipsisV />
+        </MenuButton>
+        <MenuList
+          sx={{
+            '& p': { textAlign: 'center', color: 'GrayText', pb: '10px', borderBottom: '1px solid', borderColor: accenttext },
+          }}
+          bg={background}>
+          <MenuOptionGroup mx="0" title={`Actions`}>
+            <MenuItem>
+              <Text as="span" fontWeight="extrabold" _hover={{ opacity: 0.5 }}>
+                View
+              </Text>
+            </MenuItem>
+            <MenuItem>
+              <Text as="span" fontWeight="extrabold" _hover={{ opacity: 0.5 }} bg="transparent">
+                Edit
+              </Text>
+            </MenuItem>
+            <MenuItem>
+              <Text
+                as="span"
+                fontWeight="extrabold"
+                color="red"
+                _hover={{ opacity: 0.5 }}
+                onClick={() => {
+                  setSelectedId(tour.id)
+                  setOpenModal(true)
+                }}>
+                Delete
+              </Text>
+            </MenuItem>
+          </MenuOptionGroup>
+        </MenuList>
+      </Menu>
+    </Grid>
   )
 }

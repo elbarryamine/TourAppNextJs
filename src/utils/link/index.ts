@@ -3,6 +3,7 @@ export const LinkTo = {
   dashboard: '/app',
   home: '/home',
   tours: '/tours',
+  createtour: '/tours/create',
   sales: '/sales',
   clients: '/clients',
   mail: '/mail',
