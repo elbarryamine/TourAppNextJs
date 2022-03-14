@@ -5,6 +5,7 @@ const globalOptions = {
   initialColorMode: 'light',
   useSystemColorMode: false,
   zIndices: {
+    homeNavigation: 9999,
     portal: 9999,
     sortByDropDown: 2,
   },

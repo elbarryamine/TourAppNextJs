@@ -4,7 +4,7 @@ import '../styles/global.css'
 import '../styles/transition.css'
 import { AppProps } from 'next/app'
 import AppProvider from '../provider'
-import { Box, LightMode } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { useChakraTheme } from 'hooks/usetheme'
 
 function MyApp({ Component, pageProps, router }: AppProps) {
