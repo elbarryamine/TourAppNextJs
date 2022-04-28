@@ -17,6 +17,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     setLoaded(true)
   }, [typeOfWindow])
   if (!loaded) return null
+
   return (
     <AppProvider router={router}>
       <Box __css={styles(theme).thumb}>

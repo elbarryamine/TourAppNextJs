@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Stats } from '../components'
+import { Stats } from '../../components'
 import { Box, Center, useColorModeValue, Heading, Text, Stack, Image, Flex } from '@chakra-ui/react'
 import { useChakraTheme } from 'hooks/usetheme'
 

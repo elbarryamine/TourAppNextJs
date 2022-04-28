@@ -45,15 +45,15 @@ const QUERY = gql`
 export function ProtectRoutes({ children }: Props) {
   const { loading, data, error } = useQuery(QUERY)
   const [loaded, setLoaded] = React.useState<boolean>(false)
-  React.useEffect(() => {
-    if (loading) {
-      return
-    } else if (error) {
-      Router.push(LinkTo.login)
-    } else if (data.verifyUser) {
-      setLoaded(true)
-    }
-  }, [loading, data, error])
-  if (!loaded) return <LoadingPage />
+  // React.useEffect(() => {
+  //   if (loading) {
+  //     return
+  //   } else if (error) {
+  //     Router.push(LinkTo.login)
+  //   } else if (data.verifyUser) {
+  //     setLoaded(true)
+  //   }
+  // }, [loading, data, error])
+  // if (!loaded) return <LoadingPage />
   return <Fragment>{children}</Fragment>
 }
