@@ -10,8 +10,8 @@ const sharedTheme = {
     sortByDropDown: 2,
   },
   fonts: {
-    heading: 'Raleway',
-    body: 'Public Sans',
+    heading: 'Public Sans',
+    body: 'Raleway',
   },
   fontWeights: {
     normal: 300,
@@ -38,7 +38,8 @@ const sharedTheme = {
   styles: {
     global: {
       '*, *::before, &::after': {
-        fontSize: 'sm',
+        fontSize: 'md',
+        fontWeight: 400,
       },
     },
   },
@@ -90,14 +91,11 @@ export const dashboardTheme = extendTheme({
 export const appTheme = extendTheme({
   ..._.cloneDeep(sharedTheme),
   colors: {
-    primary: '#3182CE',
-    overPrimary: '#ffffff',
-    secondary: '#FED7D7',
-    accent: '#eec643',
-    bg: '#1a202c',
-    bg2: '#1f2733',
-    text1: '#ffffff',
-    text2: '#9E9E9E',
-    text3: '#011627',
+    primary: '#0036FF',
+    'primary.50': '#006FFF',
+    'primary.10': '#00A0FF',
+    secondary: '#1D1A27',
+    ternary: '#FCF7FF',
+    accent: '#DE0000',
   },
 })
