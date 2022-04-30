@@ -30,7 +30,7 @@ export function ToursPage() {
   const dispatch = useDispatch()
   React.useEffect(() => {
     if (loading) return
-    dispatch(initToursTable(data.getTours))
+    // dispatch(initToursTable(data.getTours))
     const delay = setInterval(() => {
       setLoaded(true)
     }, 500)

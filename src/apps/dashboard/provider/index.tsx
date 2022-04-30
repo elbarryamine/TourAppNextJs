@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import { Grid, GridItem, ColorModeScript, Container } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
-import { Navigation, TopHeader } from '../components'
-import { dashboardTheme } from '../../../config/theme'
+import { SideNavigation, TopHeader } from 'components'
+import { dashboardTheme } from 'config/theme'
 import { useChakraTheme } from 'hooks/usetheme'
 import { LoadingPage } from 'components/loading'
 import { gql, useQuery } from '@apollo/client'
@@ -27,7 +27,7 @@ export function DashboardProvider({ children }: Props) {
           w="100vw"
           overflowY="hidden">
           <TopHeader />
-          <Navigation />
+          <SideNavigation />
           <GridItem gridColumn="2/-1" gridRow="2/-1" overflowY="scroll">
             <Container maxW="1440px">{children}</Container>
           </GridItem>

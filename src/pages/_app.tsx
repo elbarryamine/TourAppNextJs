@@ -7,7 +7,7 @@ import AppProvider from '../provider'
 import { Box } from '@chakra-ui/react'
 import { useChakraTheme } from 'hooks/usetheme'
 
-function MyApp({ Component, pageProps, router }: AppProps) {
+export default function MyApp({ Component, pageProps, router }: AppProps) {
   const [loaded, setLoaded] = React.useState<boolean>(false)
   let typeOfWindow = typeof window
   const theme = useChakraTheme()
@@ -26,7 +26,8 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     </AppProvider>
   )
 }
-const styles = function (theme: any) {
+
+function styles(theme: any) {
   return {
     thumb: {
       '*::-webkit-scrollbar': {
@@ -51,5 +52,3 @@ const styles = function (theme: any) {
     },
   }
 }
-
-export default MyApp

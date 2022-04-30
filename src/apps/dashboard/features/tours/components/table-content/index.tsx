@@ -3,7 +3,7 @@ import { Box, Button, Checkbox, Flex, Grid, Image, Menu, MenuButton, MenuItem, M
 import { useChakraTheme } from 'hooks/usetheme'
 import { FaEllipsisV, FaRegFrown, FaRegTrashAlt, FaTimes } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
-import { Pagination, Rating } from 'apps/dashboard/components'
+import { Pagination, Rating } from 'components'
 import { useSearchParams, useLocation } from 'react-router-dom'
 import qr from 'query-string'
 import { ModalMessage } from 'components/modal'

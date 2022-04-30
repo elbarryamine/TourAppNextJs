@@ -31,6 +31,31 @@ const globalOptions = {
     header: '16px',
     display: '18px',
   },
+  shadows: {
+    shadow: '0 4px 14px 0 rgb(0 118 255 / 39%)',
+    shadow2: '0 4px 14px 0 rgb(0 118 255 /5%)',
+  },
+  styles: {
+    global: {
+      '*, *::before, &::after': {
+        fontSize: 'sm',
+      },
+    },
+  },
+  radii: {
+    none: '0',
+    sm: '0.125rem',
+    base: '0.25rem',
+    md: '0.3rem',
+    lg: '0.5rem',
+    xl: '0.75rem',
+    '2xl': '1rem',
+    '3xl': '1.5rem',
+    full: '9999px',
+  },
+}
+export const dashboardTheme = extendTheme({
+  ..._.cloneDeep(globalOptions),
   colors: {
     dark: {
       primary: '#4fd1c5',
@@ -61,31 +86,17 @@ const globalOptions = {
       blueBg: '#BEE3F8',
     },
   },
-  shadows: {
-    shadow: '0 4px 14px 0 rgb(0 118 255 / 39%)',
-    shadow2: '0 4px 14px 0 rgb(0 118 255 /5%)',
-  },
-  styles: {
-    global: {
-      '*, *::before, &::after': {
-        fontSize: 'sm',
-      },
-    },
-  },
-  radii: {
-    none: '0',
-    sm: '0.125rem',
-    base: '0.25rem',
-    md: '0.3rem',
-    lg: '0.5rem',
-    xl: '0.75rem',
-    '2xl': '1rem',
-    '3xl': '1.5rem',
-    full: '9999px',
-  },
-}
-export const dashboardTheme = extendTheme({
-  ..._.cloneDeep(globalOptions),
-  key: 'dashboard',
 })
-export const appTheme = extendTheme(_.cloneDeep(globalOptions))
+export const appTheme = extendTheme({
+  ..._.cloneDeep(globalOptions),
+  colors: {
+    primary: '#4fd1c5',
+    overPrimary: '#ffffff',
+    accent: '#eec643',
+    bg: '#1a202c',
+    bg2: '#1f2733',
+    text1: '#ffffff',
+    text2: '#9E9E9E',
+    text3: '#161a1d',
+  },
+})

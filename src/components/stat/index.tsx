@@ -1,4 +1,4 @@
-import { Box, Heading, Stack, Text, useBreakpointValue, useColorModeValue } from '@chakra-ui/react'
+import { Box, Heading, Stack, Text, useBreakpointValue } from '@chakra-ui/react'
 import { useChakraTheme } from 'hooks/usetheme'
 import * as React from 'react'
 

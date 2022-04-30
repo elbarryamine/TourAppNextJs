@@ -35,7 +35,7 @@ const NavigationSideBorder = ({ active }: { active: number }) => {
     />
   )
 }
-export function Navigation() {
+export function SideNavigation() {
   const { background, text, accenttext } = useChakraTheme()
   const { pathname } = useLocation()
   const startingActiveIndex = links.findIndex((link) => pathname.startsWith(link.url))
