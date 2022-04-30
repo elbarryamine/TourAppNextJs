@@ -18,7 +18,6 @@ import {
 import Link from 'next/link'
 import { SubmitInput } from '../../components/form'
 import { LinkTo } from 'utils/link'
-import { useChakraTheme } from 'hooks/usetheme'
 import { gql, useLazyQuery } from '@apollo/client'
 import _ from 'lodash'
 import { FaTimes } from 'react-icons/fa'
@@ -38,7 +37,6 @@ const QUERY = gql`
   }
 `
 export default function Login() {
-  const { background, subBackground, text } = useChakraTheme()
   const [runLoginQuery, { loading, data }] = useLazyQuery(QUERY)
   const [isError, setIsError] = React.useState<string>('')
   async function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
@@ -62,7 +60,7 @@ export default function Login() {
   }, [loading, data])
   return (
     <FormContainer>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} bg={subBackground} borderRadius="10px" color={text} w="100%">
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} bg="" borderRadius="10px" color="" w="100%">
         <Heading fontSize={'4xl'} textAlign="center">
           {isError && (
             <Alert status="error" pos="absolute" top="0px" right="0px">
@@ -76,7 +74,7 @@ export default function Login() {
           )}
           Sign in to your account
         </Heading>
-        <chakra.form rounded={'lg'} bg={background} boxShadow={'base'} p={8} onSubmit={handleSubmit}>
+        <chakra.form rounded={'lg'} bg="" boxShadow={'base'} p={8} onSubmit={handleSubmit}>
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel fontWeight="extrabold">Email address</FormLabel>
@@ -93,7 +91,7 @@ export default function Login() {
                     Remember me
                   </Text>
                 </Checkbox>
-                <Box color={text}>
+                <Box color="">
                   <Link passHref={true} href={LinkTo.forgetPassword}>
                     <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
                       Forgot password?
@@ -101,7 +99,7 @@ export default function Login() {
                   </Link>
                 </Box>
               </Stack>
-              <Box color={text} textAlign="center">
+              <Box color="" textAlign="center">
                 <Link passHref={true} href={LinkTo.sigunp}>
                   <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
                     Create an account

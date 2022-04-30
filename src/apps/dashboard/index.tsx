@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
-import { LinkTo } from '../../utils/link'
+import { LinkTo } from 'utils/link'
 import { DashboardProvider } from './provider'
 import { toursRoutes } from './features/tours/routes'
 import { homeRoutes } from './features/home/routes'

@@ -18,7 +18,6 @@ import {
 import Link from 'next/link'
 import { SubmitInput } from '../../components/form'
 import { LinkTo } from 'utils/link'
-import { useChakraTheme } from 'hooks/usetheme'
 import { gql, useMutation } from '@apollo/client'
 import _ from 'lodash'
 import { FaTimes } from 'react-icons/fa'
@@ -31,7 +30,6 @@ const QUERY = gql`
   }
 `
 export default function SignUp() {
-  const { background, subBackground, text, primary, overPrimary } = useChakraTheme()
   const [isError, setIsError] = React.useState<string>('')
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
   const [runMutation, { data, loading, error }] = useMutation(QUERY)
@@ -94,7 +92,7 @@ export default function SignUp() {
         setIsOpen={setIsModalOpen}
       />
       <FormContainer>
-        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} bg={subBackground} borderRadius="10px" color={text} w="100%" pos="relative">
+        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} bg="white" borderRadius="10px" color="black" w="100%" pos="relative">
           <Heading fontSize={'4xl'} textAlign="center">
             {isError && (
               <Alert status="error" pos="absolute" top="0px" right="0px">
@@ -109,7 +107,7 @@ export default function SignUp() {
             Sign up to join us
           </Heading>
 
-          <chakra.form rounded={'lg'} bg={background} boxShadow={'base'} p={8} onSubmit={handleSubmit}>
+          <chakra.form rounded={'lg'} bg="white" boxShadow={'base'} p={8} onSubmit={handleSubmit}>
             <Stack spacing={4}>
               <FormControl id="first_name">
                 <FormLabel fontWeight="extrabold">First Name</FormLabel>
@@ -136,8 +134,8 @@ export default function SignUp() {
                 <Input required type="password" />
               </FormControl>
               <Stack spacing={10}>
-                {loading ? <Button isLoading bg={primary} color={overPrimary} variant="solid" /> : <SubmitInput title="Sign Up" />}
-                <Box color={text} textAlign="center">
+                {loading ? <Button isLoading bg="purple" color="white" variant="solid" /> : <SubmitInput title="Sign Up" />}
+                <Box color="black" textAlign="center">
                   <Link passHref={true} href={LinkTo.login}>
                     <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
                       I already have an account
