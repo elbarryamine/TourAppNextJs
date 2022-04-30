@@ -1,9 +1,9 @@
 import { Flex, Image } from '@chakra-ui/react'
-import { useLightChakraTheme } from 'hooks/usetheme'
+import { useChakraTheme } from 'hooks/usetheme'
 import React from 'react'
 
 export function Navigation() {
-  const { background, text } = useLightChakraTheme()
+  const { background, text } = useChakraTheme()
 
   return (
     <Flex align="center" bg={background} color={text} h="50px" sx={styles}>

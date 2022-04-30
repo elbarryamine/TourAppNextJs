@@ -90,13 +90,13 @@ export const dashboardTheme = extendTheme({
 export const appTheme = extendTheme({
   ..._.cloneDeep(sharedTheme),
   colors: {
-    primary: '#4fd1c5',
+    primary: '#ff0054',
     overPrimary: '#ffffff',
     accent: '#eec643',
     bg: '#1a202c',
     bg2: '#1f2733',
     text1: '#ffffff',
     text2: '#9E9E9E',
-    text3: '#161a1d',
+    text3: '#011627',
   },
 })
