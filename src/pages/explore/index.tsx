@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react'
 import Head from 'next/head'
-import { Box, Button, Container, Flex, Heading, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
+import { Box, Button, Container, Flex, Heading } from '@chakra-ui/react'
 import Link from 'next/link'
-import { FaPlane, FaPlaneArrival, FaSearch } from 'react-icons/fa'
 
 export default function ExplorePage() {
   return (
@@ -17,49 +16,26 @@ export default function ExplorePage() {
 
 function Navigation() {
   return (
-    <Box h="70px" pos="sticky" top="70px" shadow="xs" color="text3">
-      <Container maxW="container.xl" px="20px" h="100%">
-        <Flex align="center" justify="space-between" h="100%">
-          <Flex align="center" gap="5px">
-            <Text fontWeight="900" fontSize="xl" color="primary">
-              TOUR
-            </Text>
-            <FaPlaneArrival />
-            <Text fontWeight="900" fontSize="xl">
-              LEEK
-            </Text>
-          </Flex>
-          <InputGroup maxW="500px" color="primary">
-            <InputLeftElement>
-              <FaSearch size="14px" />
-            </InputLeftElement>
-            <Input _focus={{ borderColor: 'primary' }} borderColor="primary" bg="white" placeholder="Search" />
-          </InputGroup>
-          <Flex
-            justify="space-between"
-            gap="40px"
-            align="center"
-            sx={{
-              '.link': {
-                fontWeight: '900',
-                cursor: 'pointer',
-              },
-            }}>
-            <Link href="/" passHref>
-              <Text className="link">Home</Text>
-            </Link>
-            <Link href="/" passHref>
-              <Text className="link" color="primary">
-                Explore
-              </Text>
-            </Link>
-            <Link href="/" passHref>
-              <Text className="link">About</Text>
-            </Link>
-            <Button variant="outline" borderColor="primary" color="primary">
-              Account
-            </Button>
-          </Flex>
+    <Box h="70px" pos="sticky" top="0px" shadow="xs" bg="bg" color="text1" zIndex="2">
+      <Container d="flex" maxW="1440px" h="100%" alignItems="center" justifyContent="space-between">
+        <Heading size="md">Tourleek</Heading>
+        <Flex gap="50px" alignItems="center">
+          <Link href="/" passHref>
+            Home
+          </Link>
+          <Link href="/" passHref>
+            Explore
+          </Link>
+          <Link href="/" passHref>
+            Services
+          </Link>
+          <Link href="/" passHref>
+            About
+          </Link>
+          <Link href="/" passHref>
+            Sign in
+          </Link>
+          <Button bg="primary">Sign up</Button>
         </Flex>
       </Container>
     </Box>

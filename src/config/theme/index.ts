@@ -11,7 +11,7 @@ const sharedTheme = {
   },
   fonts: {
     heading: 'Raleway',
-    body: 'Raleway',
+    body: 'Public Sans',
   },
   fontWeights: {
     normal: 300,
@@ -90,8 +90,9 @@ export const dashboardTheme = extendTheme({
 export const appTheme = extendTheme({
   ..._.cloneDeep(sharedTheme),
   colors: {
-    primary: '#ff0054',
+    primary: '#3182CE',
     overPrimary: '#ffffff',
+    secondary: '#FED7D7',
     accent: '#eec643',
     bg: '#1a202c',
     bg2: '#1f2733',
