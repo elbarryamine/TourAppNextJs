@@ -1,5 +1,4 @@
 import React from 'react'
-import { FormContainer } from '../../components'
 import {
   FormControl,
   Text,
@@ -59,58 +58,56 @@ export default function Login() {
     }
   }, [loading, data])
   return (
-    <FormContainer>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} bg="" borderRadius="10px" color="" w="100%">
-        <Heading fontSize={'4xl'} textAlign="center">
-          {isError && (
-            <Alert status="error" pos="absolute" top="0px" right="0px">
-              <AlertIcon />
-              <AlertTitle mr={2}>Error</AlertTitle>
-              <AlertDescription>{isError}</AlertDescription>
-              <Box onClick={() => setIsError('')} cursor="pointer" pos="absolute" right="20px" color="red">
-                <FaTimes size="20px" />
-              </Box>
-            </Alert>
-          )}
-          Sign in to your account
-        </Heading>
-        <chakra.form rounded={'lg'} bg="" boxShadow={'base'} p={8} onSubmit={handleSubmit}>
-          <Stack spacing={4}>
-            <FormControl id="email">
-              <FormLabel fontWeight="extrabold">Email address</FormLabel>
-              <Input required type="email" />
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel fontWeight="extrabold">Password</FormLabel>
-              <Input required type="password" />
-            </FormControl>
-            <Stack spacing={10}>
-              <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
-                <Checkbox colorScheme="purple">
-                  <Text fontWeight="extrabold" fontSize="body">
-                    Remember me
-                  </Text>
-                </Checkbox>
-                <Box color="">
-                  <Link passHref={true} href={LinkTo.forgetPassword}>
-                    <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
-                      Forgot password?
-                    </Text>
-                  </Link>
-                </Box>
-              </Stack>
-              <Box color="" textAlign="center">
-                <Link passHref={true} href={LinkTo.sigunp}>
+    <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} borderRadius="10px" color="" w="100%">
+      <Heading fontSize={'4xl'} textAlign="center">
+        {isError && (
+          <Alert status="error" pos="absolute" top="0px" right="0px">
+            <AlertIcon />
+            <AlertTitle mr={2}>Error</AlertTitle>
+            <AlertDescription>{isError}</AlertDescription>
+            <Box onClick={() => setIsError('')} cursor="pointer" pos="absolute" right="20px" color="red">
+              <FaTimes size="20px" />
+            </Box>
+          </Alert>
+        )}
+        Sign in to your account
+      </Heading>
+      <chakra.form rounded={'lg'} bg="" boxShadow={'base'} p={8} onSubmit={handleSubmit}>
+        <Stack spacing={4}>
+          <FormControl id="email">
+            <FormLabel fontWeight="extrabold">Email address</FormLabel>
+            <Input required type="email" />
+          </FormControl>
+          <FormControl id="password">
+            <FormLabel fontWeight="extrabold">Password</FormLabel>
+            <Input required type="password" />
+          </FormControl>
+          <Stack spacing={10}>
+            <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
+              <Checkbox colorScheme="purple">
+                <Text fontWeight="extrabold" fontSize="body">
+                  Remember me
+                </Text>
+              </Checkbox>
+              <Box color="">
+                <Link passHref={true} href={LinkTo.forgetPassword}>
                   <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
-                    Create an account
+                    Forgot password?
                   </Text>
                 </Link>
               </Box>
-              <SubmitInput title="Sign In" />
             </Stack>
+            <Box color="" textAlign="center">
+              <Link passHref={true} href={LinkTo.sigunp}>
+                <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
+                  Create an account
+                </Text>
+              </Link>
+            </Box>
+            <SubmitInput title="Sign In" />
           </Stack>
-        </chakra.form>
-      </Stack>
-    </FormContainer>
+        </Stack>
+      </chakra.form>
+    </Stack>
   )
 }

@@ -1,7 +1,7 @@
 import { extendTheme } from '@chakra-ui/react'
 import _ from 'lodash'
 
-const globalOptions = {
+const sharedTheme = {
   initialColorMode: 'light',
   useSystemColorMode: false,
   zIndices: {
@@ -55,7 +55,7 @@ const globalOptions = {
   },
 }
 export const dashboardTheme = extendTheme({
-  ..._.cloneDeep(globalOptions),
+  ..._.cloneDeep(sharedTheme),
   colors: {
     dark: {
       primary: '#4fd1c5',
@@ -88,7 +88,7 @@ export const dashboardTheme = extendTheme({
   },
 })
 export const appTheme = extendTheme({
-  ..._.cloneDeep(globalOptions),
+  ..._.cloneDeep(sharedTheme),
   colors: {
     primary: '#4fd1c5',
     overPrimary: '#ffffff',

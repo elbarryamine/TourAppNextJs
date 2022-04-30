@@ -91,62 +91,60 @@ export default function SignUp() {
         isOpen={isModalOpen}
         setIsOpen={setIsModalOpen}
       />
-      <FormContainer>
-        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} bg="white" borderRadius="10px" color="black" w="100%" pos="relative">
-          <Heading fontSize={'4xl'} textAlign="center">
-            {isError && (
-              <Alert status="error" pos="absolute" top="0px" right="0px">
-                <AlertIcon />
-                <AlertTitle mr={2}>Error</AlertTitle>
-                <AlertDescription>{isError}</AlertDescription>
-                <Box onClick={() => setIsError('')} cursor="pointer" pos="absolute" right="20px" color="red">
-                  <FaTimes size="20px" />
-                </Box>
-              </Alert>
-            )}
-            Sign up to join us
-          </Heading>
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} bg="white" borderRadius="10px" color="black" w="100%" pos="relative">
+        <Heading fontSize={'4xl'} textAlign="center">
+          {isError && (
+            <Alert status="error" pos="absolute" top="0px" right="0px">
+              <AlertIcon />
+              <AlertTitle mr={2}>Error</AlertTitle>
+              <AlertDescription>{isError}</AlertDescription>
+              <Box onClick={() => setIsError('')} cursor="pointer" pos="absolute" right="20px" color="red">
+                <FaTimes size="20px" />
+              </Box>
+            </Alert>
+          )}
+          Sign up to join us
+        </Heading>
 
-          <chakra.form rounded={'lg'} bg="white" boxShadow={'base'} p={8} onSubmit={handleSubmit}>
-            <Stack spacing={4}>
-              <FormControl id="first_name">
-                <FormLabel fontWeight="extrabold">First Name</FormLabel>
-                <Input required type="first_name" />
-              </FormControl>
-              <FormControl id="last_name">
-                <FormLabel fontWeight="extrabold">Last Name</FormLabel>
-                <Input required type="last_name" />
-              </FormControl>
-              <FormControl id="phone">
-                <FormLabel fontWeight="extrabold">Phone</FormLabel>
-                <Input required type="tel" />
-              </FormControl>
-              <FormControl id="email">
-                <FormLabel fontWeight="extrabold">Email address</FormLabel>
-                <Input required type="email" />
-              </FormControl>
-              <FormControl id="password">
-                <FormLabel fontWeight="extrabold">Password</FormLabel>
-                <Input required type="password" />
-              </FormControl>
-              <FormControl id="password_confirm">
-                <FormLabel fontWeight="extrabold">Confirm Password</FormLabel>
-                <Input required type="password" />
-              </FormControl>
-              <Stack spacing={10}>
-                {loading ? <Button isLoading bg="purple" color="white" variant="solid" /> : <SubmitInput title="Sign Up" />}
-                <Box color="black" textAlign="center">
-                  <Link passHref={true} href={LinkTo.login}>
-                    <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
-                      I already have an account
-                    </Text>
-                  </Link>
-                </Box>
-              </Stack>
+        <chakra.form rounded={'lg'} bg="white" boxShadow={'base'} p={8} onSubmit={handleSubmit}>
+          <Stack spacing={4}>
+            <FormControl id="first_name">
+              <FormLabel fontWeight="extrabold">First Name</FormLabel>
+              <Input required type="first_name" />
+            </FormControl>
+            <FormControl id="last_name">
+              <FormLabel fontWeight="extrabold">Last Name</FormLabel>
+              <Input required type="last_name" />
+            </FormControl>
+            <FormControl id="phone">
+              <FormLabel fontWeight="extrabold">Phone</FormLabel>
+              <Input required type="tel" />
+            </FormControl>
+            <FormControl id="email">
+              <FormLabel fontWeight="extrabold">Email address</FormLabel>
+              <Input required type="email" />
+            </FormControl>
+            <FormControl id="password">
+              <FormLabel fontWeight="extrabold">Password</FormLabel>
+              <Input required type="password" />
+            </FormControl>
+            <FormControl id="password_confirm">
+              <FormLabel fontWeight="extrabold">Confirm Password</FormLabel>
+              <Input required type="password" />
+            </FormControl>
+            <Stack spacing={10}>
+              {loading ? <Button isLoading bg="purple" color="white" variant="solid" /> : <SubmitInput title="Sign Up" />}
+              <Box color="black" textAlign="center">
+                <Link passHref={true} href={LinkTo.login}>
+                  <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
+                    I already have an account
+                  </Text>
+                </Link>
+              </Box>
             </Stack>
-          </chakra.form>
-        </Stack>
-      </FormContainer>
+          </Stack>
+        </chakra.form>
+      </Stack>
     </Fragment>
   )
 }
