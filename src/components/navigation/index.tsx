@@ -1,21 +1,31 @@
-import { Flex, Image } from '@chakra-ui/react'
-import { useChakraTheme } from 'hooks/usetheme'
 import React from 'react'
+import { Box, Button, Container, Flex } from '@chakra-ui/react'
+import Link from 'next/link'
+import Image from 'next/image'
 
-export function Navigation() {
-  const { background, text } = useChakraTheme()
-
+export default function Navigation() {
   return (
-    <Flex align="center" bg={background} color={text} h="50px" sx={styles}>
-      <div className="container">
-        <Image className="image" src="" alt="logo" />
-      </div>
-    </Flex>
+    <Box h="70px" pos="sticky" top="0px" color="secondary" zIndex="2">
+      <Container d="flex" maxW="1440px" h="100%" alignItems="center" justifyContent="space-between">
+        <Image src="/assets/logo.jpg" alt="logo" width="50px" height="50px" />
+        <Flex gap="50px" alignItems="center" sx={{ '& a': { fontSize: 'sm', fontWeight: '900' } }}>
+          <Link href="/explore" passHref>
+            Explore
+          </Link>
+          <Link href="/" passHref>
+            Services
+          </Link>
+          <Link href="/" passHref>
+            About
+          </Link>
+          <Link href="/login" passHref>
+            Sign in
+          </Link>
+          <Button variant="outline" colorScheme="none" color="primary.10" _hover={{ color: 'primary.50', borderColor: 'primary.50' }}>
+            Sign up
+          </Button>
+        </Flex>
+      </Container>
+    </Box>
   )
-}
-
-const styles = {
-  '.container': { maxW: '1440px', mx: 'auto', w: '100%' },
-  '.image': {},
-  '.menu': {},
 }
