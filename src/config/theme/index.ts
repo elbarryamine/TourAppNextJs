@@ -4,6 +4,14 @@ import _ from 'lodash'
 const sharedTheme = {
   initialColorMode: 'light',
   useSystemColorMode: false,
+  breakpoints: {
+    sm: '30em',
+    md: '48em',
+    lg: '62em',
+    xl: '80em',
+    '2xl': '96em',
+  },
+
   zIndices: {
     homeNavigation: 9999,
     portal: 9999,

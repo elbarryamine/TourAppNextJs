@@ -15,6 +15,7 @@ import {
   Grid,
   Image,
   Stack,
+  Container,
 } from '@chakra-ui/react'
 import { IoGridOutline } from 'react-icons/io5'
 import { AiOutlineSortAscending, AiOutlineSearch, AiOutlineClose } from 'react-icons/ai'
@@ -26,10 +27,12 @@ export default function ExplorePage() {
         <title>Tourlek | Explore</title>
       </Head>
       <Navigation />
-      <Header />
-      <Search />
-      <Filters />
-      <ToursResult />
+      <Container maxW="1440px" h="100%" alignItems="center" justifyContent="space-between">
+        <Header />
+        <Search />
+        <Filters />
+        <ToursResult />
+      </Container>
     </Fragment>
   )
 }
@@ -121,15 +124,18 @@ function Filters() {
 
 function ToursResult() {
   return (
-    <Grid templateColumns="repeat(4,1fr)" gap="20px" p="20px">
+    <Grid templateColumns={{ sm: '1fr', md: 'repeat(2,1fr)', lg: 'repeat(3,1fr)', xl: 'repeat(4,1fr)' }} gap="20px" p="20px">
       {Array.from({ length: 50 }).map((_, index) => (
-        <Flex key={index} h="400px" bg="white" borderRadius="5px" shadow="md" flexDir="column">
+        <Flex key={index} h="400px" bg="white" borderRadius="5px" overflow="hidden" shadow="md" flexDir="column" pos="relative">
           <Image
+            objectFit="cover"
+            objectPosition="center"
             h="100%"
-            src="https://images.pexels.com/photos/4553036/pexels-photo-4553036.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            flexGrow="1"
+            src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt="tour"
           />
-          <Stack p="20px">
+          <Stack p="20px" bg="white" w="100%" pos="absolute" bottom="0">
             <Heading size="xs" textTransform="uppercase">
               Beach tour marrakech
             </Heading>
