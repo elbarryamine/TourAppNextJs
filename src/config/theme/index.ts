@@ -10,7 +10,7 @@ const sharedTheme = {
     sortByDropDown: 2,
   },
   fonts: {
-    heading: 'Public Sans',
+    heading: 'Raleway',
     body: 'Raleway',
   },
   fontWeights: {
@@ -37,9 +37,8 @@ const sharedTheme = {
   },
   styles: {
     global: {
-      '*, *::before, &::after': {
-        fontSize: 'md',
-        fontWeight: 400,
+      body: {
+        background: '#f3f2ef',
       },
     },
   },
