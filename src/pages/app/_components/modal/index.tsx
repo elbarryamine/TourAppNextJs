@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react'
+import { useChakraTheme } from 'hooks/usetheme'
 
 // eslint-disable-next-line no-unused-vars
 type AllOrNone<T> = T | { [K in keyof T]?: never }
@@ -13,6 +14,7 @@ type Props = AllOrNone<{
 }>
 
 export function ModalMessage({ isOpen, setIsOpen, variant, headerContent, bodyContent, footerContent }: Props) {
+  const { background, text } = useChakraTheme()
   const { onClose } = useDisclosure()
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(true)
   React.useEffect(() => {
@@ -26,13 +28,13 @@ export function ModalMessage({ isOpen, setIsOpen, variant, headerContent, bodyCo
   let color
   if (variant === 'success') color = 'misc.success'
   if (variant === 'danger') color = 'misc.danger'
-  if (variant === 'primary') color = 'secondary'
+  if (variant === 'primary') color = text
 
   return (
     <Modal motionPreset="slideInBottom" isCentered onClose={onClose} isOpen={isOpen !== undefined ? isOpen : isModalOpen}>
       <ModalOverlay />
-      <ModalContent pb={5} bg="white">
-        {headerContent && <ModalHeader color="secondary">{headerContent}</ModalHeader>}
+      <ModalContent pb={5} bg={background}>
+        {headerContent && <ModalHeader color={color}>{headerContent}</ModalHeader>}
         <ModalCloseButton
           onClick={() => {
             if (setIsOpen !== undefined) {
