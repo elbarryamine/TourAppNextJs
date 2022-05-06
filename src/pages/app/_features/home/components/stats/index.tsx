@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Flex, SimpleGrid, Text } from '@chakra-ui/react'
 import { useChakraTheme } from 'hooks/usetheme'
-import { Stat } from 'components'
+import { Stat } from '../../../../_components'
 
 export function Stats() {
   const { text } = useChakraTheme()

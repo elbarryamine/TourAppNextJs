@@ -1,13 +1,16 @@
 import React, { Fragment } from 'react'
 import { Grid, GridItem, ColorModeScript, Container } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
-import { SideNavigation, TopHeader } from 'components'
+import {
+  SideNavigation,
+  TopHeader,
+  // LoadingPage
+} from '../_components'
 import { dashboardTheme } from 'config/theme'
 import { useChakraTheme } from 'hooks/usetheme'
-import { LoadingPage } from 'components/loading'
-import { gql, useQuery } from '@apollo/client'
-import Router from 'next/router'
-import { LinkTo } from 'utils/link'
+// import { gql, useQuery } from '@apollo/client'
+// import Router from 'next/router'
+// import { LinkTo } from 'utils/link'
 
 type Props = {
   children: React.ReactChild | React.ReactChild[]
@@ -37,14 +40,14 @@ export function DashboardProvider({ children }: Props) {
   )
 }
 
-const QUERY = gql`
-  query verify {
-    verifyUser
-  }
-`
+// const QUERY = gql`
+//   query verify {
+//     verifyUser
+//   }
+// `
 export function ProtectRoutes({ children }: Props) {
-  const { loading, data, error } = useQuery(QUERY)
-  const [loaded, setLoaded] = React.useState<boolean>(false)
+  // const { loading, data, error } = useQuery(QUERY)
+  // const [loaded, setLoaded] = React.useState<boolean>(false)
   // React.useEffect(() => {
   //   if (loading) {
   //     return

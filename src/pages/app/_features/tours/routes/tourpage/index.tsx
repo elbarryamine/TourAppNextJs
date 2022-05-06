@@ -1,12 +1,12 @@
 import React from 'react'
 import { useQuery, gql } from '@apollo/client'
-import { useDispatch } from 'react-redux'
-import { initToursTable } from 'redux/reducers/tours'
-import { LoadingPage } from 'components/loading'
+// import { useDispatch } from 'react-redux'
+// import { initToursTable } from 'redux/reducers/tours'
 import { Box, Flex } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { RootState } from 'redux/store'
 import { TableContent, TourSearch, ToursPageHeader } from '../../components'
+import { LoadingPage } from '../../../../_components'
 
 const QUERY = gql`
   query {
@@ -25,9 +25,12 @@ const QUERY = gql`
   }
 `
 export function ToursPage() {
-  const { loading, data } = useQuery(QUERY)
+  const {
+    loading,
+    // data
+  } = useQuery(QUERY)
   const [loaded, setLoaded] = React.useState<boolean>(false)
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   React.useEffect(() => {
     if (loading) return
     // dispatch(initToursTable(data.getTours))

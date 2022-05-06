@@ -15,12 +15,11 @@ import {
   AlertDescription,
 } from '@chakra-ui/react'
 import Link from 'next/link'
-import { SubmitInput } from '../../components/form'
+import { SubmitInput, ModalMessage } from 'components'
 import { LinkTo } from 'utils/link'
 import { gql, useMutation } from '@apollo/client'
 import _ from 'lodash'
 import { FaTimes } from 'react-icons/fa'
-import { ModalMessage } from 'components'
 import router from 'next/router'
 
 const QUERY = gql`
