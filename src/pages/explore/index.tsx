@@ -31,7 +31,7 @@ export default function ExplorePage() {
         name
         mainImage
         rating
-        Price
+        price
       }
     }
   `
@@ -39,10 +39,9 @@ export default function ExplorePage() {
   const [loaded, setloaded] = React.useState<boolean>(false)
   const [tours, setTours] = React.useState<Tour[]>([])
   React.useEffect(() => {
-    if (data && !loading) {
-      setloaded(true)
-      setTours(data)
-    }
+    if (!data || loading) return
+    setTours(data)
+    setloaded(true)
   }, [data, loading])
   if (!loaded) return <LoadingPage />
   return (
