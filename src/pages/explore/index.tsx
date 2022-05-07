@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import Head from 'next/head'
-import Navigation from 'components/navigation'
+import { Navigation, LoadingPage } from 'components'
 import {
   Flex,
   Box,
@@ -19,8 +19,32 @@ import {
 } from '@chakra-ui/react'
 import { IoGridOutline } from 'react-icons/io5'
 import { AiOutlineSortAscending, AiOutlineSearch, AiOutlineClose } from 'react-icons/ai'
+import { useGetTours } from 'api/tour/useGetTours'
+import { gql } from '@apollo/client'
 
 export default function ExplorePage() {
+  const Query = gql`
+    query {
+      getTours {
+        id
+        description
+        name
+        mainImage
+        rating
+        Price
+      }
+    }
+  `
+  const { data, loading } = useGetTours(Query)
+  const [loaded, setloaded] = React.useState<boolean>(false)
+  const [tours, setTours] = React.useState<Tour[]>([])
+  React.useEffect(() => {
+    if (data && !loading) {
+      setloaded(true)
+      setTours(data)
+    }
+  }, [data, loading])
+  if (!loaded) return <LoadingPage />
   return (
     <Fragment>
       <Head>
@@ -31,7 +55,7 @@ export default function ExplorePage() {
         <Header />
         <Search />
         <Filters />
-        <ToursResult />
+        <ToursResult tours={tours} />
       </Container>
     </Fragment>
   )
@@ -122,26 +146,28 @@ function Filters() {
   )
 }
 
-function ToursResult() {
+interface ToursResultProps {
+  tours: Tour[]
+}
+function ToursResult({ tours }: ToursResultProps) {
   return (
     <Grid templateColumns={{ sm: '1fr', md: 'repeat(2,1fr)', lg: 'repeat(3,1fr)', xl: 'repeat(4,1fr)' }} gap="20px" p="20px">
-      {Array.from({ length: 50 }).map((_, index) => (
+      {tours.map((tour, index) => (
         <Flex key={index} h="400px" bg="white" borderRadius="5px" overflow="hidden" shadow="md" flexDir="column" pos="relative">
-          <Image
-            objectFit="cover"
-            objectPosition="center"
-            h="100%"
-            flexGrow="1"
-            src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&w=1600"
-            alt="tour"
-          />
-          <Stack p="20px" bg="white" w="100%" pos="absolute" bottom="0">
+          <Image objectFit="cover" objectPosition="center" h="100%" flexGrow="1" src={tour.mainImage} alt="tour" />
+          <Stack p="20px" bg="white" w="100%" pos="absolute" bottom="0" h="40%">
             <Heading size="xs" textTransform="uppercase">
-              Beach tour marrakech
+              {tour.name}
             </Heading>
-            <Flex>
+            <Flex flexDir="column">
               <Text color="GrayText" fontSize="xx-small">
-                Best beach tour in marrakech
+                {tour.description}
+              </Text>
+              <Text color="GrayText" fontSize="xx-small">
+                Rating : {tour.rating}
+              </Text>
+              <Text color="GrayText" fontSize="xx-small">
+                Price : {tour.price}
               </Text>
             </Flex>
           </Stack>

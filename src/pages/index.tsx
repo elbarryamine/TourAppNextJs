@@ -1,4 +1,4 @@
-import Navigation from 'components/navigation'
+import { Navigation } from 'components'
 import React, { Fragment } from 'react'
 import Head from 'next/head'
 import { Box, Flex, Heading, Image } from '@chakra-ui/react'
@@ -24,14 +24,10 @@ export default function Home() {
             </Heading>
           </Box>
           <Box>
-            <Image src="assets/Camel-walk-cycle-animation.gif" w="900px" />
+            <Image src="assets/Camel-walk-cycle-animation.gif" alt="" w="900px" />
           </Box>
         </Flex>
       </Box>
     </Fragment>
   )
-}
-
-function Header() {
-  return null
 }

@@ -3,7 +3,7 @@ import { Box, Button, Container, Flex } from '@chakra-ui/react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-export default function Navigation() {
+export function Navigation() {
   return (
     <Box h="70px" pos="sticky" top="0px" color="secondary" zIndex="2" bg="white">
       <Container d="flex" maxW="1440px" h="100%" alignItems="center" justifyContent="space-between">
