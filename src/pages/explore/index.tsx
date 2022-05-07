@@ -16,26 +16,18 @@ import {
   Image,
   Stack,
   Container,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  Tag,
+  Link,
 } from '@chakra-ui/react'
 import { IoGridOutline } from 'react-icons/io5'
-import { AiOutlineSortAscending, AiOutlineSearch, AiOutlineClose } from 'react-icons/ai'
+import { AiOutlineSortAscending, AiOutlineSearch, AiOutlineClose, AiFillStar, AiOutlineClockCircle } from 'react-icons/ai'
 import { useGetTours } from 'api/tour/useGetTours'
-import { gql } from '@apollo/client'
 
 export default function ExplorePage() {
-  const Query = gql`
-    query {
-      getTours {
-        id
-        description
-        name
-        mainImage
-        rating
-        price
-      }
-    }
-  `
-  const { data, loading } = useGetTours(Query)
+  const { data, loading, error } = useGetTours()
   const [loaded, setloaded] = React.useState<boolean>(false)
   const [tours, setTours] = React.useState<Tour[]>([])
   React.useEffect(() => {
@@ -43,6 +35,13 @@ export default function ExplorePage() {
     setTours(data)
     setloaded(true)
   }, [data, loading])
+  if (error)
+    return (
+      <Alert status="error">
+        <AlertIcon />
+        <AlertTitle>{error.message}</AlertTitle>
+      </Alert>
+    )
   if (!loaded) return <LoadingPage />
   return (
     <Fragment>
@@ -150,27 +149,76 @@ interface ToursResultProps {
 }
 function ToursResult({ tours }: ToursResultProps) {
   return (
-    <Grid templateColumns={{ sm: '1fr', md: 'repeat(2,1fr)', lg: 'repeat(3,1fr)', xl: 'repeat(4,1fr)' }} gap="20px" p="20px">
-      {tours.map((tour, index) => (
-        <Flex key={index} h="400px" bg="white" borderRadius="5px" overflow="hidden" shadow="md" flexDir="column" pos="relative">
-          <Image objectFit="cover" objectPosition="center" h="100%" flexGrow="1" src={tour.mainImage} alt="tour" />
-          <Stack p="20px" bg="white" w="100%" pos="absolute" bottom="0" h="40%">
-            <Heading size="xs" textTransform="uppercase">
+    <Grid
+      templateColumns={{ sm: '250px', md: 'repeat(2,250px)', lg: 'repeat(4,250px)', xl: 'repeat(5,250px)' }}
+      alignItems="center"
+      justifyContent="space-between"
+      rowGap="50px"
+      pt="20px">
+      {tours.map((tour) => (
+        <Stack key={tour.id} bg="white" borderRadius="5px" shadow="md">
+          <Box h="50%" minH="50%" pos="relative" _hover={{ '.image': { transform: 'scale(1.2)' } }} overflow="hidden">
+            <Image
+              transition="all 0.5s"
+              className="image"
+              borderRadius="5px 5px 0 0"
+              src={tour.mainImage}
+              alt={tour.name}
+              objectFit="cover"
+              objectPosition="center"
+              h="100%"
+              w="100%"
+            />
+            <Link href={`/tour/${tour.id}`} pos="absolute" top="0" left="0" bg="#00000040" h="100%" w="100%">
+              <Flex
+                align="flex-end"
+                justify="flex-end"
+                h="100%"
+                color="white"
+                p="10px"
+                fontWeight={300}
+                fontSize="xs"
+                _hover={{ textDecor: 'underline' }}>
+                View tour
+              </Flex>
+            </Link>
+          </Box>
+          <Stack spacing={4} p="10px" pt="5px">
+            <Flex justify="space-between" align="center">
+              <Tag bg="tag" color="tagText">
+                <Text noOfLines={1} fontSize="xs">
+                  {tour.location[0]}
+                </Text>
+              </Tag>
+              <Flex gap="5px">
+                <Text fontSize="xs">Rating</Text>
+                <Text fontSize="xs" color="gold">
+                  4.8K
+                </Text>
+                <Icon as={AiFillStar} color="gold"></Icon>
+              </Flex>
+            </Flex>
+            <Heading size="xs" fontWeight={400} noOfLines={1}>
               {tour.name}
             </Heading>
-            <Flex flexDir="column">
-              <Text color="GrayText" fontSize="xx-small">
-                {tour.description}
-              </Text>
-              <Text color="GrayText" fontSize="xx-small">
-                Rating : {tour.rating}
-              </Text>
-              <Text color="GrayText" fontSize="xx-small">
-                Price : {tour.price}
-              </Text>
+            <Flex justify="space-between" align="center">
+              <Flex gap="5px" align="center">
+                <Heading size="sm" fontWeight={500} color="gold">
+                  ${tour.price}
+                </Heading>
+                <Text textDecor="line-through" fontSize="xx-small" color="GrayText">
+                  ${tour.discount}
+                </Text>
+              </Flex>
+              <Flex gap="5px" align="center">
+                <Icon as={AiOutlineClockCircle} color="GrayText" />
+                <Text fontSize="sm" color="GrayText">
+                  {tour.duration} hours
+                </Text>
+              </Flex>
             </Flex>
           </Stack>
-        </Flex>
+        </Stack>
       ))}
     </Grid>
   )

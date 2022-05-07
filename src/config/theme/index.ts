@@ -18,8 +18,8 @@ const sharedTheme = {
     sortByDropDown: 2,
   },
   fonts: {
-    heading: 'Raleway',
-    body: 'Raleway',
+    heading: 'Public Sans',
+    body: 'Public Sans',
   },
   fontWeights: {
     normal: 300,
@@ -103,6 +103,8 @@ export const appTheme = extendTheme({
     'primary.10': '#00A0FF',
     secondary: '#1D1A27',
     ternary: '#FCF7FF',
-    accent: '#DE0000',
+    accent: '#FED7D7',
+    tag: '#00FF8230',
+    tagText: '#009C6D',
   },
 })
