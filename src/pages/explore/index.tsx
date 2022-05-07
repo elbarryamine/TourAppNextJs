@@ -190,17 +190,21 @@ function ToursResult({ tours }: ToursResultProps) {
                   {tour.location[0]}
                 </Text>
               </Tag>
-              <Flex gap="5px">
+              <Flex gap="5px" align="center">
                 <Text fontSize="xs">Rating</Text>
-                <Text fontSize="xs" color="gold">
-                  4.8K
-                </Text>
-                <Icon as={AiFillStar} color="gold"></Icon>
+                <Flex align="center">
+                  <Text fontSize="xs" color="gold" fontWeight={900}>
+                    ( {tour.rating} )
+                  </Text>
+                  <Icon as={AiFillStar} color="gold"></Icon>
+                </Flex>
               </Flex>
             </Flex>
-            <Heading size="xs" fontWeight={400} noOfLines={1}>
-              {tour.name}
-            </Heading>
+            <Link href={`/tour/${tour.id}`} _hover={{ color: 'primary.10' }} _active={{}} _focus={{}}>
+              <Heading size="xs" fontWeight={400} noOfLines={1}>
+                {tour.name}
+              </Heading>
+            </Link>
             <Flex justify="space-between" align="center">
               <Flex gap="5px" align="center">
                 <Heading size="sm" fontWeight={500} color="gold">
