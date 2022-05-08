@@ -156,12 +156,11 @@ function ToursResult({ tours }: ToursResultProps) {
       rowGap="50px"
       pt="20px">
       {tours.map((tour) => (
-        <Stack key={tour.id} bg="white" borderRadius="5px" shadow="md">
-          <Box h="50%" minH="50%" pos="relative" _hover={{ '.image': { transform: 'scale(1.2)' } }} overflow="hidden">
+        <Stack key={tour.id} bg="white" borderRadius="15px" shadow="md" p="10px">
+          <Box h="50%" minH="50%" pos="relative" _hover={{ '.image': { transform: 'scale(1.2)' } }} overflow="hidden" borderRadius="15px">
             <Image
               transition="all 0.5s"
               className="image"
-              borderRadius="5px 5px 0 0"
               src={tour.mainImage}
               alt={tour.name}
               objectFit="cover"
@@ -170,20 +169,10 @@ function ToursResult({ tours }: ToursResultProps) {
               w="100%"
             />
             <Link href={`/tour/${tour.id}`} pos="absolute" top="0" left="0" bg="#00000040" h="100%" w="100%">
-              <Flex
-                align="flex-end"
-                justify="flex-end"
-                h="100%"
-                color="white"
-                p="10px"
-                fontWeight={300}
-                fontSize="xs"
-                _hover={{ textDecor: 'underline' }}>
-                View tour
-              </Flex>
+              <Flex align="flex-end" justify="flex-end" h="100%" color="white" p="10px" fontWeight={300} fontSize="xs" />
             </Link>
           </Box>
-          <Stack spacing={4} p="10px" pt="5px">
+          <Stack spacing={4} pt="5px">
             <Flex justify="space-between" align="center">
               <Tag bg="tag" color="tagText">
                 <Text noOfLines={1} fontSize="xs">
