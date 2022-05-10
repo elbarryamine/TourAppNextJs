@@ -5,7 +5,7 @@ import { DashboardProvider } from '../../pages/app/_provider'
 import { toursRoutes } from './_features/tours/routes'
 import { homeRoutes } from '../../pages/app/_features/home/routes'
 import { ChakraProvider } from '@chakra-ui/react'
-import { dashboardTheme } from 'config/theme'
+import { dashboardTheme } from 'utils/theme'
 
 export default function App() {
   return (

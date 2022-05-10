@@ -6,7 +6,7 @@ import {
   TopHeader,
   // LoadingPage
 } from '../_components'
-import { dashboardTheme } from 'config/theme'
+import { dashboardTheme } from 'utils/theme'
 import { useChakraTheme } from 'hooks/usetheme'
 // import { gql, useQuery } from '@apollo/client'
 // import Router from 'next/router'
