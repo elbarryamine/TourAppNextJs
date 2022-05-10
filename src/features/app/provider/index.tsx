@@ -5,7 +5,7 @@ import {
   SideNavigation,
   TopHeader,
   // LoadingPage
-} from '../_components'
+} from '../components'
 import { dashboardTheme } from 'utils/theme'
 import { useChakraTheme } from 'hooks/usetheme'
 // import { gql, useQuery } from '@apollo/client'

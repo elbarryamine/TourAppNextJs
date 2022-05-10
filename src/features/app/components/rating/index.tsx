@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import React from 'react'
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa'
 
-export function Rating({ rating, size }: { rating: number; size: string | number }) {
+export function Rating({ rating, size }: { rating: number; size?: string | number }) {
   const _size = size ? size : '20px'
   return (
     <Flex color="orange" mt="5px">

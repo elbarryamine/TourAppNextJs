@@ -5,7 +5,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { RootState } from 'redux/store'
 import { TableContent, TourSearch, ToursPageHeader } from '../../components'
-import { LoadingPage } from '../../../../_components'
+import { LoadingPage } from '../../../../components'
 import { useGetTours } from 'api/tour/useGetTours'
 
 export function ToursPage() {

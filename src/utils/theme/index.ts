@@ -17,10 +17,7 @@ const sharedTheme = {
     portal: 9999,
     sortByDropDown: 2,
   },
-  fonts: {
-    heading: 'Public Sans',
-    body: 'Public Sans',
-  },
+
   fontWeights: {
     normal: 300,
     medium: 500,
@@ -64,6 +61,10 @@ const sharedTheme = {
 }
 export const dashboardTheme = extendTheme({
   ..._.cloneDeep(sharedTheme),
+  fonts: {
+    heading: 'Raleway',
+    body: 'Raleway',
+  },
   colors: {
     dark: {
       primary: '#4fd1c5',
@@ -97,6 +98,10 @@ export const dashboardTheme = extendTheme({
 })
 export const appTheme = extendTheme({
   ..._.cloneDeep(sharedTheme),
+  fonts: {
+    heading: 'Public Sans',
+    body: 'Public Sans',
+  },
   colors: {
     primary: '#0036FF',
     'primary.50': '#006FFF',
