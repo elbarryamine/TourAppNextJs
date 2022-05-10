@@ -5,8 +5,8 @@ import { AiOutlineSearch, AiOutlineClose } from 'react-icons/ai'
 export default function Search() {
   const [value, setValue] = React.useState<string>('')
   return (
-    <Flex py="20px" align="center" justify="center">
-      <InputGroup maxW="500px">
+    <Flex p="20px" align="center" bg="white">
+      <InputGroup maxW="500px" ml="auto">
         <InputLeftElement h="100%">
           <Icon as={AiOutlineSearch} color="primary.10" />
         </InputLeftElement>
