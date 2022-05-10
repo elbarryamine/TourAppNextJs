@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react'
 import { Navigation, LoadingPage, Subscribe } from 'components'
-import { Grid, Container, Alert, AlertIcon, AlertTitle, Flex, Box, Stack, Heading, Text, Input, Button } from '@chakra-ui/react'
+import { Grid, Container, Alert, AlertIcon, AlertTitle, Flex, Stack } from '@chakra-ui/react'
 import { useGetTours } from 'api/tour/useGetTours'
 import TourCard from 'components/tour-card'
-import Search from './components/search'
-import Filters from './components/filters'
+import Filters, { SideFilters } from './components/filters'
 
 export default function SearchPage() {
   const { data, loading, error } = useGetTours()
@@ -28,15 +27,14 @@ export default function SearchPage() {
       <Navigation />
       <Container maxW="1440px" h="100%" alignItems="center" justifyContent="space-between">
         <Flex gap="20px" mt="20px">
-          <Stack flex="1 0 300px" spacing={10}>
+          <Stack flex="0 0 300px" spacing={10}>
             <Subscribe />
-            <Box bg="white" border="1px solid" borderColor="whitesmoke" borderRadius="5px" h="500px"></Box>
+            <SideFilters />
           </Stack>
-          <Stack>
-            <Search />
+          <Stack bg="white" p="20px" borderRadius="5px">
             <Filters />
             <Grid
-              templateColumns={{ sm: '250px', md: 'repeat(2,250px)', lg: 'repeat(4,250px)', xl: 'repeat(5,250px)' }}
+              templateColumns={{ sm: '250px', md: '250px', lg: 'repeat(2,250px)', xl: 'repeat(3,250px)' }}
               alignItems="center"
               justifyContent="space-between"
               columnGap="10px"

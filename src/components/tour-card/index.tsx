@@ -4,7 +4,7 @@ import { AiFillStar, AiOutlineClockCircle } from 'react-icons/ai'
 
 export default function TourCard({ tour }: { tour: Tour }) {
   return (
-    <Stack key={tour.id} bg="white" borderRadius="1ss5px" shadow="md" p="10px">
+    <Stack key={tour.id} bg="white" borderRadius="15px" shadow="lg" border="1px solid" borderColor="whitesmoke" p="10px">
       <Box h="50%" minH="50%" pos="relative" _hover={{ '.image': { transform: 'scale(1.2)' } }} overflow="hidden" borderRadius="15px">
         <Image
           transition="all 0.5s"

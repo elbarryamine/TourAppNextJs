@@ -101,11 +101,12 @@ export const appTheme = extendTheme({
   fonts: {
     heading: 'Public Sans',
     body: 'Public Sans',
+    rale: 'Raleway',
   },
   colors: {
-    primary: '#0036FF',
-    'primary.50': '#006FFF',
-    'primary.10': '#00A0FF',
+    primary: '#000000',
+    'primary.50': '#00000080',
+    'primary.10': '#00000020',
     secondary: '#1D1A27',
     ternary: '#FCF7FF',
     accent: '#FED7D7',

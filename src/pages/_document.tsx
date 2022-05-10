@@ -5,7 +5,11 @@ export default function Document() {
   return (
     <Html>
       <Head />
-      <Box as="body" bgImage="linear-gradient(to right, #FDF7FA 0%, #F5F4FF80 100%);">
+      <Box
+        as="body"
+        bg="whitesmoke"
+        //  bgImage="linear-gradient(to right, #FDF7FA 0%, #F5F4FF80 100%);"
+      >
         <div id="preloader" className="preloader" />
         <ColorModeScript initialColorMode={appTheme.config.initialColorMode} />
         <Main />
