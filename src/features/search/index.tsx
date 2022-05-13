@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Navigation, LoadingPage, Subscribe } from 'components'
-import { Grid, Container, Alert, AlertIcon, AlertTitle, Flex, Stack } from '@chakra-ui/react'
+import { Grid, Container, Alert, AlertIcon, AlertTitle, Flex, Stack, Heading } from '@chakra-ui/react'
 import { useGetTours } from 'api/tour/useGetTours'
 import TourCard from 'components/tour-card'
 import Filters, { SideFilters } from './components/filters'

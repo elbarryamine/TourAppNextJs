@@ -4,7 +4,7 @@ import { AiFillStar, AiOutlineClockCircle } from 'react-icons/ai'
 
 export default function TourCard({ tour }: { tour: Tour }) {
   return (
-    <Stack key={tour.id} bg="white" borderRadius="15px" shadow="lg" border="1px solid" borderColor="whitesmoke" p="10px">
+    <Stack key={tour.id} bg="white" borderRadius="15px" border="1px solid" borderColor="whitesmoke" p="10px">
       <Box h="50%" minH="50%" pos="relative" _hover={{ '.image': { transform: 'scale(1.2)' } }} overflow="hidden" borderRadius="15px">
         <Image
           transition="all 0.5s"
@@ -22,7 +22,7 @@ export default function TourCard({ tour }: { tour: Tour }) {
       </Box>
       <Stack spacing={4} pt="5px">
         <Flex justify="space-between" align="center">
-          <Tag bg="tag" color="tagText">
+          <Tag bg="card_color_1" color="green.50">
             <Text noOfLines={1} fontSize="xs">
               {tour.location[0]}
             </Text>
@@ -37,7 +37,7 @@ export default function TourCard({ tour }: { tour: Tour }) {
             </Flex>
           </Flex>
         </Flex>
-        <Link href={`/tour/${tour.id}`} _hover={{ color: 'primary.10' }} _active={{}} _focus={{}}>
+        <Link href={`/tour/${tour.id}`} _hover={{ opacity: 0.8 }} _active={{}} _focus={{}}>
           <Heading size="xs" fontWeight={400} noOfLines={1}>
             {tour.name}
           </Heading>
@@ -47,13 +47,13 @@ export default function TourCard({ tour }: { tour: Tour }) {
             <Heading size="sm" fontWeight={500} color="gold">
               ${tour.price}
             </Heading>
-            <Text textDecor="line-through" fontSize="xx-small" color="GrayText">
+            <Text textDecor="line-through" fontSize="xx-small" color="main_grey">
               ${tour.discount}
             </Text>
           </Flex>
           <Flex gap="5px" align="center">
-            <Icon as={AiOutlineClockCircle} color="GrayText" />
-            <Text fontSize="sm" color="GrayText">
+            <Icon as={AiOutlineClockCircle} color="main_grey" />
+            <Text fontSize="sm" color="main_grey">
               {tour.duration} hours
             </Text>
           </Flex>
