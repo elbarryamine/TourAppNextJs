@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Flex, Text, keyframes } from '@chakra-ui/react'
+import { Box, Flex, Text, keyframes, FlexProps } from '@chakra-ui/react'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { createPortal } from 'react-dom'
 const spin = keyframes`
@@ -23,14 +23,14 @@ export function LoadingPage() {
       )
     : null
 }
-export function SimpleLoading() {
+export function SimpleLoading(props: FlexProps) {
   return (
-    <Flex w="100%" h="100%" align="center" justify="center">
+    <Flex w="100%" h="100%" align="center" justify="center" {...props}>
       <Flex align="center" justify="center" gap="10px" color="main_color_2">
         <Box animation={`${spin} infinite 0.5s linear`}>
           <AiOutlineLoading3Quarters size="20px" />
         </Box>
-        <Text fontWeight="extrabold" fontSize="body">
+        <Text fontWeight="extrabold" fontSize="body" fontFamily="rale">
           Loading
         </Text>
       </Flex>

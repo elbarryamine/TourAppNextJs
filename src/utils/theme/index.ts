@@ -5,6 +5,8 @@ const sharedTheme = {
   initialColorMode: 'light',
   useSystemColorMode: false,
   breakpoints: {
+    xss: '25em',
+    xs: '28em',
     sm: '30em',
     md: '48em',
     lg: '62em',

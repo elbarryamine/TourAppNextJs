@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import {
   FormControl,
   Text,
@@ -11,26 +11,20 @@ import {
   chakra,
   Alert,
   AlertIcon,
-  AlertTitle,
   AlertDescription,
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { SubmitInput, ModalMessage } from 'components'
 import { LinkTo } from 'utils/link'
-import { gql, useMutation } from '@apollo/client'
 import _ from 'lodash'
 import { FaTimes } from 'react-icons/fa'
 import router from 'next/router'
+import { useSignUp } from './api/useSignUp'
 
-const QUERY = gql`
-  mutation ($firstName: String!, $lastName: String!, $email: String!, $phone: String, $password: String!, $passwordConfirm: String!) {
-    signUp(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, password: $password, passwordConfirm: $passwordConfirm)
-  }
-`
 export default function SignUp() {
-  const [isError, setIsError] = React.useState<string>('')
+  const [errorMsg, setErrorMsg] = React.useState<string>('')
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
-  const [runMutation, { data, loading, error }] = useMutation(QUERY)
+  const [runMutation, { data, loading, error }] = useSignUp()
   async function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
     try {
@@ -49,11 +43,11 @@ export default function SignUp() {
     } catch {}
   }
   React.useEffect(() => {
-    if (error) setIsError(error.message)
-    if (!error) setIsError('')
+    if (error) setErrorMsg(error.message)
+    if (!error) setErrorMsg('')
     const errorInterval = setInterval(() => {
       if (error) {
-        setIsError('')
+        setErrorMsg(error.message)
       }
     }, 5000)
     return () => {
@@ -81,7 +75,18 @@ export default function SignUp() {
   }, [isModalOpen])
 
   return (
-    <Fragment>
+    <Box h="100vh" pos="relative" bg="white">
+      {errorMsg && (
+        <Alert status="error" pos="sticky" top="0px" right="0px" fontFamily="rale">
+          <AlertIcon />
+          <AlertDescription fontWeight={300} fontSize="sm">
+            {errorMsg}
+          </AlertDescription>
+          <Box onClick={() => setErrorMsg('')} cursor="pointer" pos="absolute" right="20px" color="red">
+            <FaTimes size="20px" />
+          </Box>
+        </Alert>
+      )}
       <ModalMessage
         bodyContent="Signup is successfull"
         headerContent="Yey !"
@@ -89,22 +94,12 @@ export default function SignUp() {
         isOpen={isModalOpen}
         setIsOpen={setIsModalOpen}
       />
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} bg="white" borderRadius="10px" color="black" w="100%" pos="relative">
-        <Heading fontSize={'4xl'} textAlign="center">
-          {isError && (
-            <Alert status="error" pos="absolute" top="0px" right="0px">
-              <AlertIcon />
-              <AlertTitle mr={2}>Error</AlertTitle>
-              <AlertDescription>{isError}</AlertDescription>
-              <Box onClick={() => setIsError('')} cursor="pointer" pos="absolute" right="20px" color="red">
-                <FaTimes size="20px" />
-              </Box>
-            </Alert>
-          )}
+      <Stack spacing={8} mx="auto" maxW="lg" py={12} borderRadius="10px" color="black" w="100%" pos="relative">
+        <Heading fontSize="4xl" textAlign="center" color="main_color_2">
           Sign up to join us
         </Heading>
 
-        <chakra.form rounded={'lg'} bg="white" boxShadow={'base'} p={8} onSubmit={handleSubmit}>
+        <chakra.form rounded="lg" bg="white" border="1px solid" borderColor="whitesmoke" p={8} onSubmit={handleSubmit}>
           <Stack spacing={4}>
             <FormControl id="first_name">
               <FormLabel fontWeight="extrabold">First Name</FormLabel>
@@ -143,6 +138,6 @@ export default function SignUp() {
           </Stack>
         </chakra.form>
       </Stack>
-    </Fragment>
+    </Box>
   )
 }

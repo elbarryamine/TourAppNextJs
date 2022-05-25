@@ -7,7 +7,7 @@ export default function Document() {
       <Head />
       <Box
         as="body"
-        bg="whitesmoke"
+        bg="#fafafa"
         //  bgImage="linear-gradient(to right, #FDF7FA 0%, #F5F4FF80 100%);"
       >
         <div id="preloader" className="preloader" />

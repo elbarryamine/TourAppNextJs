@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-type Tour = {
+export type Tour = {
   id: string
   name: string
   rating: number

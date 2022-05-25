@@ -2,10 +2,33 @@ import React from 'react'
 import { Flex, Box, Heading, Text, Icon, Image, Stack, Tag, Link } from '@chakra-ui/react'
 import { AiFillStar, AiOutlineClockCircle } from 'react-icons/ai'
 
-export default function TourCard({ tour }: { tour: Tour }) {
+export function TourCard({ tour }: { tour: Tour }) {
   return (
-    <Stack key={tour.id} bg="white" borderRadius="15px" border="1px solid" borderColor="whitesmoke" p="10px">
-      <Box h="50%" minH="50%" pos="relative" _hover={{ '.image': { transform: 'scale(1.2)' } }} overflow="hidden" borderRadius="15px">
+    <Stack key={tour.id} bg="white" borderRadius="15px" border="1px solid" borderColor="whitesmoke" shadow="xs">
+      <Box
+        h="50%"
+        minH="50%"
+        pos="relative"
+        _hover={{ '.image': { transform: 'scale(1.2)' } }}
+        overflow="hidden"
+        borderRadius="15px 15px 0 0">
+        <Flex
+          visibility={tour.rating > 4 ? 'visible' : 'hidden'}
+          pos="absolute"
+          top="20px"
+          left="-5px"
+          bg="main_color_1"
+          color="white"
+          zIndex="2"
+          px="20px"
+          py="3px"
+          align="center"
+          justify="center"
+          borderRadius="5px">
+          <Text fontFamily="rale" fontSize="sm" fontWeight={900}>
+            Popular
+          </Text>
+        </Flex>
         <Image
           transition="all 0.5s"
           className="image"
@@ -20,9 +43,9 @@ export default function TourCard({ tour }: { tour: Tour }) {
           <Flex align="flex-end" justify="flex-end" h="100%" color="white" p="10px" fontWeight={300} fontSize="xs" />
         </Link>
       </Box>
-      <Stack spacing={4} pt="5px">
+      <Stack spacing={4} p="15px" pt="5px">
         <Flex justify="space-between" align="center">
-          <Tag bg="card_color_1" color="green.50">
+          <Tag bg="main_color_2" color="green.50">
             <Text noOfLines={1} fontSize="xs">
               {tour.location[0]}
             </Text>
@@ -38,14 +61,14 @@ export default function TourCard({ tour }: { tour: Tour }) {
           </Flex>
         </Flex>
         <Link href={`/tour/${tour.id}`} _hover={{ opacity: 0.8 }} _active={{}} _focus={{}}>
-          <Heading size="xs" fontWeight={400} noOfLines={1}>
+          <Heading size="xs" fontWeight={400} h="30px">
             {tour.name}
           </Heading>
         </Link>
         <Flex justify="space-between" align="center">
           <Flex gap="5px" align="center">
-            <Heading size="sm" fontWeight={500} color="gold">
-              ${tour.price}
+            <Heading size="md" fontWeight={500} color="main_color_1">
+              {tour.price} MAD
             </Heading>
             <Text textDecor="line-through" fontSize="xx-small" color="main_grey">
               ${tour.discount}

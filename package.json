@@ -8,10 +8,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.8",
+    "@apollo/client": "^3.6.5",
     "@chakra-ui/react": "1.7.5",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@fontsource/raleway": "^4.5.8",
     "@reduxjs/toolkit": "^1.7.1",
     "@types/query-string": "^6.3.0",
     "@types/react-router": "^5.1.17",
