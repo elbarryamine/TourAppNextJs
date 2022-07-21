@@ -13,6 +13,7 @@
     "@chakra-ui/react": "1.7.5",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@fontsource/inter": "^4.5.11",
     "@fontsource/raleway": "^4.5.8",
     "@reduxjs/toolkit": "^1.7.1",
     "@types/query-string": "^6.3.0",
