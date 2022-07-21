@@ -1,9 +1,9 @@
 import React from 'react'
 import { Stack } from '@chakra-ui/react'
-import Header from './layouts/header'
-import Offers from './layouts/offers'
-import Experience from './layouts/experience'
-import StartSection from './layouts/start'
+import Header from './layouts/Header'
+import Offers from './layouts/Offers'
+import Experience from './layouts/Experience'
+import StartSection from './layouts/Start'
 import { useResponsive } from '@shared/hooks/useResponsive'
 
 export default function HomePage() {

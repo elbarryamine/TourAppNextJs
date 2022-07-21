@@ -1,7 +1,7 @@
 import { Container, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { useResponsive } from '@shared/hooks/useResponsive'
 import React from 'react'
-import StartButton from './start-button'
+import StartButton from './StartButton'
 
 export default function Header() {
   const { lessthan768, lessthan600, lessthan900 } = useResponsive()

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Flex, Heading, Text } from '@chakra-ui/react'
-import StartButton from './start-button'
+import StartButton from './StartButton'
 import { useResponsive } from '@shared/hooks/useResponsive'
 
 export default function StartSection() {
