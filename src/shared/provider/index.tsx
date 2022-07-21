@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
 import { AppProps } from 'next/app'
-import { appTheme } from '../utils/theme'
+import { theme } from '../utils/theme'
 import { Provider } from 'react-redux'
 import store from '@redux/store'
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
@@ -23,7 +23,7 @@ export default function AppProvider({ children, router }: Props) {
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <ChakraProvider theme={appTheme}>
+        <ChakraProvider theme={theme}>
           <SwitchTransition mode="out-in">
             <CSSTransition key={router.pathname} classNames="swap" timeout={400}>
               <Fragment>{children}</Fragment>
