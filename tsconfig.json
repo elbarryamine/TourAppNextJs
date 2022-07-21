@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "baseUrl": "./src",
-    "typeRoots": ["src/types"],
+    "typeRoots": ["src/common/types"],
     "paths": {
       "components/*": ["components/*"],
       "config/*": ["config/*"],
@@ -23,6 +23,21 @@
     },
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.js", "**/*.ts", "**/*.tsx", ".eslintrc.js", "next.config.js", "src/*"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.js",
+    "**/*.ts",
+    "**/*.tsx",
+    ".eslintrc.js",
+    "next.config.js",
+    "src/*",
+    "src/common/utils",
+    "src/common/types",
+    "src/common/redux",
+    "src/common/provider",
+    "src/common/api",
+    "src/common/hooks",
+    "src/common/provider"
+  ],
   "exclude": ["node_modules", ".next", "./node_modules", "./node_modules/*", "./node_modules/@types/node/index.d.ts"]
 }

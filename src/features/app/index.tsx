@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
-import { LinkTo } from 'utils/link'
+import { dashboardLinks } from 'common/utils/link'
 import { DashboardProvider } from './provider'
-import { toursRoutes } from './features/tours/routes'
-import { homeRoutes } from './features/home/routes'
+import { toursRoutes } from './pages/tours/routes'
+import { homeRoutes } from './pages/home/routes'
 import { ChakraProvider } from '@chakra-ui/react'
-import { dashboardTheme } from 'utils/theme'
+import { dashboardTheme } from 'common/utils/theme'
 
 export default function App() {
   return (
@@ -17,10 +17,10 @@ export default function App() {
 
 export function Main() {
   const routes = [
-    { path: LinkTo.root, element: <Navigate to={LinkTo.home} /> },
+    { path: dashboardLinks.root, element: <Navigate to={dashboardLinks.home} /> },
     ...homeRoutes,
     ...toursRoutes,
-    { path: '*', element: <Navigate to={LinkTo.home} /> },
+    { path: '*', element: <Navigate to={dashboardLinks.home} /> },
   ]
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import {
   FormControl,
   Text,
@@ -16,16 +16,16 @@ import {
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { SubmitInput } from 'components/form'
-import { LinkTo } from 'utils/link'
+import { dashboardLinks, mainLinks } from 'common/utils/link'
 import _ from 'lodash'
 import { FaTimes } from 'react-icons/fa'
 import Router from 'next/router'
 import { useSignIn } from './api/useSignIn'
 
 export default function Login() {
-  const [errorMsg, setErrorMsg] = React.useState<string>('')
+  const [errorMsg, setErrorMsg] = useState<string>('')
   const [runLoginQuery, { loading, data, error }] = useSignIn()
-  async function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
+  async function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
     try {
       const {
@@ -36,13 +36,13 @@ export default function Login() {
       e.target.reset()
     } catch {}
   }
-  React.useEffect(() => {
+  useEffect(() => {
     if (error) setErrorMsg(error.message)
   }, [error])
-  React.useEffect(() => {
+  useEffect(() => {
     if (loading || _.isEmpty(data)) return
     if (data.signIn) {
-      Router.push(LinkTo.dashboard)
+      Router.push(dashboardLinks.dashboard)
     }
   }, [loading, data])
   return (
@@ -79,7 +79,7 @@ export default function Login() {
                   </Text>
                 </Checkbox>
                 <Box color="">
-                  <Link passHref={true} href={LinkTo.forgetPassword}>
+                  <Link passHref={true} href={dashboardLinks.forgetPassword}>
                     <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
                       Forgot password?
                     </Text>
@@ -87,7 +87,7 @@ export default function Login() {
                 </Box>
               </Stack>
               <Box color="" textAlign="center">
-                <Link passHref={true} href={LinkTo.sigunp}>
+                <Link passHref={true} href={mainLinks.sigunp}>
                   <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
                     Create an account
                   </Text>

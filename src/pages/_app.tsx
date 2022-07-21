@@ -1,54 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '@fontsource/raleway'
 import '../styles/global.css'
 import '../styles/transition.css'
 import { AppProps } from 'next/app'
-import AppProvider from '../provider'
-import { Box } from '@chakra-ui/react'
-import { useChakraTheme } from 'hooks/usetheme'
+import AppProvider from '../common/provider'
+import { Flex } from '@chakra-ui/react'
+import { Navigation } from 'components/navigation'
+import { Footer } from 'components/footer'
+import { SimpleLoading } from 'components/loading'
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
-  const [loaded, setLoaded] = React.useState<boolean>(false)
+  const [loaded, setLoaded] = useState<boolean>(false)
   let typeOfWindow = typeof window
-  const theme = useChakraTheme()
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (typeOfWindow === 'undefined') return
     setLoaded(true)
   }, [typeOfWindow])
-  if (!loaded) return null
-
+  if (!router.isReady || !loaded) return <SimpleLoading hideText={true} h="100vh" />
   return (
     <AppProvider router={router}>
-      <Box __css={styles(theme).thumb}>
+      <Flex minH="100vh" flexDir="column">
+        {!router.pathname.startsWith('/app') && <Navigation />}
         <Component {...pageProps} />
-      </Box>
+        {!router.pathname.startsWith('/app') && <Footer />}
+      </Flex>
     </AppProvider>
   )
-}
-
-function styles(theme: any) {
-  return {
-    thumb: {
-      '*::-webkit-scrollbar': {
-        width: '8px',
-      },
-      '*::-webkit-scrollbar-track': {
-        bg: theme.accenttext,
-      },
-      '*::-webkit-scrollbar-thumb': {
-        bg: theme.primary,
-        border: '1px solid',
-        borderColor: theme.accenttext,
-        borderRadius: '300px',
-      },
-      '*::-webkit-scrollbar-thumb:hover': {
-        bg: theme.primary,
-      },
-      '*::-webkit-scrollbar-thumb:horizontal': {
-        border: '5px solid',
-        borderColor: theme.accenttext,
-      },
-    },
-  }
 }

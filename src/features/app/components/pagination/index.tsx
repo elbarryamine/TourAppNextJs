@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Flex } from '@chakra-ui/react'
-import { useChakraTheme } from 'hooks/usetheme'
+import { useChakraTheme } from 'common/hooks/usetheme'
 import ReactPaginate from 'react-paginate'
 
 type Props = {

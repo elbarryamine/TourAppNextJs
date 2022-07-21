@@ -1,9 +1,10 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["next/babel", "next/core-web-vitals"],
   "rules": {
     "react/display-name": "off",
     "no-unused-vars": "warn",
     "no-console": "warn",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "@next/next/link-passhref": "off"
   }
 }

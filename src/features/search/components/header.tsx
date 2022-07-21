@@ -1,21 +1,37 @@
 import React from 'react'
-import { Flex, Box, Heading, Text } from '@chakra-ui/react'
+import SearchBar from './SearchBar'
+import { Box, Container, Flex, Heading } from '@chakra-ui/react'
 
 export default function Header() {
   return (
-    <Flex h="20vh" p="20px" align="center" justify="center">
-      <Box>
-        <Heading fontWeight="100" sx={{ span: { color: 'primary.10', textDecor: 'dashed' } }} textTransform="uppercase">
-          <span>Browse</span> hundreds of tours over <span>Morrocco</span>
-        </Heading>
-        <Text
-          color="GrayText"
-          fontSize="xs"
-          sx={{ span: { color: 'primary.10' }, '.scratch': { textDecor: 'line-through', fontWeight: '100', color: 'gray.900' } }}
-          textTransform="uppercase">
-          We make sure you find <span className="scratch">a tour</span> <span>the Right adventure</span>
-        </Text>
+    <Box h="400px" pos="relative">
+      <Box bg="#00000060" pos="absolute" top="0" left="0" h="100%" w="100%" zIndex="2">
+        <Container maxW="1200px" h="100%">
+          <Flex flexDir="column" justify="center" h="100%">
+            <Heading color="white" size="4xl" fontWeight={400}>
+              Let's find a adventure together
+            </Heading>
+            <Heading size="md" color="color_grey_3" fontWeight={200}>
+              we can show you a good time and a great story to share with people
+            </Heading>
+          </Flex>
+          <Box transform="translateY(-50%)">
+            <SearchBar />
+          </Box>
+        </Container>
       </Box>
-    </Flex>
+      <Box
+        pos="absolute"
+        top="0"
+        left="0"
+        h="100%"
+        w="100%"
+        zIndex="1"
+        bgImage="https://images.pexels.com/photos/2106776/pexels-photo-2106776.jpeg?auto=compress&cs=tinysrgb&w=1600"
+        bgPos="center"
+        bgRepeat="no-repeat"
+        bgSize="cover"
+      />
+    </Box>
   )
 }

@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react'
-import { useChakraTheme } from 'hooks/usetheme'
+import { useChakraTheme } from 'common/hooks/usetheme'
 
 // eslint-disable-next-line no-unused-vars
 type AllOrNone<T> = T | { [K in keyof T]?: never }
@@ -16,8 +16,8 @@ type Props = AllOrNone<{
 export function ModalMessage({ isOpen, setIsOpen, variant, headerContent, bodyContent, footerContent }: Props) {
   const { background, text } = useChakraTheme()
   const { onClose } = useDisclosure()
-  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(true)
-  React.useEffect(() => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(true)
+  useEffect(() => {
     const modalTimeOut = setInterval(() => {
       setIsModalOpen(false)
     }, 5000)

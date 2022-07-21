@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import {
   FormControl,
   Text,
@@ -15,17 +15,18 @@ import {
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { SubmitInput, ModalMessage } from 'components'
-import { LinkTo } from 'utils/link'
+import { mainLinks } from 'common/utils/link'
 import _ from 'lodash'
 import { FaTimes } from 'react-icons/fa'
 import router from 'next/router'
 import { useSignUp } from './api/useSignUp'
 
 export default function SignUp() {
-  const [errorMsg, setErrorMsg] = React.useState<string>('')
-  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false)
+  const [errorMsg, setErrorMsg] = useState<string>('')
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [runMutation, { data, loading, error }] = useSignUp()
-  async function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
+
+  async function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
     try {
       const {
@@ -42,7 +43,8 @@ export default function SignUp() {
       e.target.reset()
     } catch {}
   }
-  React.useEffect(() => {
+
+  useEffect(() => {
     if (error) setErrorMsg(error.message)
     if (!error) setErrorMsg('')
     const errorInterval = setInterval(() => {
@@ -54,15 +56,15 @@ export default function SignUp() {
       clearInterval(errorInterval)
     }
   }, [error])
-  React.useEffect(() => {
+  useEffect(() => {
     if (loading || _.isEmpty(data)) return
     if (data.signUp) {
       setIsModalOpen(true)
     }
   }, [loading, data])
-  React.useEffect(() => {
+  useEffect(() => {
     if (!_.isEmpty(data) && !isModalOpen) {
-      router.push(LinkTo.login)
+      router.push(mainLinks.login)
     }
     if (isModalOpen) {
       const modalTimeOut = setInterval(() => {
@@ -95,7 +97,7 @@ export default function SignUp() {
         setIsOpen={setIsModalOpen}
       />
       <Stack spacing={8} mx="auto" maxW="lg" py={12} borderRadius="10px" color="black" w="100%" pos="relative">
-        <Heading fontSize="4xl" textAlign="center" color="main_color_2">
+        <Heading fontSize="4xl" textAlign="center" color="color_1">
           Sign up to join us
         </Heading>
 
@@ -128,7 +130,7 @@ export default function SignUp() {
             <Stack spacing={10}>
               {loading ? <Button isLoading bg="purple" color="white" variant="solid" /> : <SubmitInput title="Sign Up" />}
               <Box color="black" textAlign="center">
-                <Link passHref={true} href={LinkTo.login}>
+                <Link passHref={true} href={mainLinks.login}>
                   <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
                     I already have an account
                   </Text>

@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Flex, Text, InputGroup, Input, GridItem, Avatar, InputLeftElement, Box, useColorMode, Button } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { LinkTo } from 'utils/link'
-import { useChakraTheme } from 'hooks/usetheme'
+import { dashboardLinks } from 'common/utils/link'
+import { useChakraTheme } from 'common/hooks/usetheme'
 import { NotificationDrawer } from '..'
 import { FaBell, FaMoon, FaSearch, FaSun } from 'react-icons/fa'
 export function TopHeader() {
   const { colorMode, toggleColorMode } = useColorMode()
   const { background, subBackground, text, accenttext } = useChakraTheme()
-  const [isDrawerOpen, setDrawerOpen] = React.useState<boolean>(false)
+  const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
   function openDrawer() {
     setDrawerOpen(true)
   }
@@ -18,7 +18,7 @@ export function TopHeader() {
   return (
     <GridItem bg={background} gridColumn="1/-1" gridRow="1/2" py="20px" borderBottom="1px solid" borderColor={accenttext}>
       <Flex h="100%" w="100%" justify="space-between" align="center" px="50px">
-        <Link to={LinkTo.root}>
+        <Link to={dashboardLinks.root}>
           <Text color={text} fontWeight="extrabold" fontSize="display" textTransform="capitalize">
             Tour guide dashboard
           </Text>

@@ -1,19 +1,17 @@
 import { Box, ColorModeScript } from '@chakra-ui/react'
 import { Html, Head, Main, NextScript } from 'next/document'
-import { appTheme } from '../utils/theme'
+import { appTheme } from '../common/utils/theme'
 export default function Document() {
   return (
     <Html>
-      <Head />
-      <Box
-        as="body"
-        bg="#fafafa"
-        //  bgImage="linear-gradient(to right, #FDF7FA 0%, #F5F4FF80 100%);"
-      >
+      <Head>
+        <link rel="preload" href="/fonts/proxima.otf" />
+      </Head>
+      <ColorModeScript initialColorMode={appTheme.config.initialColorMode} />
+      <NextScript />
+      <Box as="body" bg="#fafafa">
         <div id="preloader" className="preloader" />
-        <ColorModeScript initialColorMode={appTheme.config.initialColorMode} />
         <Main />
-        <NextScript />
       </Box>
     </Html>
   )

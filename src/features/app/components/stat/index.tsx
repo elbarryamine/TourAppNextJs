@@ -1,5 +1,5 @@
 import { Box, Heading, Stack, Text, useBreakpointValue } from '@chakra-ui/react'
-import { useChakraTheme } from 'hooks/usetheme'
+import { useChakraTheme } from 'common/hooks/usetheme'
 import * as React from 'react'
 
 interface Props {
