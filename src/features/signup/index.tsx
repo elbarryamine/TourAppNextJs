@@ -18,7 +18,7 @@ import { mainLinks } from '@shared/utils/link'
 import _ from 'lodash'
 import { FaTimes } from 'react-icons/fa'
 import router from 'next/router'
-import { useSignUp } from './api/useSignUp'
+import { useSignUp } from '../../shared/api/auth/useSignUp'
 import { ModalMessage } from '@components/Layouts/Modal'
 import { SubmitInput } from '@components/Layouts/Form'
 

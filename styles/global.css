@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@100;300;400;500;600;700&display=swap');
 
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
   width: 8px;
   max-height: 4px;
 }
@@ -13,4 +13,4 @@
 }
 *::-webkit-scrollbar-thumb:hover {
   background: #c7c7c7;
-}
+} */
