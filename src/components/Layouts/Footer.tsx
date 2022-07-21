@@ -1,10 +1,10 @@
 import { Container, Flex, Grid, Stack, Image, Heading } from '@chakra-ui/react'
-import { Subscribe } from 'components/subscribe'
 import { useResponsive } from '@shared/hooks/useResponsive'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { mainLinks } from '@shared/utils/link'
+import { Subscribe } from './Subscribe'
 
 export default function Footer() {
   const { lessthan1000, lessthan768, lessthan600 } = useResponsive()
