@@ -15,12 +15,12 @@ import {
   AlertDescription,
 } from '@chakra-ui/react'
 import Link from 'next/link'
-import { SubmitInput } from 'components/form'
-import { dashboardLinks, mainLinks } from 'common/utils/link'
+import { dashboardLinks, mainLinks } from '@shared/utils/link'
 import _ from 'lodash'
 import { FaTimes } from 'react-icons/fa'
 import Router from 'next/router'
 import { useSignIn } from './api/useSignIn'
+import { SubmitInput } from '@components/Layouts/Form'
 
 export default function Login() {
   const [errorMsg, setErrorMsg] = useState<string>('')

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Stack } from '@chakra-ui/react'
-import Header from './components/header'
-import Offers from './components/offers'
-import Experience from './components/experience'
-import StartSection from './components/start'
-import { useResponsive } from 'common/hooks/useResponsive'
+import Header from './layouts/header'
+import Offers from './layouts/offers'
+import Experience from './layouts/experience'
+import StartSection from './layouts/start'
+import { useResponsive } from '@shared/hooks/useResponsive'
 
 export default function HomePage() {
   const { lessthan1000 } = useResponsive()

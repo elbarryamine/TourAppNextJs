@@ -1,8 +1,8 @@
 import React from 'react'
 import { FormControl, Text, Input, FormLabel, Box, Stack, Heading } from '@chakra-ui/react'
 import Link from 'next/link'
-import { SubmitInput } from 'components/form'
-import { mainLinks } from 'common/utils/link'
+import { mainLinks } from '@shared/utils/link'
+import { SubmitInput } from '@components/Layouts/Form'
 
 export default function ForgotPassword() {
   return (

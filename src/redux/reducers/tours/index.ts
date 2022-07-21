@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Tour } from 'common/types/tours'
+import { Tour } from '@shared/types/tours'
 
 interface State {
   toursOfTable: Tour[]

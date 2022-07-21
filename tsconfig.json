@@ -14,12 +14,22 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": "./src",
+
     "typeRoots": ["src/common/types"],
+    "baseUrl": ".",
     "paths": {
-      "components/*": ["components/*"],
-      "config/*": ["config/*"],
-      "styles/*": ["styles/*"]
+      "@components/*": ["src/components/*"],
+      "@components": ["src/components"],
+      "@features/*": ["src/features/*"],
+      "@features": ["src/features"],
+      "@public/*": ["public/*"],
+      "@public": ["public"],
+      "@styles/*": ["src/styles/*"],
+      "@styles": ["src/styles"],
+      "@redux/*": ["src/redux/*"],
+      "@redux": ["src/redux"],
+      "@shared/*": ["src/shared/*"],
+      "@shared": ["src/shared"]
     },
     "incremental": true
   },

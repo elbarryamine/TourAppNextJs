@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useGetTour } from 'common/api/tour/useGetTour'
-import { Tour } from 'common/types/tours'
+import { useGetTour } from '@shared/api/tour/useGetTour'
+import { Tour } from '@shared/types/tours'
 import { Box, Container, Image, Heading, Flex, Text } from '@chakra-ui/react'
 
 export default function SingleTourPage() {
@@ -21,7 +21,7 @@ export default function SingleTourPage() {
     setTour(data.getTour)
   }, [loading, data])
 
-  if (error) return 'error'
+  if (error) return <>error</>
 
   return (
     <Box minH="90vh" w="100%" bg="white" py="50px">

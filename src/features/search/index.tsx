@@ -1,8 +1,8 @@
 import React from 'react'
-import { Box, Container, Flex, Heading, Stack } from '@chakra-ui/react'
-import Filters from './components/Filter'
-import ToursDisplay from './components/TourDisplay'
-import Header from './components/Header'
+import { Box, Container, Stack } from '@chakra-ui/react'
+import Filters from './layouts/Filter'
+import ToursDisplay from './layouts/TourDisplay'
+import Header from './layouts/Header'
 
 export default function SearchPage() {
   return (

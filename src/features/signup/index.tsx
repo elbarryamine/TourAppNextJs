@@ -14,12 +14,13 @@ import {
   AlertDescription,
 } from '@chakra-ui/react'
 import Link from 'next/link'
-import { SubmitInput, ModalMessage } from 'components'
-import { mainLinks } from 'common/utils/link'
+import { mainLinks } from '@shared/utils/link'
 import _ from 'lodash'
 import { FaTimes } from 'react-icons/fa'
 import router from 'next/router'
 import { useSignUp } from './api/useSignUp'
+import { ModalMessage } from '@components/Layouts/Modal'
+import { SubmitInput } from '@components/Layouts/Form'
 
 export default function SignUp() {
   const [errorMsg, setErrorMsg] = useState<string>('')
