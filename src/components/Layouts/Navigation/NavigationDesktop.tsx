@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Button, Container, Flex, Image } from '@chakra-ui/react'
 import { AiOutlineUserAdd } from 'react-icons/ai'
 import Link from 'next/link'
@@ -6,17 +6,35 @@ import { LinkWithIcon, NavigationComponentProps } from '.'
 
 export function NavigationDesktop({ dark, icons }: NavigationComponentProps) {
   const iconsArr = [...icons]
+  const [navbar, setNavbar] = useState(false)
+
   if (dark) iconsArr.shift()
+
+  const changeNavbarBackground = () => {
+    console.log(window.scrollY)
+    if (window.scrollY >= 80) {
+      setNavbar(true)
+    } else {
+      setNavbar(false)
+    }
+  }
+  useEffect(() => {
+    changeNavbarBackground()
+    console.log(navbar)
+    window.addEventListener('scroll', changeNavbarBackground)
+  })
   return (
     <Box
       as="nav"
       h={dark ? '100px' : '70px'}
       color={dark ? 'white' : 'color_dark'}
-      bg={dark ? 'color_dark' : 'color_light'}
+      // bg={dark ? 'color_dark' : 'color_light'}
+      bg={navbar ? 'white' : 'transparent'}
       fontFamily="rale"
-      pos="sticky"
-      top="0px"
-      left="0px"
+      pos="fixed"
+      // top="0px"
+      // left="0px"
+      w="100%"
       zIndex="homeNavigation"
       sx={{ '.logo': { h: '40px' } }}>
       <Container d="flex" maxW="1440px" h="100%" alignItems="center" justifyContent="space-between">

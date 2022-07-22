@@ -40,7 +40,14 @@ export function LinkWithIcon({ item, ...props }: LinkWithIconProps & FlexProps) 
   const isSamePge = pathname === item.link
   return (
     <Link href={item.link} _focus={{}}>
-      <Flex align="center" gap="5px" fontSize="sm" fontWeight={600} cursor="pointer" color={isSamePge ? 'color_1' : undefined} {...props}>
+      <Flex
+        align="center"
+        gap="5px"
+        fontSize="sm"
+        fontWeight={600}
+        cursor="pointer"
+        color={isSamePge ? 'color_1' : 'color_dark_blue'}
+        {...props}>
         <Icon as={item.icon} transform="translateY(-1px)" />
         <Text className="link">{item.name}</Text>
       </Flex>
