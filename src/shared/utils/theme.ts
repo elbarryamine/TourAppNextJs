@@ -88,10 +88,11 @@ export const theme = extendTheme({
     '3xl': '1.5rem',
     full: '9999px',
   },
+  
   fonts: {
-    heading: 'Raleway',
-    body: 'Raleway',
-    rale: 'Raleway',
+    heading: 'Inter',
+    body: 'Inter',
+    rale: 'Inter',
   },
   colors: {
     color_dark: '#161a1d',

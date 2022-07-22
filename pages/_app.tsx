@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '@fontsource/raleway'
+import '@fontsource/inter'
+
 import '../styles/global.css'
 import '../styles/transition.css'
 import { AppProps } from 'next/app'
