@@ -11,7 +11,6 @@ export function NavigationDesktop({ dark, icons }: NavigationComponentProps) {
   if (dark) iconsArr.shift()
 
   const changeNavbarBackground = () => {
-    console.log(window.scrollY)
     if (window.scrollY >= 80) {
       setNavbar(true)
     } else {
@@ -20,20 +19,18 @@ export function NavigationDesktop({ dark, icons }: NavigationComponentProps) {
   }
   useEffect(() => {
     changeNavbarBackground()
-    console.log(navbar)
+
     window.addEventListener('scroll', changeNavbarBackground)
+    return () => window.removeEventListener('scroll', changeNavbarBackground)
   })
   return (
     <Box
       as="nav"
       h={dark ? '100px' : '70px'}
       color={dark ? 'white' : 'color_dark'}
-      // bg={dark ? 'color_dark' : 'color_light'}
       bg={navbar ? 'white' : 'transparent'}
       fontFamily="rale"
       pos="fixed"
-      // top="0px"
-      // left="0px"
       w="100%"
       zIndex="homeNavigation"
       sx={{ '.logo': { h: '40px' } }}>
