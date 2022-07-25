@@ -4,7 +4,6 @@ import { NavigationMobile } from './NavigationMobile'
 import { NavigationDesktop } from './NavigationDesktop'
 import { Flex, FlexProps, Icon, Text, Link } from '@chakra-ui/react'
 import { mainLinks } from '@shared/utils/link'
-import { AiOutlineSearch, AiOutlineHome, AiOutlineBuild, AiOutlineInfo, AiOutlineLogin, AiOutlineLike } from 'react-icons/ai'
 import { MdFavoriteBorder, MdOutlineShoppingCart } from 'react-icons/md'
 import { useRouter } from 'next/router'
 

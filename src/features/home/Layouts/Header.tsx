@@ -4,6 +4,7 @@ import { Box, Container, Flex, Heading, Image, Stack, Text } from '@chakra-ui/re
 
 import { useResponsive } from '@shared/hooks/useResponsive'
 import StartButton from './StartButton'
+import SearchBar from './SearchBar'
 
 export default function Header() {
   const { lessthan768, lessthan600, lessthan900, lessthan1400 } = useResponsive()
@@ -25,20 +26,25 @@ export default function Header() {
               It's a Big{' '}
               <Box position="relative" display="inline-block">
                 World
-                <Image src="/assets/graphics/line-1.svg" alt="Dan Abramov" position="absolute" top="70" w="210px" />
+                <Image src="/assets/graphics/line-1.svg" alt="" position="absolute" top="70" w="210px" />
               </Box>
               <br /> Out There, Go
               <br /> Explore 🚀
             </Heading>
-            <Text fontSize="md" fontWeight={100} color="color_grey_2">
+            <Text fontSize="md" fontWeight={400} color="color_grey_1" maxW="70%">
               We always make our customer happy by providing as many choices as possible
             </Text>
-            <StartButton w="max-content" />
           </Stack>
           <Box>
-            <Image src="/assets/graphics/camel-map.svg" alt="Dan Abramov" w="100%" />
+            <Image src="/assets/graphics/camel-map.svg" alt="" w="100%" />
           </Box>
         </Flex>
+
+        <SearchBar />
+
+        <Box w="120px" position="relative">
+          <Image src="/assets/graphics/line-2.svg" alt="" position="absolute" left="-50px" top="70px" />
+        </Box>
       </Container>
     </Flex>
   )
