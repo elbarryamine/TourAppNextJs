@@ -21,6 +21,7 @@ export const mainLinks = {
   search: '/search',
   borwse: '/borwse',
   wishlist: '/wishlist',
+  cart: '/cart',
   about: '/about',
   privacy: '/privacy',
   terms: '/terms',

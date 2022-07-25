@@ -97,14 +97,16 @@ export const theme = extendTheme({
   colors: {
     color_dark: '#161a1d',
     color_light: '#FFFFFF',
-    color_grey: '#717074',
+    color_dark_blue: '#1F3347',
     color_grey_1: '#717074',
     color_grey_2: '#C7C7C7',
     color_grey_3: '#EFEFEF',
     color_1: '#6347F9',
+    color_1_hover: '#5232ff',
     color_2: '#FC747B',
     color_3: '#5b1216',
     color_4: '#43B97F',
     color_5: '#F6BB42',
+
   },
 })
