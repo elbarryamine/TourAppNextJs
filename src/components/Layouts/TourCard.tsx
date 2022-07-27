@@ -8,7 +8,6 @@ export default function TourCard({ tour, ...props }: { tour: Tour } & BoxProps) 
   const ratingAverage = tour.rating.reduce((prv, curr) => prv + curr, 0) / tour.rating.length
   return (
     <Box
-      key={tour.id}
       bg="white"
       borderRadius="8px"
       overflow="hidden"
