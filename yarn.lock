@@ -2747,6 +2747,11 @@ react-transition-group@^4.4.2:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-use-draggable-scroll@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/react-use-draggable-scroll/-/react-use-draggable-scroll-0.4.4.tgz#1ed1bb6734f524ad5b9806a7138c005e0ea70f77"
+  integrity sha512-lAXPv1y7cPunsZDW12aHenRV0TBg19JACHKI8npJykkPckn2OeVz89AETT0XCLMQw1JfIel59TAXJiZ5DLSrVQ==
+
 react-use-measure@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-use-measure/-/react-use-measure-2.1.1.tgz#5824537f4ee01c9469c45d5f7a8446177c6cc4ba"

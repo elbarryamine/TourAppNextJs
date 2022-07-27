@@ -42,7 +42,7 @@ export default function Header() {
 
         <SearchBar />
 
-        <Box w="120px" position="relative">
+        <Box w="120px" position="relative" mb={40}>
           <Image src="/assets/graphics/line-2.svg" alt="" position="absolute" left="-50px" top="70px" />
         </Box>
       </Container>

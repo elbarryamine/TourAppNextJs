@@ -6,8 +6,16 @@ import { Tour } from '@shared/types/tours'
 export default function TourCard({ tour }: { tour: Tour }) {
   const [imageLoaded, setImageLoaded] = React.useState<boolean>(false)
   return (
-    <Box key={tour.id} bg="white" border="1px solid whitesmoke" borderRadius="5px" overflow="hidden">
-      <Box h="50%" pos="relative" _hover={{ '.image': { transform: 'scale(1.2)' } }} overflow="hidden">
+    <Box
+      key={tour.id}
+      bg="white"
+      borderRadius="8px"
+      overflow="hidden"
+      w="250px"
+      p="5px"
+      m="12px"
+      _hover={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))' }}>
+      <Box h="50%" pos="relative" _hover={{ '.image': { transform: 'scale(1.2)' } }} overflow="hidden" borderRadius="8px">
         <Flex
           display={tour.rating > 4 ? 'block' : 'none'}
           pos="absolute"
@@ -25,8 +33,8 @@ export default function TourCard({ tour }: { tour: Tour }) {
             Popular
           </Text>
         </Flex>
-        <Box h="200px">
-          <Skeleton h="100%" w="100%" display={!imageLoaded ? 'block' : 'none'} />
+        <Box h="200px" borderRadius="8px">
+          <Skeleton h="100%" w="100%" display={!imageLoaded ? 'block' : 'none'} borderRadius="8px" />
           <Image
             display={imageLoaded ? 'block' : 'none'}
             transition="all 0.5s"

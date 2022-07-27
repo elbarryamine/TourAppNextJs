@@ -5,6 +5,7 @@ import Offers from './layouts/Offers'
 import Experience from './layouts/Experience'
 import StartSection from './layouts/Start'
 import { useResponsive } from '@shared/hooks/useResponsive'
+import TopDestination from './layouts/TopDestination'
 
 export default function HomePage() {
   const { lessthan1000 } = useResponsive()
@@ -16,6 +17,7 @@ export default function HomePage() {
       pb="50px">
       <Header />
       <Offers />
+      <TopDestination />
       <Experience />
       <StartSection />
     </Stack>
