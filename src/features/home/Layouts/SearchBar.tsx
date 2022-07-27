@@ -3,9 +3,10 @@ import { Divider, Flex, Text, Icon, Button, Input, Container, Box } from '@chakr
 import { MdSearch, MdOutlinePlace, MdKeyboardArrowDown, MdOutlineEventAvailable } from 'react-icons/md'
 
 export default function SearchBar() {
-  const [isHovering, setIsHovered] = useState(false)
+  const [, setIsHovered] = useState(false)
   const onMouseEnter = () => setIsHovered(true)
   const onMouseLeave = () => setIsHovered(false)
+
   return (
     <Container float="left" maxW="55%" mt="30px">
       <Flex align="center" justifyContent="space-between" bg="white" px="20px" py="10px" borderRadius="50px">

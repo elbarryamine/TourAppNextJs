@@ -3,7 +3,7 @@ import React from 'react'
 import { Box, Container, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react'
 
 import { useResponsive } from '@shared/hooks/useResponsive'
-import StartButton from './StartButton'
+
 import SearchBar from './SearchBar'
 
 export default function Header() {
