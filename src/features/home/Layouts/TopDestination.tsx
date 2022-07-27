@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import TourCard from '@components/Layouts/TourCard'
 import { Tour } from '@shared/types/tours'
-import { Box, Container, Flex, HStack, Heading } from '@chakra-ui/react'
+import { Container, Flex, HStack, Heading } from '@chakra-ui/react'
 import { useDraggable } from 'react-use-draggable-scroll'
 import { useResponsive } from '@shared/hooks/useResponsive'
 
@@ -37,16 +37,9 @@ export default function TopDestination() {
         <Heading fontSize="45px" color="color_dark_blue" fontWeight="700" mt="10px" mb="15px">
           Top attractions near Marrakech 🐪
         </Heading>
-        <HStack
-          spacing="20px"
-          {...events}
-          ref={ref}
-          overflowX="hidden"
-          className="flex max-w-xl space-x-3 overflow-x-scroll scrollbar-hide">
-          {tours.map((tour) => (
-            <Box w="250px">
-              <TourCard key={tour.id} tour={tour} />
-            </Box>
+        <HStack spacing="20px" overflowX="hidden" {...events} ref={ref}>
+          {tours.map((tour, index) => (
+            <TourCard flexShrink="0" key={index} tour={tour} />
           ))}
         </HStack>
       </Container>

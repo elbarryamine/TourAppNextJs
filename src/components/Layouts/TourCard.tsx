@@ -1,9 +1,9 @@
 import React from 'react'
-import { Flex, Box, Heading, Text, Icon, Image, Stack, Tag, Link, Divider, Skeleton } from '@chakra-ui/react'
+import { Flex, Box, Heading, Text, Icon, Image, Stack, Tag, Link, Divider, Skeleton, BoxProps } from '@chakra-ui/react'
 import { AiFillStar, AiOutlineClockCircle } from 'react-icons/ai'
 import { Tour } from '@shared/types/tours'
 
-export default function TourCard({ tour }: { tour: Tour }) {
+export default function TourCard({ tour, ...props }: { tour: Tour } & BoxProps) {
   const [imageLoaded, setImageLoaded] = React.useState<boolean>(false)
   const ratingAverage = tour.rating.reduce((prv, curr) => prv + curr, 0) / tour.rating.length
   return (
@@ -15,7 +15,8 @@ export default function TourCard({ tour }: { tour: Tour }) {
       w="250px"
       p="5px"
       m="12px"
-      _hover={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))' }}>
+      _hover={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))' }}
+      {...props}>
       <Box h="50%" pos="relative" _hover={{ '.image': { transform: 'scale(1.2)' } }} overflow="hidden" borderRadius="8px">
         <Flex
           display={ratingAverage > 4 ? 'block' : 'none'}
