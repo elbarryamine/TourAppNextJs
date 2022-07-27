@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
 import { AppProps } from 'next/app'
-import { theme } from '../utils/theme'
 import { Provider } from 'react-redux'
 import store from '@redux/store'
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
