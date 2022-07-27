@@ -1,12 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Divider, Flex, Text, Icon, Button, Input, Container, Box } from '@chakra-ui/react'
 import { MdSearch, MdOutlinePlace, MdKeyboardArrowDown, MdOutlineEventAvailable } from 'react-icons/md'
 
 export default function SearchBar() {
-  const [, setIsHovered] = useState(false)
-  const onMouseEnter = () => setIsHovered(true)
-  const onMouseLeave = () => setIsHovered(false)
-
   return (
     <Container float="left" maxW="55%" mt="30px">
       <Flex align="center" justifyContent="space-between" bg="white" px="20px" py="10px" borderRadius="50px">
@@ -55,16 +51,7 @@ export default function SearchBar() {
           </Box>
         </Flex>
 
-        <Button
-          borderRadius="50%"
-          w="50px"
-          h="50px"
-          colorScheme="none"
-          bg="color_1"
-          color="color_light"
-          _hover={{ bg: 'color_1_hover' }}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}>
+        <Button borderRadius="50%" w="50px" h="50px" colorScheme="none" bg="color_1" color="color_light" _hover={{ bg: 'color_1_hover' }}>
           <Icon as={MdSearch} w={6} h={6} />
         </Button>
       </Flex>
