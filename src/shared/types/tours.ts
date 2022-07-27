@@ -2,17 +2,18 @@
 export type Tour = {
   id: string
   name: string
-  rating: number
-  duration: number
   description: string
   price: number
   discount: number
-  mainImage: string
-  numberOfbooked: number
+  categories: string[]
+  duration: number
   features: string[]
+  startLocation: string
+  locations: string[]
+  image: string
   images: string[]
-  location: string[]
-  category: string[]
+  rating: number[]
+  numberOfbooked: number
   createdBy: string
-  createdAt: number
+  createdAt: Date
 }

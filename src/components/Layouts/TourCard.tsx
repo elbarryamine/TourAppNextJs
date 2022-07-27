@@ -5,6 +5,7 @@ import { Tour } from '@shared/types/tours'
 
 export default function TourCard({ tour }: { tour: Tour }) {
   const [imageLoaded, setImageLoaded] = React.useState<boolean>(false)
+  const ratingAverage = tour.rating.reduce((prv, curr) => prv + curr, 0) / tour.rating.length
   return (
     <Box
       key={tour.id}
@@ -17,7 +18,7 @@ export default function TourCard({ tour }: { tour: Tour }) {
       _hover={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))' }}>
       <Box h="50%" pos="relative" _hover={{ '.image': { transform: 'scale(1.2)' } }} overflow="hidden" borderRadius="8px">
         <Flex
-          display={tour.rating > 4 ? 'block' : 'none'}
+          display={ratingAverage > 4 ? 'block' : 'none'}
           pos="absolute"
           top="20px"
           left="-5px"
@@ -39,7 +40,7 @@ export default function TourCard({ tour }: { tour: Tour }) {
             display={imageLoaded ? 'block' : 'none'}
             transition="all 0.5s"
             className="image"
-            src={tour.mainImage}
+            src={tour.image}
             alt={tour.name}
             objectFit="cover"
             objectPosition="center"
@@ -60,12 +61,12 @@ export default function TourCard({ tour }: { tour: Tour }) {
           </Heading>
         </Link>
         <Text fontSize="sm" color="color_grey_1" noOfLines={1}>
-          {tour.category.join(' - ')}
+          {tour.categories.join(' - ')}
         </Text>
         <Flex justify="space-between" align="center" py="10px" color="color_light">
           <Tag bg="color_1" color="green.50">
             <Text noOfLines={1} fontSize="xs">
-              {tour.location[0]}
+              {tour.startLocation}
             </Text>
           </Tag>
           <Flex gap="5px" align="center">
