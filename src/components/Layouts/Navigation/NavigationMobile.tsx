@@ -41,7 +41,7 @@ export function NavigationMobile({ dark, icons }: NavigationComponentProps) {
       zIndex="homeNavigation"
       sx={{ '.logo': { h: '40px' } }}>
       <Flex align="center" justify="space-between" h="100%" px="20px" pos="sticky">
-        <Link href="/" passHref>
+        <Link href="/">
           <Image src={dark ? '/assets/logo/logo-dark.svg' : '/assets/logo/TourLeek.svg'} alt="logo" className="logo" w="150px" />
         </Link>
         <Button __css={{}} onClick={onOpen}>
@@ -53,7 +53,7 @@ export function NavigationMobile({ dark, icons }: NavigationComponentProps) {
             <DrawerContent bg={dark ? 'color_dark' : 'color_light'} color={dark ? 'color_light' : 'color_dark'}>
               <DrawerCloseButton _focus={{}} _active={{}} _hover={{}} onClick={onClose} />
               <DrawerHeader>
-                <Link href="/" passHref>
+                <Link href="/">
                   <Image src={dark ? '/assets/logo/logo-dark.svg' : '/assets/logo/TourLeek.svg'} alt="logo" className="logo" h="25px" />
                 </Link>
               </DrawerHeader>

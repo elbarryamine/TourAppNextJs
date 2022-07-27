@@ -63,7 +63,7 @@ export default function Footer() {
             bottom="0"
             py="20px"
             flexDir={lessthan768 ? 'column' : 'row'}>
-            <Link href="/" passHref>
+            <Link href="/">
               <Image
                 src={isHomePage ? '/assets/logo/logo-inverted.svg' : '/assets/logo/logo.svg'}
                 alt="logo"
@@ -71,12 +71,8 @@ export default function Footer() {
               />
             </Link>
             <Flex gap={lessthan1000 ? '5px' : '30px'} align="center" flexWrap="wrap">
-              <Link href={mainLinks.privacy} passHref>
-                Privacy policy
-              </Link>
-              <Link href={mainLinks.terms} passHref>
-                Terms of service
-              </Link>
+              <Link href={mainLinks.privacy}>Privacy policy</Link>
+              <Link href={mainLinks.terms}>Terms of service</Link>
             </Flex>
           </Flex>
         </Stack>

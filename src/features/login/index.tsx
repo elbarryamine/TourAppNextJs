@@ -79,7 +79,7 @@ export default function Login() {
                   </Text>
                 </Checkbox>
                 <Box color="">
-                  <Link passHref={true} href={dashboardLinks.forgetPassword}>
+                  <Link href={dashboardLinks.forgetPassword}>
                     <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
                       Forgot password?
                     </Text>
@@ -87,7 +87,7 @@ export default function Login() {
                 </Box>
               </Stack>
               <Box color="" textAlign="center">
-                <Link passHref={true} href={mainLinks.sigunp}>
+                <Link href={mainLinks.sigunp}>
                   <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
                     Create an account
                   </Text>

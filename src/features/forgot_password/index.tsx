@@ -23,7 +23,7 @@ export default function ForgotPassword() {
           </FormControl>
           <SubmitInput title="Reset" />
           <Box color="black" textAlign="center">
-            <Link passHref={true} href={mainLinks.login}>
+            <Link href={mainLinks.login}>
               <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
                 Go Back
               </Text>

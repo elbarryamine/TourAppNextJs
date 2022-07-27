@@ -38,7 +38,7 @@ export function NavigationDesktop({ dark, icons }: NavigationComponentProps) {
       zIndex="homeNavigation"
       sx={{ '.logo': { h: '40px' } }}>
       <Container d="flex" maxW="1440px" h="100%" alignItems="center" justifyContent="space-between">
-        <Link href="/" passHref>
+        <Link href="/">
           <Image src={dark ? '/assets/logo/logo-dark.svg' : '/assets/logo/TourLeek.svg'} alt="logo" className="logo" w="150px" />
         </Link>
         <Flex gap="30px" alignItems="center" flexWrap="wrap">

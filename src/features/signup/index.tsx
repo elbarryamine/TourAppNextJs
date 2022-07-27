@@ -131,7 +131,7 @@ export default function SignUp() {
             <Stack spacing={10}>
               {loading ? <Button isLoading bg="purple" color="white" variant="solid" /> : <SubmitInput title="Sign Up" />}
               <Box color="black" textAlign="center">
-                <Link passHref={true} href={mainLinks.login}>
+                <Link href={mainLinks.login}>
                   <Text fontWeight="extrabold" fontSize="body" cursor="pointer">
                     I already have an account
                   </Text>
