@@ -6,7 +6,7 @@ import { useDraggable } from 'react-use-draggable-scroll'
 import { useResponsive } from '@shared/hooks/useResponsive'
 
 export default function TopDestination() {
-  const ref = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>
+  const ref = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLDivElement>
   const { events } = useDraggable(ref)
   const { lessthan600 } = useResponsive()
   const tours: Tour[] = [
