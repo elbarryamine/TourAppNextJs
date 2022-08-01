@@ -74,7 +74,7 @@ export default function TourCard({ tour, ...props }: { tour: Tour } & BoxProps) 
             <Text fontSize="xs">Rating</Text>
             <Flex align="center">
               <Text fontSize="xs" color="gold" fontWeight={900}>
-                ( {tour.rating} )
+                {tour.rating.reduce((prv, acc) => prv + acc, 0) / tour.rating.length}
               </Text>
               <Icon as={AiFillStar} color="gold"></Icon>
             </Flex>
