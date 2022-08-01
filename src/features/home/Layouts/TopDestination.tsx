@@ -1,14 +1,12 @@
 import React, { useRef } from 'react'
 import TourCard from '@components/Layouts/TourCard'
 import { Tour } from '@shared/types/tours'
-import { Container, Flex, HStack, Heading } from '@chakra-ui/react'
+import { HStack, Heading, Box } from '@chakra-ui/react'
 import { useDraggable } from 'react-use-draggable-scroll'
-import { useResponsive } from '@shared/hooks/useResponsive'
 
 export default function TopDestination() {
   const ref = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLDivElement>
   const { events } = useDraggable(ref)
-  const { lessthan600 } = useResponsive()
   const tours: Tour[] = Array<Tour>(10).fill({
     id: '1',
     name: '3 Days Desert Tour From Marrakech To Merzouga.',
@@ -29,20 +27,18 @@ export default function TopDestination() {
     createdAt: new Date(),
   })
   return (
-    <Flex align="center" justify="center" as="section">
-      <Container maxW="1400px" px={lessthan600 ? '20px' : '50px'}>
-        <Heading fontSize="20px" fontWeight={700} color="color_1">
-          WHAT WE SERVE
-        </Heading>
-        <Heading fontSize="45px" color="color_dark_blue" fontWeight="700" mt="10px" mb="15px">
-          Top attractions near Marrakech 🐪
-        </Heading>
-        <HStack spacing="20px" overflowX="hidden" {...events} ref={ref}>
-          {tours.map((tour, index) => (
-            <TourCard flexShrink="0" key={index} tour={tour} />
-          ))}
-        </HStack>
-      </Container>
-    </Flex>
+    <Box as="section">
+      <Heading fontSize="20px" fontWeight={700} color="color_1">
+        WHAT WE SERVE
+      </Heading>
+      <Heading fontSize="45px" color="color_dark_blue" fontWeight="700" mt="10px" mb="15px">
+        Top attractions near Marrakech 🐪
+      </Heading>
+      <HStack spacing="20px" overflowX="hidden" {...events} ref={ref}>
+        {tours.map((tour, index) => (
+          <TourCard flexShrink="0" key={index} tour={tour} />
+        ))}
+      </HStack>
+    </Box>
   )
 }

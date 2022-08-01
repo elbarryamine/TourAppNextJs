@@ -3,9 +3,7 @@ import {
   Box,
   Button,
   Flex,
-  Image,
   Icon,
-  Link,
   useDisclosure,
   Drawer,
   DrawerOverlay,
@@ -20,6 +18,8 @@ import { AiOutlineMenu } from 'react-icons/ai'
 import { MdArrowForward, MdNavigateNext } from 'react-icons/md'
 import { NavigationComponentProps } from './types'
 import NavigationLink from './NavigationLink'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export function NavigationMobile({ links }: NavigationComponentProps) {
   const { onOpen, onClose, isOpen } = useDisclosure()
@@ -30,7 +30,6 @@ export function NavigationMobile({ links }: NavigationComponentProps) {
   return (
     <Box
       as="nav"
-      py="20px"
       color="color_dark"
       bg="color_light"
       fontFamily="rale"
@@ -41,7 +40,9 @@ export function NavigationMobile({ links }: NavigationComponentProps) {
       sx={{ '.logo': { h: '40px' } }}>
       <Flex align="center" justify="space-between" h="100%" px="20px" pos="sticky">
         <Link href="/">
-          <Image src={'/assets/logo/TourLeek.svg'} alt="logo" className="logo" w="150px" />
+          <Box pos="relative" w="150px" h="60px">
+            <Image src={'/assets/logo/Logo-light.svg'} alt="logo" layout="fill" />
+          </Box>
         </Link>
         <Button __css={{}} onClick={onOpen}>
           <Icon as={AiOutlineMenu} fontSize="30px" />
@@ -53,7 +54,9 @@ export function NavigationMobile({ links }: NavigationComponentProps) {
               <DrawerCloseButton _focus={{}} _active={{}} _hover={{}} onClick={onClose} />
               <DrawerHeader>
                 <Link href="/">
-                  <Image src={'/assets/logo/TourLeek.svg'} alt="logo" className="logo" h="25px" />
+                  <Box pos="relative" w="150px" h="60px">
+                    <Image src={'/assets/logo/Logo-light.svg'} alt="logo" layout="fill" />
+                  </Box>
                 </Link>
               </DrawerHeader>
               <DrawerBody pt="50px">
@@ -70,7 +73,7 @@ export function NavigationMobile({ links }: NavigationComponentProps) {
                     _hover={{ bg: 'color_1_hover' }}
                     onMouseEnter={onMouseEnter}
                     onMouseLeave={onMouseLeave}>
-                    <Link href="/login" _hover={{ textDecoration: 'none' }}>
+                    <Link href="/login">
                       <Flex align="center">
                         <Text>Sign in</Text>
                         <Icon as={isHovering ? MdArrowForward : MdNavigateNext} w={6} h={6} />

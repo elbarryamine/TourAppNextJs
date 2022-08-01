@@ -5,7 +5,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <link rel="preload" href="/fonts/proxima.otf" />
+        <link rel="preload" href="/fonts/proxima.otf" as="font" />
       </Head>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <NextScript />

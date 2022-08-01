@@ -1,13 +1,15 @@
 import React from 'react'
-import { Flex, Box, Heading, Text, Icon, Image, Stack, Tag, Link, Divider, Skeleton, BoxProps } from '@chakra-ui/react'
+import { Flex, Box, Heading, Text, Icon, Stack, Tag, LinkBox, LinkOverlay, Skeleton, BoxProps } from '@chakra-ui/react'
 import { AiFillStar, AiOutlineClockCircle } from 'react-icons/ai'
 import { Tour } from '@shared/types/tours'
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default function TourCard({ tour, ...props }: { tour: Tour } & BoxProps) {
   const [imageLoaded, setImageLoaded] = React.useState<boolean>(false)
   const ratingAverage = tour.rating.reduce((prv, curr) => prv + curr, 0) / tour.rating.length
   return (
-    <Box
+    <LinkBox
       bg="white"
       borderRadius="8px"
       overflow="hidden"
@@ -36,29 +38,25 @@ export default function TourCard({ tour, ...props }: { tour: Tour } & BoxProps) 
         </Flex>
         <Box h="200px" borderRadius="8px">
           <Skeleton h="100%" w="100%" display={!imageLoaded ? 'block' : 'none'} borderRadius="8px" />
-          <Image
-            display={imageLoaded ? 'block' : 'none'}
-            transition="all 0.5s"
-            className="image"
-            src={tour.image}
-            alt={tour.name}
-            objectFit="cover"
-            objectPosition="center"
-            onLoad={() => setImageLoaded(true)}
-            h="100%"
-            w="100%"
-          />
+          <Box pos="relative" h="100%" w="100%" display={imageLoaded ? 'block' : 'none'} transition="all 0.5s" className="image">
+            <Image
+              layout="fill"
+              src={tour.image}
+              alt={tour.name}
+              objectFit="cover"
+              objectPosition="center"
+              onLoad={() => setImageLoaded(true)}
+            />
+          </Box>
         </Box>
-        <Link href={`/tour/${tour.id}`} pos="absolute" top="0" left="0" bg={!imageLoaded ? 'transparent' : '#00000040'} h="100%" w="100%">
-          <Flex align="flex-end" justify="flex-end" h="100%" color="white" p="10px" fontWeight={300} fontSize="xs" />
-        </Link>
       </Box>
-      <Divider borderColor="color_grey_3" />
       <Stack p="15px">
-        <Link href={`/tour/${tour.id}`} _hover={{ opacity: 0.8 }} _active={{}} _focus={{}}>
-          <Heading size="sm" fontWeight={400} noOfLines={1}>
-            {tour.name}
-          </Heading>
+        <Link href={`/tour/${tour.id}`} passHref>
+          <LinkOverlay>
+            <Heading size="sm" fontWeight={400} noOfLines={1}>
+              {tour.name}
+            </Heading>
+          </LinkOverlay>
         </Link>
         <Text fontSize="sm" color="color_grey_1" noOfLines={1}>
           {tour.categories.join(' - ')}
@@ -93,6 +91,6 @@ export default function TourCard({ tour, ...props }: { tour: Tour } & BoxProps) 
           </Flex>
         </Flex>
       </Stack>
-    </Box>
+    </LinkBox>
   )
 }

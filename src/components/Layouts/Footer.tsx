@@ -1,10 +1,17 @@
-import { Container, Flex, Grid, Stack, Image, Heading } from '@chakra-ui/react'
-import { useResponsive } from '@shared/hooks/useResponsive'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
+
+import { Container, Flex, Grid, Stack, Heading, Box } from '@chakra-ui/react'
+
+import { useResponsive } from '@shared/hooks/useResponsive'
+
+import { useRouter } from 'next/router'
+
 import { mainLinks } from '@shared/utils/link'
+
 import { Subscribe } from './Subscribe'
+
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   const { lessthan1000, lessthan768, lessthan600 } = useResponsive()
@@ -19,7 +26,7 @@ export default function Footer() {
       as="footer"
       color={isHomePage ? 'color_light' : 'color_1'}
       mt="auto">
-      <Container maxW="1440px" pt="50px" px={lessthan600 ? '20px' : '50px'}>
+      <Container maxW="container.xl" pt="50px">
         <Stack spacing={10} h="100%" pb="200px" pos="relative">
           <Flex gap="20px" align="center" justify="space-between" flexDir={lessthan600 ? 'column' : 'row'}>
             <Grid
@@ -64,11 +71,9 @@ export default function Footer() {
             py="20px"
             flexDir={lessthan768 ? 'column' : 'row'}>
             <Link href="/">
-              <Image
-                src={isHomePage ? '/assets/logo/logo-inverted.svg' : '/assets/logo/logo.svg'}
-                alt="logo"
-                h={lessthan1000 ? '45px' : '90px'}
-              />
+              <Box pos="relative" w="150px" h="60px">
+                <Image src={isHomePage ? '/assets/logo/Logo-dark.svg' : '/assets/logo/Logo-light.svg'} alt="logo" layout="fill" />
+              </Box>
             </Link>
             <Flex gap={lessthan1000 ? '5px' : '30px'} align="center" flexWrap="wrap">
               <Link href={mainLinks.privacy}>Privacy policy</Link>

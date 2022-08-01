@@ -1,12 +1,13 @@
 import React from 'react'
 import SearchBar from './SearchBar'
 import { Box, Container, Flex, Heading } from '@chakra-ui/react'
+import PageLayoutContainer from '@components/Containers/PageLayoutContainer'
 
 export default function Header() {
   return (
     <Box h="400px" pos="relative">
       <Box bg="#00000060" pos="absolute" top="0" left="0" h="100%" w="100%" zIndex="2">
-        <Container maxW="1200px" h="100%">
+        <PageLayoutContainer h="100%">
           <Flex flexDir="column" justify="center" h="100%">
             <Heading color="white" size="4xl" fontWeight={400}>
               Let's find a adventure together
@@ -18,7 +19,7 @@ export default function Header() {
           <Box transform="translateY(-50%)">
             <SearchBar />
           </Box>
-        </Container>
+        </PageLayoutContainer>
       </Box>
       <Box
         pos="absolute"

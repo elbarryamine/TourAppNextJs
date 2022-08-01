@@ -19,7 +19,6 @@ export const mainLinks = {
   logout: '/logout',
   browse: '/browse',
   search: '/search',
-  borwse: '/borwse',
   wishlist: '/wishlist',
   cart: '/cart',
   about: '/about',

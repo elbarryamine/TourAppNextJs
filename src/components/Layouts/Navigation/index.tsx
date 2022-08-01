@@ -7,7 +7,7 @@ import { MdFavoriteBorder, MdOutlineShoppingCart } from 'react-icons/md'
 
 const links = [
   { link: mainLinks.search, name: 'Search', hasImageIntersecting: true },
-  { link: mainLinks.borwse, name: 'Browse' },
+  { link: mainLinks.browse, name: 'Browse' },
   { link: mainLinks.wishlist, icon: MdFavoriteBorder, name: 'WishList' },
   { link: mainLinks.cart, icon: MdOutlineShoppingCart, name: 'Cart' },
 ]
