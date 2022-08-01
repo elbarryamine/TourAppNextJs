@@ -7,10 +7,10 @@ import PageLayoutContainer from '@components/Containers/PageLayoutContainer'
 
 export default function SearchPage() {
   return (
-    <Box bg="white" h="100%" w="100%">
+    <Box h="100%" w="100%">
       <Header />
       <PageLayoutContainer>
-        <Stack py="50px" spacing={5}>
+        <Stack p="50px" spacing={5} bg="white" borderRadius="15px">
           <Filters />
           <ToursDisplay />
         </Stack>
