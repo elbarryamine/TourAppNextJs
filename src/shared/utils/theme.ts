@@ -88,7 +88,7 @@ export const theme = extendTheme({
     '3xl': '1.5rem',
     full: '9999px',
   },
-  
+
   fonts: {
     heading: 'Inter',
     body: 'Inter',
@@ -101,13 +101,12 @@ export const theme = extendTheme({
     color_grey_1: '#717074',
     color_grey_2: '#C7C7C7',
     color_grey_3: '#EFEFEF',
-    color_grey_4:"#909198",
+    color_grey_4: '#909198',
     color_1: '#6347F9',
     color_1_hover: '#5232ff',
     color_2: '#FC747B',
     color_3: '#5b1216',
     color_4: '#43B97F',
     color_5: '#F6BB42',
-
   },
 })

@@ -3,9 +3,7 @@ import {
   Box,
   Button,
   Flex,
-  Image,
   Icon,
-  Link,
   useDisclosure,
   Drawer,
   DrawerOverlay,
@@ -17,23 +15,23 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { AiOutlineMenu } from 'react-icons/ai'
-import { LinkWithIcon, NavigationComponentProps } from '.'
 import { MdArrowForward, MdNavigateNext } from 'react-icons/md'
+import { NavigationComponentProps } from './types'
+import NavigationLink from './NavigationLink'
+import Image from 'next/image'
+import Link from 'next/link'
 
-export function NavigationMobile({ dark, icons }: NavigationComponentProps) {
+export function NavigationMobile({ links }: NavigationComponentProps) {
   const { onOpen, onClose, isOpen } = useDisclosure()
-  const iconsArr = [...icons]
   const [isHovering, setIsHovered] = useState(false)
   const onMouseEnter = () => setIsHovered(true)
   const onMouseLeave = () => setIsHovered(false)
 
-  if (dark) iconsArr.shift()
   return (
     <Box
       as="nav"
-      h={dark ? '100px' : '70px'}
-      color={dark ? 'white' : 'color_dark'}
-      bg={dark ? 'color_dark' : 'color_light'}
+      color="color_dark"
+      bg="color_light"
       fontFamily="rale"
       pos="sticky"
       top="0px"
@@ -42,7 +40,9 @@ export function NavigationMobile({ dark, icons }: NavigationComponentProps) {
       sx={{ '.logo': { h: '40px' } }}>
       <Flex align="center" justify="space-between" h="100%" px="20px" pos="sticky">
         <Link href="/">
-          <Image src={dark ? '/assets/logo/logo-dark.svg' : '/assets/logo/TourLeek.svg'} alt="logo" className="logo" w="150px" />
+          <Box pos="relative" w="150px" h="60px">
+            <Image src={'/assets/logo/Logo-light.svg'} alt="logo" layout="fill" />
+          </Box>
         </Link>
         <Button __css={{}} onClick={onOpen}>
           <Icon as={AiOutlineMenu} fontSize="30px" />
@@ -50,17 +50,19 @@ export function NavigationMobile({ dark, icons }: NavigationComponentProps) {
         <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="sm">
           <DrawerOverlay />
           <Box zIndex="drawer" pos="absolute">
-            <DrawerContent bg={dark ? 'color_dark' : 'color_light'} color={dark ? 'color_light' : 'color_dark'}>
+            <DrawerContent>
               <DrawerCloseButton _focus={{}} _active={{}} _hover={{}} onClick={onClose} />
               <DrawerHeader>
                 <Link href="/">
-                  <Image src={dark ? '/assets/logo/logo-dark.svg' : '/assets/logo/TourLeek.svg'} alt="logo" className="logo" h="25px" />
+                  <Box pos="relative" w="150px" h="60px">
+                    <Image src={'/assets/logo/Logo-light.svg'} alt="logo" layout="fill" />
+                  </Box>
                 </Link>
               </DrawerHeader>
               <DrawerBody pt="50px">
                 <Stack spacing={5}>
-                  {iconsArr.map((el) => (
-                    <LinkWithIcon key={el.name} item={el} />
+                  {links.map((el) => (
+                    <NavigationLink key={el.name} item={el} />
                   ))}
 
                   <Button
@@ -71,7 +73,7 @@ export function NavigationMobile({ dark, icons }: NavigationComponentProps) {
                     _hover={{ bg: 'color_1_hover' }}
                     onMouseEnter={onMouseEnter}
                     onMouseLeave={onMouseLeave}>
-                    <Link href="/login" _hover={{ textDecoration: 'none' }}>
+                    <Link href="/login">
                       <Flex align="center">
                         <Text>Sign in</Text>
                         <Icon as={isHovering ? MdArrowForward : MdNavigateNext} w={6} h={6} />
