@@ -6,15 +6,25 @@ export default function Experience() {
   const { lessthan768, lessthan600, lessthan900 } = useResponsive()
   return (
     <Flex align="center" justify="center" as="section">
-      <Container maxW="1200px" px={lessthan600 ? '20px' : '50px'}>
+      <Container maxW="1400px" px={lessthan600 ? '20px' : '50px'}>
         <Flex align="center" justify="space-between" gap="50px" flexDir={lessthan900 ? 'column' : 'row'}>
-          <Image src="/assets/images/girl-verified.svg" alt="service" objectFit="contain" maxH="500px" objectPosition="0%" flex="0 0 49%" />
+          <Image
+            src="/assets/graphics/tour-experience.svg"
+            alt="service"
+            objectFit="contain"
+            maxH="500px"
+            objectPosition="0%"
+            flex="0 0 49%"
+          />
           <Stack flex="0 0 49%" spacing={8}>
-            <Heading size={lessthan768 ? '2xl' : '4xl'} fontWeight={100}>
-              We know what we do <br />
-              and how to make you happier ♥
+            <Heading fontSize="20px" fontWeight={700} color="color_1">
+              OUR EXPERIENCE
             </Heading>
-            <Text fontSize="md" fontWeight={100} color="color_grey_2">
+            <Heading fontSize="45px" color="color_dark_blue" fontWeight="700" mt="10px" mb="15px">
+              With Our Experience We Will Serve You ♥️🙌
+            </Heading>
+
+            <Text fontSize="md" fontWeight={400} color="color_grey_1">
               over 10 years of experience in the industry we can show you a great experience with a reasonable cost
             </Text>
             <Flex
@@ -26,7 +36,7 @@ export default function Experience() {
                 <Heading size="lg" color="color_1">
                   10
                 </Heading>
-                <Text color="color_grey_2" fontSize="md">
+                <Text color="color_grey_4" fontSize="md">
                   Years of Experience
                 </Text>
               </Stack>
@@ -34,7 +44,7 @@ export default function Experience() {
                 <Heading size="lg" color="color_1">
                   123+
                 </Heading>
-                <Text color="color_grey_2" fontSize="md">
+                <Text color="color_grey_4" fontSize="md">
                   Destination Collaboration
                 </Text>
               </Stack>
@@ -42,7 +52,7 @@ export default function Experience() {
                 <Heading size="lg" color="color_1">
                   10k+
                 </Heading>
-                <Text color="color_grey_2" fontSize="md">
+                <Text color="color_grey_4" fontSize="md">
                   Happy Customer
                 </Text>
               </Stack>
