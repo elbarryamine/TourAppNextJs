@@ -4,9 +4,7 @@ import { theme } from '@shared/utils/theme'
 export default function Document() {
   return (
     <Html>
-      <Head>
-        <link rel="preload" href="/fonts/proxima.otf" as="font" />
-      </Head>
+      <Head></Head>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <NextScript />
       <Box as="body" bg="#fafafa">

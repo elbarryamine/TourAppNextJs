@@ -1,6 +1,6 @@
 import React from 'react'
 import SearchBar from './SearchBar'
-import { Box, Container, Flex, Heading } from '@chakra-ui/react'
+import { Box, Flex, Heading } from '@chakra-ui/react'
 import PageLayoutContainer from '@components/Containers/PageLayoutContainer'
 
 export default function Header() {
@@ -10,7 +10,7 @@ export default function Header() {
         <PageLayoutContainer h="100%">
           <Flex flexDir="column" justify="center" h="100%">
             <Heading color="white" size="4xl" fontWeight={400}>
-              Let's find a adventure together
+              Let's find an adventure together
             </Heading>
             <Heading size="md" color="color_grey_3" fontWeight={200}>
               we can show you a good time and a great story to share with people

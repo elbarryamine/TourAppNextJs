@@ -16,6 +16,9 @@ export default function TourCard({ tour, ...props }: { tour: Tour } & BoxProps) 
       w="250px"
       p="5px"
       m="12px"
+      transition="all 0.5s"
+      border="1px solid"
+      borderColor="color_grey_3"
       _hover={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))' }}
       {...props}>
       <Box h="50%" pos="relative" _hover={{ '.image': { transform: 'scale(1.2)' } }} overflow="hidden" borderRadius="8px">

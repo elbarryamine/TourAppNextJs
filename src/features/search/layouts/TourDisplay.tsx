@@ -18,8 +18,8 @@ export default function ToursDisplay() {
   const handlePageClick = async (selectedItem: { selected: number }) => {
     setLoaded(false)
     const response = await mutate({ variables: { page: selectedItem.selected, pageCount } })
-    setTours(response.data.getTours.results)
-    setPagination(response.data.getTours)
+    setTours(response.data.GetAllTours.results)
+    setPagination(response.data.GetAllTours)
     setLoaded(true)
   }
 
@@ -29,8 +29,8 @@ export default function ToursDisplay() {
 
   useEffect(() => {
     if (!data || loading) return
-    setTours(data.getTours.results)
-    setPagination(data.getTours)
+    setTours(data.GetAllTours.results)
+    setPagination(data.GetAllTours)
     setLoaded(true)
   }, [data, loading])
 
@@ -44,15 +44,9 @@ export default function ToursDisplay() {
         initialPage={pagination.currentPage}
         pageCount={Math.ceil(pagination.itemsCount / pagination.itemsOnPage)}
       />
-      <Grid
-        templateColumns={{ xs: '1fr', sm: 'repeat(2,1fr)', md: 'repeat(3,1fr)', lg: 'repeat(3,1fr)', xl: 'repeat(3, 1fr)' }}
-        alignItems="center"
-        justifyContent="space-between"
-        columnGap={{ sm: '12px', md: '15px', lg: '30px' }}
-        rowGap="30px"
-        py="30px">
+      <Grid templateColumns="repeat(4, 1fr)" gap="20px">
         {tours.map((tour) => (
-          <TourCard key={tour.id} tour={tour} />
+          <TourCard w="100%" key={tour.id} tour={tour} />
         ))}
       </Grid>
       <Pagination

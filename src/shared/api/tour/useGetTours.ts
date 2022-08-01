@@ -3,24 +3,28 @@ import { DocumentNode } from 'graphql'
 
 export function useGetTours(overrideGqlQuery?: DocumentNode) {
   const QUERY = gql`
-    query getToursQuery($page: Int, $pageCount: Int) {
-      getTours(page: $page, pageCount: $pageCount) {
+    query QueryGetAllTours($page: Int, $pageCount: Int) {
+      GetAllTours(page: $page, pageSize: $pageCount) {
         itemsCount
         currentPage
         itemsOnPage
         results {
           id
           name
-          category
-          rating
-          location
-          duration
           description
-          features
           price
           discount
-          mainImage
+          categories
+          duration
+          features
+          startLocation
+          locations
+          image
           images
+          isActive
+          rating
+          numberOfbooked
+          createdBy
           createdAt
         }
       }

@@ -3,24 +3,17 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group'
 import { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import store from '@redux/store'
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
 import CustomChakraProvider from './ChakraProvider'
+import ApolloProviderWrapper from './ApolloProvider'
 
 type Props = {
   children: React.ReactNode
   router: AppProps['router']
 }
-const link = createHttpLink({
-  uri: `${process.env.NEXT_PUBLIC_API_END_POINT}/graphql`,
-  credentials: 'include',
-})
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link,
-})
+
 export default function AppProvider({ children, router }: Props) {
   return (
-    <ApolloProvider client={client}>
+    <ApolloProviderWrapper>
       <Provider store={store}>
         <CustomChakraProvider>
           <SwitchTransition mode="out-in">
@@ -30,6 +23,6 @@ export default function AppProvider({ children, router }: Props) {
           </SwitchTransition>
         </CustomChakraProvider>
       </Provider>
-    </ApolloProvider>
+    </ApolloProviderWrapper>
   )
 }

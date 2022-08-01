@@ -11,6 +11,7 @@ import { mainLinks } from '@shared/utils/link'
 import { Subscribe } from './Subscribe'
 
 import Link from 'next/link'
+
 import Image from 'next/image'
 
 export default function Footer() {
@@ -25,6 +26,7 @@ export default function Footer() {
       bgRepeat="no-repeat"
       as="footer"
       color={isHomePage ? 'color_light' : 'color_1'}
+      sx={{ a: { textDecor: 'none' } }}
       mt="auto">
       <Container maxW="container.xl" pt="50px">
         <Stack spacing={10} h="100%" pb="200px" pos="relative">
@@ -48,7 +50,7 @@ export default function Footer() {
               </Stack>
               <Stack>
                 <Heading size="md" fontWeight={300}>
-                  Authentification
+                  Account
                 </Heading>
                 <Link href="/">Sign in</Link>
                 <Link href="/">Create Account</Link>
