@@ -7,7 +7,7 @@ export default function Document() {
       <Head></Head>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <NextScript />
-      <Box as="body" bg="#fafafa">
+      <Box as="body">
         <div id="preloader" className="preloader" />
         <Main />
       </Box>

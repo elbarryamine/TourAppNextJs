@@ -11,7 +11,7 @@ export function SimpleLoading({ hideText, ...props }: FlexProps & { hideText?: b
     <Flex w="100%" align="center" justify="center" {...props}>
       <Flex align="center" justify="center" gap="10px">
         <Box animation={`${spin} infinite 0.5s linear`} h="25px">
-          <Icon as={AiOutlineLoading3Quarters} color="color_1" h="100%" />
+          <Icon as={AiOutlineLoading3Quarters} color="color_1" h="icon.sm" />
         </Box>
         {!hideText && (
           <Text fontWeight="extrabold" fontSize="body" color="color_1">
