@@ -9,13 +9,17 @@ export default function Experience() {
     <Box as="section">
       <Flex align="center" justify="space-between" gap="50px" flexDir={lessthan900 ? 'column' : 'row'}>
         <Box pos="relative" h="500px" flex="1 1 49%">
-          <Image src="/assets/images/girl-verified.svg" alt="service" layout="fill" />
+          <Image src="/assets/graphics/tour-experience.svg" alt="service" layout="fill" />
         </Box>
         <Stack flex="0 0 49%" spacing={8}>
-          <Heading size={lessthan768 ? '2xl' : '4xl'} fontWeight={100}>
-            We know what we do <br />
-            and how to make you happier ♥
+          <Heading fontSize="20px" fontWeight={700} color="color_1">
+            OUR EXPERIENCE
           </Heading>
+          <Heading fontSize="45px" color="color_dark_blue" fontWeight="700" mt="10px" mb="15px">
+            With Our Experience
+            <br /> We Will Serve You ♥️🙌
+          </Heading>
+
           <Text fontSize="md" fontWeight={100} color="color_grey_2">
             over 10 years of experience in the industry we can show you a great experience with a reasonable cost
           </Text>
