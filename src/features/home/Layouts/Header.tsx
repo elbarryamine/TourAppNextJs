@@ -12,8 +12,8 @@ export default function Header() {
   return (
     <Box>
       <Flex justify="space-between" align="center">
-        <Stack flex={lessthan900 ? '0 0 100%' : '0 0 45%'} spacing={10}>
-          <Box bg="#FFEBEC" p="20px" w="max-content" borderRadius="1000px">
+        <Stack flex={lessthan900 ? '0 0 100%' : '0 0 40%'} spacing={10}>
+          <Box bg="#FFEBEC" p="20px" w="max-content" borderRadius="1000px" mt="120px">
             <Heading variant="subheader" color="color_2">
               Explore the World 🌎
             </Heading>
@@ -34,8 +34,8 @@ export default function Header() {
             We always make our customer happy by providing as many choices as possible
           </Text>
         </Stack>
-        <Box pos="relative" h="500px" w="40%">
-          <Image src="/assets/graphics/camel-map.svg" alt="camel-image" layout="fill" />
+        <Box pos="relative" h="550px" w="100%">
+          <Image src="/assets/graphics/camel-map-1.svg" alt="camel-image" layout="fill" />
         </Box>
       </Flex>
 
