@@ -6,7 +6,12 @@ import { useDraggable } from 'react-use-draggable-scroll'
 import TourCard from '@components/Layouts/TourCard'
 import Link from 'next/link'
 
-export default function ToursDisplay() {
+export interface ToursDisplayProps {
+  hasMore: boolean
+  heading: string
+}
+
+export default function ToursDisplay({ hasMore, heading }: ToursDisplayProps) {
   const ref = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLDivElement>
   const { events } = useDraggable(ref)
   const tours: Tour[] = Array<Tour>(10).fill({
@@ -33,11 +38,13 @@ export default function ToursDisplay() {
     <Box>
       <Flex justify="space-between" align="center">
         <Heading fontSize="45px" color="color_dark_blue" fontWeight="700" mt="10px" mb="15px">
-          Top activities ⛳
+          {heading}
         </Heading>
-        <Button borderRadius={5} colorScheme="none" bg="color_1" color="color_light" _hover={{ bg: 'color_1_hover' }}>
-          <Link href="#">Explore all</Link>
-        </Button>
+        {hasMore && (
+          <Button borderRadius={5} colorScheme="none" bg="color_1" color="color_light" _hover={{ bg: 'color_1_hover' }}>
+            <Link href="#">Explore all</Link>
+          </Button>
+        )}
       </Flex>
       <HStack spacing="20px" overflowX="hidden" {...events} ref={ref}>
         {tours.map((tour, index) => (

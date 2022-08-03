@@ -17,7 +17,11 @@ export default function BrowsePage() {
       <PageLayoutContainer>
         <Stack p="50px" spacing={5} bg="white" borderRadius="15px">
           <Filters />
-          <ToursDisplay />
+          <Stack spacing="40px">
+            <ToursDisplay hasMore={true} heading={'Top activities ⛳'} />
+            <ToursDisplay hasMore={false} heading={'Top sights in New York City 🔥'} />
+            <ToursDisplay hasMore={true} heading={'City skyline cruises 🏙️'} />
+          </Stack>
         </Stack>
       </PageLayoutContainer>
     </Box>
