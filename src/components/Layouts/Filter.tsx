@@ -1,19 +1,25 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
-import { Flex, Button, Menu, MenuButton, MenuList, MenuItem, Icon, Text, Divider } from '@chakra-ui/react'
+import { Flex, Button, Menu, MenuButton, MenuList, MenuItem, Icon, Text, Divider, HStack } from '@chakra-ui/react'
 import { AiOutlineDown } from 'react-icons/ai'
+import { useDraggable } from 'react-use-draggable-scroll'
 
 export default function Filters() {
   const categories = ['All', 'Mountain', 'Hiking', 'Beach', 'Ballon', 'Quad', 'Waterfalls', 'Snow', 'Camel', 'Dune']
   const [active, setActive] = useState<string>(categories[0] as string)
+
+  const ref = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLDivElement>
+  const { events } = useDraggable(ref)
+
   return (
-    <Flex gap="20px" align="center" flexWrap="wrap" placeContent="center">
+    <Flex gap="20px" align="center">
       <Menu>
         <MenuButton
           _focus={{}}
           _hover={{}}
           _active={{}}
           border="1px"
+          minW="90px"
           borderColor="whitesmoke"
           bg="color_light"
           borderRadius="1000px"
@@ -34,6 +40,7 @@ export default function Filters() {
           _hover={{}}
           _active={{}}
           border="1px"
+          minW="150px"
           borderColor="whitesmoke"
           bg="color_light"
           borderRadius="1000px"
@@ -48,22 +55,26 @@ export default function Filters() {
         </MenuList>
       </Menu>
       <Divider orientation="vertical" h="50px" />
-      {categories.map((el, index) => (
-        <Button
-          key={index}
-          _focus={{}}
-          _hover={{}}
-          _active={{}}
-          border="1px"
-          borderColor="whitesmoke"
-          bg={active === el ? 'blue.100' : 'color_light'}
-          borderRadius="1000px"
-          onClick={() => setActive(el)}>
-          <Text fontSize="sm" color={active === el ? 'blue.900' : 'color_dark'}>
-            {el}
-          </Text>
-        </Button>
-      ))}
+      <HStack spacing="20px" overflowX="hidden" {...events} ref={ref}>
+        {categories.map((el, index) => (
+          <Button
+            key={index}
+            _focus={{}}
+            _hover={{}}
+            _active={{}}
+            border="1px"
+            minW="90px"
+            borderColor="whitesmoke"
+            bg={active === el ? 'blue.100' : 'color_light'}
+            borderRadius="1000px"
+            px="12px"
+            onClick={() => setActive(el)}>
+            <Text fontSize="sm" color={active === el ? 'blue.900' : 'color_dark'}>
+              {el}
+            </Text>
+          </Button>
+        ))}
+      </HStack>
     </Flex>
   )
 }
