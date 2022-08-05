@@ -6,6 +6,7 @@ import Experience from './layouts/Experience'
 import StartSection from './layouts/Start'
 import TopDestination from './layouts/TopDestination'
 import PageLayoutContainer from '@components/Containers/PageLayoutContainer'
+import Recommendation from './layouts/Recommendation'
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
         <Stack spacing={24}>
           <Header />
           <Offers />
+          <Recommendation />
           <TopDestination />
           <Experience />
           <StartSection />
