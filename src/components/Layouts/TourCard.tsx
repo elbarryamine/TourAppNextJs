@@ -1,32 +1,61 @@
 import React from 'react'
-import { Flex, Box, Heading, Text, Icon, Stack, Tag, LinkBox, LinkOverlay, Skeleton, BoxProps } from '@chakra-ui/react'
+import { Flex, Box, Heading, Text, Icon, Stack, Tag, LinkBox, LinkOverlay, BoxProps, useColorModeValue } from '@chakra-ui/react'
 import { AiFillStar, AiOutlineClockCircle } from 'react-icons/ai'
 import { Tour } from '@shared/types/tours'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default function TourCard({ tour, ...props }: { tour: Tour } & BoxProps) {
-  const [imageLoaded, setImageLoaded] = React.useState<boolean>(false)
   const ratingAverage = tour.rating.reduce((prv, curr) => prv + curr, 0) / tour.rating.length
   return (
     <LinkBox
-      bg="white"
-      borderRadius="8px"
-      overflow="hidden"
-      w="250px"
-      p="5px"
-      m="12px"
-      transition="all 0.5s"
-      border="1px solid"
-      borderColor="color_grey_3"
-      _hover={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))' }}
+      p={6}
+      my={12}
+      maxW={'330px'}
+      w="288px"
+      bg={useColorModeValue('white', 'gray.800')}
+      boxShadow={'md'}
+      _hover={{ boxShadow: 'lg' }}
+      rounded={'lg'}
+      pos={'relative'}
+      zIndex={1}
       {...props}>
-      <Box h="50%" pos="relative" _hover={{ '.image': { transform: 'scale(1.2)' } }} overflow="hidden" borderRadius="8px">
+      <Box
+        rounded={'lg'}
+        mt={-12}
+        pos={'relative'}
+        height={'230px'}
+        _after={{
+          transition: 'all .3s ease',
+          content: '""',
+          w: 'full',
+          h: 'full',
+          pos: 'absolute',
+          top: 5,
+          left: 0,
+          backgroundImage: `url(${tour.image})`,
+          filter: 'blur(15px)',
+          zIndex: -1,
+        }}
+        _groupHover={{
+          _after: {
+            filter: 'blur(20px)',
+          },
+        }}
+        sx={{
+          img: {
+            position: 'relative',
+            rounded: 'lg',
+            height: 230,
+            width: 282,
+            objectFit: 'cover',
+          },
+        }}>
         <Flex
           display={ratingAverage > 4 ? 'block' : 'none'}
           pos="absolute"
-          top="20px"
-          left="-5px"
+          top="0px"
+          right="0"
           bg="color_2"
           color="white"
           zIndex="2"
@@ -34,29 +63,18 @@ export default function TourCard({ tour, ...props }: { tour: Tour } & BoxProps) 
           py="3px"
           align="center"
           justify="center"
-          borderRadius="5px">
-          <Text fontFamily="rale" fontSize="sm" fontWeight={900}>
+          borderBottomLeftRadius="lg"
+          borderTopRightRadius="lg">
+          <Text fontSize="sm" fontWeight={900}>
             Popular
           </Text>
         </Flex>
-        <Box h="200px" borderRadius="8px">
-          <Skeleton h="100%" w="100%" display={!imageLoaded ? 'block' : 'none'} borderRadius="8px" />
-          <Box pos="relative" h="100%" w="100%" display={imageLoaded ? 'block' : 'none'} transition="all 0.5s" className="image">
-            <Image
-              layout="fill"
-              src={tour.image}
-              alt={tour.name}
-              objectFit="cover"
-              objectPosition="center"
-              onLoad={() => setImageLoaded(true)}
-            />
-          </Box>
-        </Box>
+        <Image src={tour.image} alt={tour.name} blurDataURL={tour.image} placeholder="blur" layout="fill" />
       </Box>
-      <Stack p="15px">
+      <Stack pt={7}>
         <Link href={`/tour/${tour.id}`} passHref>
           <LinkOverlay>
-            <Heading size="sm" fontWeight={400} noOfLines={1}>
+            <Heading fontSize="md" color="color_dark_blue" fontWeight="700" noOfLines={2}>
               {tour.name}
             </Heading>
           </LinkOverlay>
