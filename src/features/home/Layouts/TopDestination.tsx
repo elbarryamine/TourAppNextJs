@@ -1,6 +1,6 @@
 import React from 'react'
-
-import { Box, Center, useColorModeValue, Heading, Stack, Image, SimpleGrid } from '@chakra-ui/react'
+import { Box, Center, useColorModeValue, Heading, Stack, Image, SimpleGrid, LinkOverlay } from '@chakra-ui/react'
+import Link from 'next/link'
 
 export interface TopDestinationCardProps {
   image: string
@@ -106,9 +106,13 @@ const TopDestinationCard = ({ title, image }: TopDestinationCardProps) => {
           <Image rounded={'lg'} height={230} width={282} objectFit={'cover'} src={image} />
         </Box>
         <Stack pt={7} align={'center'}>
-          <Heading fontSize="25px" color="color_dark_blue" fontWeight="700">
-            {title}
-          </Heading>
+          <Link href="/browse" passHref>
+            <LinkOverlay>
+              <Heading fontSize="25px" color="color_dark_blue" fontWeight="700">
+                {title}
+              </Heading>
+            </LinkOverlay>
+          </Link>
         </Stack>
       </Box>
     </Center>

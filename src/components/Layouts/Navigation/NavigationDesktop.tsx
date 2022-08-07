@@ -21,7 +21,7 @@ export function NavigationDesktop({ links }: NavigationComponentProps) {
   const onMouseLeave = () => setIsHovered(false)
   const { pathname } = useRouter()
   const currentLinkItem = links.find((link) => link.link === pathname)!
-  const isImageIntersecting = currentLinkItem?.hasImageIntersecting && !scrolledDown
+  const isImageIntersecting = (currentLinkItem?.hasImageIntersecting && !scrolledDown) || (pathname === '/browse' && !scrolledDown)
   const changeNavbarBackground = () => {
     if (window.scrollY >= 80) {
       setScrolledDown(true)
