@@ -3,7 +3,7 @@
   "resolutions": {},
   "scripts": {
     "dev": "next dev",
-    "start": "next -p 8080",
+    "start": "next start",
     "build": "next build",
     "start:next": "next start",
     "tsc": "tsc -w",
