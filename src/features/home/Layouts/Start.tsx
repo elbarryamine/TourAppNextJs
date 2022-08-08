@@ -9,9 +9,9 @@ export default function StartSection() {
     <Box as="section">
       <Flex
         px="20px"
-        bg="#fdb6ba"
+        bg="#FFF3F3"
         borderRadius={lessthan600 ? '10px' : '15px'}
-        py="50px"
+        py="90px"
         flexDir="column"
         gap={5}
         align="center"
@@ -20,15 +20,13 @@ export default function StartSection() {
         bgSize="cover"
         h="50%"
         bgRepeat="no-repeat">
-        <Heading size="2xl" textAlign="center">
+        <Heading size="2xl" textAlign="center" lineHeight="md" color="color_dark_blue">
           Prepare Yourself & Let’s Explore
           <br /> The Beauty Of The World 🌍
         </Heading>
-        <Text>We have many special offers especially for you.</Text>
+        <Text color="color_dark_blue">We have many special offers especially for you.</Text>
         <StartButton />
       </Flex>
     </Box>
   )
 }
-
-// background-pink-rocks
